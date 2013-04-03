@@ -15,7 +15,6 @@ public class CrsDAO {
 	}
 	
 	public EmployeeForm getLoginRecord(EmployeeForm employee){
-		int count;
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
 			EmployeeForm employeeDetail = (EmployeeForm) session.selectOne("Employee.getRecord",employee);
@@ -25,5 +24,13 @@ public class CrsDAO {
 		}
 	}
 	
+	public void insertEmployeeRecord(EmployeeForm employee){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			session.selectOne("Employee.insertRecord",employee);
+		}finally {
+			session.close();
+		}
+	}
 
 }

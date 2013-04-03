@@ -21,4 +21,12 @@ public class LoginService implements LoginServiceInterface{
 		return false;
 	}
 
+	@Override
+	public EmployeeForm registerNewUser(EmployeeForm employee) {
+		System.out.println("In Login Service Register New User");
+		dao.insertEmployeeRecord(employee);
+		EmployeeForm employeeDetails = null;
+		return employeeDetails;
+	}
+
 }

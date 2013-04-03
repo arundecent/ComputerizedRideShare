@@ -22,11 +22,21 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 	
 	
 
-	public String execute(){
-		System.out.println("======In Login Action execute========");
+	public String login(){
+		System.out.println("======In Login Action login========");
 		
 		EmployeeForm employeeDetails;
 		employeeDetails = loginService.login(employee);
+		if(employeeDetails != null)
+			return SUCCESS;
+		else
+			return LOGIN;
+	}
+	
+	public String registerNewUser(){
+		System.out.println("======In Login Action register========");
+		EmployeeForm employeeDetails;
+		employeeDetails = loginService.registerNewUser(employee);
 		if(employeeDetails != null)
 			return SUCCESS;
 		else

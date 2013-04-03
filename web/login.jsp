@@ -11,9 +11,12 @@
 </head>
 <body>
 	<s:form action="login" method="post">
-	<s:textfield id="userName" key="employee.emailID" label="Email id "></s:textfield>
-	<s:password id="password" key="employee.password" label="Password"></s:password>
-	<s:submit align="center"/>
+		<s:textfield id="userName" key="employee.emailID" label="Email id "></s:textfield>
+		<s:password id="password" key="employee.password" label="Password"></s:password>
+		<s:submit align="center"/>
+	</s:form>
+	<s:form action="register" method="post">
+		<s:label label="New User ? "><a href="createNewUser.jsp">Sign Up</a></s:label>
 	</s:form>
 </body>
 </html>

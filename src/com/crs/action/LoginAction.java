@@ -2,11 +2,13 @@ package com.crs.action;
 
 import org.apache.commons.lang.StringUtils;
 import com.crs.interfaces.LoginServiceInterface;
-import com.crs.model.*;
+import com.crs.model.EmployeeForm;
 import com.crs.service.LoginService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+
+@SuppressWarnings("serial")
 public class LoginAction extends ActionSupport implements ModelDriven<EmployeeForm> {
 	
 	private EmployeeForm employee = new EmployeeForm();
@@ -20,8 +22,6 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 		this.employee = employee;
 	}
 	
-	
-
 	public String login(){
 		System.out.println("======In Login Action login========");
 		
@@ -45,14 +45,13 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 	
 	public void validate(){
 		if(StringUtils.isEmpty(employee.getEmailID()))
-				addFieldError(employee.getEmailID(), "Email ID cannot be blank");
+				addFieldError(employee.getEmailID(), "Email ID is a required field");
 		if(StringUtils.isEmpty(employee.getPassword()))
-				addFieldError(employee.getPassword(), "Password cannot be blank");
+				addFieldError(employee.getPassword(), "Password is a required field");
 	}
 
 	@Override
 	public EmployeeForm getModel() {
-		// TODO Auto-generated method stub
 		return employee;
 	}
 

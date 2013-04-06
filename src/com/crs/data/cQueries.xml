@@ -27,10 +27,10 @@
     </update>
     
     <select id="availableCarpools" resultMap="result">
-    	SELECT c.carpool_id, c.date_created, c.at_work FROM Carpool AS c INNER JOIN CarpoolMember AS cm ON c.carpool_id=cm.carpool_id GROUP BY cm.carpool_id HAVING COUNT(cm.employee_id) < 4
+    	SELECT c.carpool_id, c.date_created, c.at_work FROM Carpool AS c INNER JOIN CarpoolMember AS cm ON c.carpool_id=cm.carpool_id GROUP BY cm.carpool_id HAVING COUNT(cm.employee_id) &lt; 4
     </select>
     
     <select id="emergencyCarpool" resultMap="result">
-    	SELECT c.carpool_id, c.date_created, c.at_work FROM Carpool AS c INNER JOIN CarpoolMember AS cm ON c.carpool_id=cm.carpool_id WHERE c.at_work = 1 GROUP BY cm.carpool_id HAVING COUNT(cm.employee_id) < 4
+    	SELECT c.carpool_id, c.date_created, c.at_work FROM Carpool AS c INNER JOIN CarpoolMember AS cm ON c.carpool_id=cm.carpool_id WHERE c.at_work = 1 GROUP BY cm.carpool_id HAVING COUNT(cm.employee_id) &lt; 4
     </select>
 </mapper>

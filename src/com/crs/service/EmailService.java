@@ -8,7 +8,7 @@ import org.apache.commons.mail.SimpleEmail;
 
 /**
  * This class is the service which is used 
- * to send email to
+ * to send email
  * @author Mohan
  *
  */

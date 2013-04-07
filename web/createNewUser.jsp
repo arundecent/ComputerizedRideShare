@@ -20,7 +20,7 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 		<sj:textfield id="employeeId" key="employee.employeeId" label="Employee id "></sj:textfield>
 		<sj:textfield id="userName" key="employee.emailID" label="Email id "></sj:textfield>
 		<s:password id="password" key="employee.password" label="Password"></s:password>
-		<sj:textfield id="salt" key="employee.salt" label="Salt "></sj:textfield>
+		<%-- <sj:textfield id="salt" key="employee.salt" label="Salt "></sj:textfield> --%>
 		<sj:textfield id="firstName" key="employee.firstName" label="First Name "></sj:textfield>
 		<sj:textfield id="lastName" key="employee.lastName" label="Last Name "></sj:textfield>
 		<sj:textfield id="securityQn" key="employee.securityQn" label="Security Question "></sj:textfield>

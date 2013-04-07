@@ -12,9 +12,48 @@ import com.crs.dao.CrsDAO;
 import com.crs.interfaces.LoginServiceInterface;
 import com.crs.model.EmployeeForm;
 
+/**
+ * This class will contain all the service methods relating to
+ * the login and registration usecases of the CRP.
+ * @author subbu/mohan
+ *
+ */
 public class LoginService implements LoginServiceInterface{
 	
-	CrsDAO dao = new CrsDAO();
+	//CrsDAO to make database transactions
+	private CrsDAO dao;
+	
+	/**
+	 * Getter method for CrsDAO instance variable 
+	 * @return CrsDAO
+	 */
+	public CrsDAO getDao() {
+		return dao;
+	}
+
+	/**
+	 * Setter method for CrsDAO
+	 * @param dao
+	 */
+	public void setDao(CrsDAO dao) {
+		this.dao = dao;
+	}
+
+	/**
+	 * Default Constructor used to instantiate the 
+	 * data access object 
+	 */
+	public LoginService(){
+		dao = new CrsDAO();
+	}
+	
+	
+	/**
+	 * This method is used to employee details after 
+	 * user enters his/her login credentials. 
+	 * @return EmployeeForm (Empployee bean)
+	 * @author Subbu
+	 */
 	@Override
 	public EmployeeForm login(EmployeeForm employee) {
 		System.out.println("In Login Service");
@@ -24,12 +63,25 @@ public class LoginService implements LoginServiceInterface{
 		return employeeDetails;
 	}
 
+	/**
+	 * This method is used to the reset the password 
+	 * for the user
+	 * @return boolean depending on a successful reset or failure
+	 * @author Subbu
+	 */
 	@Override
 	public boolean resetPassword(String emailId) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
+	/**
+	 * This method is used to register a new user which takes the 
+	 * employee bean as the input and saves the details into the database
+	 * by invoking a method on the dao object.
+	 * @return EmployeeForm
+	 * @author Subbu
+	 */
 	@Override
 	public EmployeeForm registerNewUser(EmployeeForm employee) {
 		System.out.println("In Login Service Register New User");
@@ -37,6 +89,7 @@ public class LoginService implements LoginServiceInterface{
 		//hashed password should be set to the employee object before database save.
 		employee.setPassword(this.generateMD5HashForPasswordWithSalt(employee.getPassword()));
 		
+		//saving the details to the database using dao
 		dao.insertEmployeeRecord(employee);
 		EmployeeForm employeeDetails = null;
 		return employeeDetails;
@@ -45,7 +98,8 @@ public class LoginService implements LoginServiceInterface{
 	/**
 	 * This method is used to generate the hashing of password without salt
 	 * @param strPassword
-	 * @return
+	 * @return String
+	 * @author mohan
 	 */
 	public String generateMD5HashForPassword(String strPassword){
 		if(strPassword == null){
@@ -61,7 +115,8 @@ public class LoginService implements LoginServiceInterface{
 	 * This method is used to generate the hashing of password with salt
 	 * retrieved from the database
 	 * @param strPassword
-	 * @return
+	 * @return String
+	 * @author mohan
 	 */
 	public String generateMD5HashForPasswordWithSalt(String strPassword){
 		if(strPassword == null){

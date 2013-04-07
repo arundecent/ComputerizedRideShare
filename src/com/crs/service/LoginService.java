@@ -59,7 +59,7 @@ public class LoginService implements LoginServiceInterface{
 		System.out.println("In Login Service");
 		
 		EmployeeForm employeeDetails = dao.getLoginRecord(employee);
-		System.out.println("Result : " +employeeDetails.getFirstName());
+	//	System.out.println("Result : " +employeeDetails.getFirstName());
 		return employeeDetails;
 	}
 
@@ -124,9 +124,7 @@ public class LoginService implements LoginServiceInterface{
 		}
 		else {
 			String strHashedPassword = null;			
-			//@subbu - i am not able to understand how this mybatis is working 
-			// and how to do database manipulations.. an introduction from u will be useful
-			//this salt should come from the database. i have just hard coded for work purpose
+			
 			String strSalt = "#00jlasmdio2oj093-4923u8968912@$@4&#%^$*";
 			String strSaltPassword = strPassword + strSalt;
 			

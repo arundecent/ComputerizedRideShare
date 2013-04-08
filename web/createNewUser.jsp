@@ -11,18 +11,17 @@
 </head>
 <body>
 	<s:form action="register" method="post">
-		<sj:textfield id="employeeId" key="employee.employeeId" label="Employee id "></sj:textfield>
-		<sj:textfield id="userName" key="employee.emailID" label="Email id "></sj:textfield>
+		<sj:textfield id="employeeId" key="employee.employeeID" dataType="Integer" label="Employee id "></sj:textfield>
+		<sj:textfield id="userName" key="employee.emailID" dataType="String" label="Email id "></sj:textfield>
 		<s:password id="password" key="employee.password" label="Password"></s:password>
-		<sj:textfield id="salt" key="employee.salt" label="Salt "></sj:textfield>
-		<sj:textfield id="firstName" key="employee.firstName" label="First Name "></sj:textfield>
-		<sj:textfield id="lastName" key="employee.lastName" label="Last Name "></sj:textfield>
-		<sj:textfield id="securityQn" key="employee.securityQn" label="Security Question "></sj:textfield>
-		<sj:textfield id="phoneNo" key="employee.phoneNo" label="Phone Number "></sj:textfield>
-		<s:combobox list="{'Email', 'Mobile'}" label="Notify Type "	headerKey="-1" key="employee.notifyType"></s:combobox>
+		<sj:textfield id="salt" key="employee.salt" dataType="String" label="Salt "></sj:textfield>
+		<sj:textfield id="firstName" key="employee.firstName" dataType="String" label="First Name "></sj:textfield>
+		<sj:textfield id="lastName" key="employee.lastName" dataType="String" label="Last Name "></sj:textfield>
+		<sj:textfield id="securityQn" key="employee.securityQn" dataType="String" label="Security Question "></sj:textfield>
+		<sj:textfield id="securityAns" key="employee.securityAns" dataType="String" label="Security Answer "></sj:textfield>
+		<sj:textfield id="phoneNo" key="employee.phoneNo" dataType="String" label="Phone Number "></sj:textfield>
+		<s:combobox list="{'Email', 'Mobile'}" label="Notify Type "  key="employee.notifyTypeStr"></s:combobox>
 		<sj:textfield id="address" key="employee.address" label="Address "></sj:textfield>
-		<sj:datepicker id="dateJoined" accesskey="employee.dateJoined" label="Date Joined "></sj:datepicker>
-		<sj:textfield id="points" key="employee.points" label="Points "></sj:textfield>
 		<sj:submit align="center"/>
 	</s:form>
 </body>

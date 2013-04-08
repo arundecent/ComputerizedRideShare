@@ -3,23 +3,39 @@ package com.crs.model;
 import java.util.Date;
 
 public class EmployeeForm {
-	private long employeeID;
+	private int employeeID;
 	private String emailID;
 	private String password;
 	private String salt;
 	private String firstName;
 	private String lastName;
 	private String securityQn;
+	private String securityAns;
 	private String phoneNo;
+	private String notifyTypeStr;
 	private int notifyType;
 	private String address;
 	private Date dateJoined;
 	private int points;
 	
-	public long getEmployeeID() {
+	public String getNotifyTypeStr() {
+		return notifyTypeStr;
+	}
+	public void setNotifyTypeStr(String notifyTypeStr) {
+		this.notifyTypeStr = notifyTypeStr;
+	}
+	
+	public String getSecurityAns() {
+		return securityAns;
+	}
+	public void setSecurityAns(String securityAns) {
+		this.securityAns = securityAns;
+	}
+	
+	public int getEmployeeID() {
 		return employeeID;
 	}
-	public void setEmployeeID(long employeeID) {
+	public void setEmployeeID(int employeeID) {
 		this.employeeID = employeeID;
 	}
 	public String getEmailID() {

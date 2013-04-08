@@ -1,5 +1,7 @@
 package com.crs.action;
 
+import java.util.Date;
+
 import org.apache.commons.lang.StringUtils;
 import com.crs.interfaces.LoginServiceInterface;
 import com.crs.model.*;
@@ -36,6 +38,12 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 	
 	public String registerNewUser(){
 		System.out.println("======In Login Action register========");
+		employee.setDateJoined(new Date());
+		employee.setPoints(25);
+		if(employee.getNotifyTypeStr().equals("Email"))
+			employee.setNotifyType(0);
+		else
+			employee.setNotifyType(1);
 		EmployeeForm employeeDetails;
 		employeeDetails = loginService.registerNewUser(employee);
 		if(employeeDetails != null)

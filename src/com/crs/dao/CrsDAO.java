@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.crs.dao.MyBatisConnectionFactory;
+import com.crs.model.CarPoolForm;
 import com.crs.model.EmployeeForm;
 
 public class CrsDAO {
@@ -31,6 +32,17 @@ public class CrsDAO {
 		}finally {
 			session.close();
 		}
+	}
+	
+	public CarPoolForm getCarPoolGroup(){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			CarPoolForm carPoolGroup = session.selectOne("Employee.getCarPoolGroup");
+			return carPoolGroup;
+		}finally {
+			session.close();
+		}
+		 
 	}
 
 }

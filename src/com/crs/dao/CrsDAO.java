@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.crs.dao.MyBatisConnectionFactory;
 import com.crs.model.CarPoolForm;
+import com.crs.model.CarPoolMemberForm;
 import com.crs.model.EmployeeForm;
 
 public class CrsDAO {
@@ -28,7 +29,7 @@ public class CrsDAO {
 	public void insertEmployeeRecord(EmployeeForm employee){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			session.selectOne("Employee.insertRecord",employee);
+			session.insert("Employee.insertRecord",employee);
 		}finally {
 			session.close();
 		}
@@ -43,6 +44,25 @@ public class CrsDAO {
 			session.close();
 		}
 		 
+	}
+	
+	public void createNewMember(CarPoolMemberForm carPoolMember){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			 session.insert("Employee.createNewMember",carPoolMember);
+		}finally {
+			session.close();
+		}
+	}
+	
+	public CarPoolForm createNewCarPoolGroup(){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			CarPoolForm carPoolGroup = session.selectOne("Employee.getCarPoolGroup");
+			return carPoolGroup;
+		}finally {
+			session.close();
+		}
 	}
 
 }

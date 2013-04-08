@@ -36,9 +36,20 @@
     	VALUES (#{employeeID},#{emailID},#{password},#{salt},#{firstName},#{lastName},#{securityQn},#{securityAns},#{phoneNo},#{notifyType},#{address},#{dateJoined},#{points})  
     </insert>
     
+    <insert id="createNewMember" parameterType="com.crs.model.CarPoolMemberForm">
+    	INSERT INTO CARPOOLMEMBER (DATE_JOINED, IS_DRIVER, PICK_UP, IS_TEMPORRARY, EMPLOYEE_ID, CARPOOL_ID) 
+    	VALUES (#{dateJoined}, #{isDriver}, #{isPickUp}, #{isTemporary}, #{employee.employeeID}, #{carpoolId});
+    	UPDATE CARPOOL SET NOOFMEMBERS = NOOFMEMBERS + 1 WHERE CARPOOL_ID = #{carpoolId}; 
+    </insert>
+    
+    <insert id="createNewCarPoolGroup">
+    	INSERT INTO CARPOOL (AT_WORK, DATE_CREATED) VALUES (1, NOW())
+    </insert>
+    
     <select id="getCarPoolGroup" resultMap = "result2">
     	SELECT * FROM CARPOOL WHERE NOOFMEMBERS &lt; 4 ORDER BY DATE_CREATED DESC LIMIT 1 
     </select>
+    
     
     <!-- select id="getById" parameterType="int" resultMap="result">
     	SELECT * FROM CONTACT WHERE CONTACT_ID = #{id}

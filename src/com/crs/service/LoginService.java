@@ -1,8 +1,11 @@
 package com.crs.service;
 
+import java.util.Date;
+
 import com.crs.dao.CrsDAO;
 import com.crs.interfaces.LoginServiceInterface;
 import com.crs.model.CarPoolForm;
+import com.crs.model.CarPoolMemberForm;
 import com.crs.model.EmployeeForm;
 
 public class LoginService implements LoginServiceInterface{
@@ -27,19 +30,28 @@ public class LoginService implements LoginServiceInterface{
 		System.out.println("In Login Service Register New User");
 		dao.insertEmployeeRecord(employee);
 		CarPoolForm carPoolForm = dao.getCarPoolGroup();
-		if(carPoolForm != null)
-			createNewMember(carPoolForm,employee);
+		CarPoolMemberForm carPoolMember = new CarPoolMemberForm();
+		carPoolMember.setEmployee(employee);
+		carPoolMember.setDateJoined(new Date());
+		carPoolMember.setIsDriver(0);
+		carPoolMember.setIsPickUp(1);
+		carPoolMember.setIsTemporary(0);
+		if(carPoolForm != null){
+			carPoolMember.setCarpoolId(carPoolForm.getCarpoolId());
+			createNewMember(carPoolMember);
+		}
 		else{
 			carPoolForm = dao.createNewCarPoolGroup();
-			createNewMember(carPoolForm,employee);
+			carPoolMember.setCarpoolId(carPoolForm.getCarpoolId());
+			createNewMember(carPoolMember);
 		}
-		System.out.println("Car Pool Group Details : "+carPoolForm);
+		System.out.println("Car Pool Group Details : "+carPoolForm.getCarpoolId());
 		EmployeeForm employeeDetails = null;
 		return employeeDetails;
 	}
 	
-	public void createNewMember(CarPoolForm carPoolForm, EmployeeForm employee){
+	public void createNewMember(CarPoolMemberForm carPoolMember){
 		System.out.println("Creating new member");
-		
+		dao.createNewMember(carPoolMember);
 	}
 }

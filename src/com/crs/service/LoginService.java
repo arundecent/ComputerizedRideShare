@@ -23,6 +23,19 @@ public class LoginService implements LoginServiceInterface{
 	//CrsDAO to make database transactions
 	private CrsDAO dao;
 	
+	//salt for the password hash
+	private String strSalt;
+	
+	
+	
+	public String getStrSalt() {
+		return strSalt;
+	}
+
+	public void setStrSalt(String strSalt) {
+		this.strSalt = strSalt;
+	}
+
 	/**
 	 * Getter method for CrsDAO instance variable 
 	 * @return CrsDAO
@@ -45,6 +58,7 @@ public class LoginService implements LoginServiceInterface{
 	 */
 	public LoginService(){
 		dao = new CrsDAO();
+		strSalt = "#00jlasmdio2oj093-4923u8968912@$@4&#%^$*";
 	}
 	
 	
@@ -85,7 +99,7 @@ public class LoginService implements LoginServiceInterface{
 	@Override
 	public EmployeeForm registerNewUser(EmployeeForm employee) {
 		System.out.println("In Login Service Register New User");
-		
+		employee.setSalt(this.getStrSalt());
 		//hashed password should be set to the employee object before database save.
 		employee.setPassword(this.generateMD5HashForPasswordWithSalt(employee.getPassword()));
 		
@@ -123,9 +137,7 @@ public class LoginService implements LoginServiceInterface{
 			return "null";
 		}
 		else {
-			String strHashedPassword = null;			
-			
-			String strSalt = "#00jlasmdio2oj093-4923u8968912@$@4&#%^$*";
+			String strHashedPassword = null;						
 			String strSaltPassword = strPassword + strSalt;
 			
 			try {

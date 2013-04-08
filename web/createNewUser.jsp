@@ -24,11 +24,12 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 		<sj:textfield id="firstName" key="employee.firstName" label="First Name "></sj:textfield>
 		<sj:textfield id="lastName" key="employee.lastName" label="Last Name "></sj:textfield>
 		<sj:textfield id="securityQn" key="employee.securityQn" label="Security Question "></sj:textfield>
+		<sj:textfield id="securityAn" key="employee.securityAn" label="Security Answer "></sj:textfield>
 		<sj:textfield id="phoneNo" key="employee.phoneNo" label="Phone Number "></sj:textfield>
 		<sj:radio list="{'Email', 'Mobile'}" label="Notify Type " key="employee.notifyType"></sj:radio>
 		<sj:textfield id="address" key="employee.address" label="Address "></sj:textfield>
-		<sj:datepicker id="dateJoined" accesskey="employee.dateJoined" label="Date Joined "></sj:datepicker>
-		<sj:textfield id="points" key="employee.points" label="Points "></sj:textfield>
+		<%-- <sj:datepicker id="dateJoined" accesskey="employee.dateJoined" label="Date Joined "></sj:datepicker> --%>
+		<%-- <sj:textfield id="points" key="employee.points" label="Points "></sj:textfield> --%>
 		<sj:submit button="true" align="center"/>
 	</s:form>
 </body>

@@ -6,7 +6,14 @@ public class CarPoolForm {
 	int carpoolId;
 	Date dateCreated;
 	int atWork;
+	int noOfMembers;
 	
+	public int getNoOfMembers() {
+		return noOfMembers;
+	}
+	public void setNoOfMembers(int noOfMembers) {
+		this.noOfMembers = noOfMembers;
+	}
 	public int getCarpoolId() {
 		return carpoolId;
 	}

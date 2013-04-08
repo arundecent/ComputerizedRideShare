@@ -12,6 +12,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 	private EmployeeForm employee = new EmployeeForm();
 	LoginServiceInterface loginService = new LoginService();
 	
+	
 	public EmployeeForm getEmployee() {
 		return employee;
 	}

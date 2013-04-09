@@ -7,6 +7,8 @@
 
 	<typeAliases>
 		<typeAlias alias="Employee" type="com.crs.model.EmployeeForm"/>
+		<typeAlias alias="Carpool" type="com.crs.model.CarPoolForm"/>
+		<typeAlias alias="CarpoolMember" type="com.crs.model.CarPoolMemberForm"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -23,6 +25,8 @@
 	
     <mappers>
   	   <mapper resource="com/crs/data/queries.xml"/>
+  	   <mapper resource="com/crs/data/cQueries.xml"/>
+  	   <mapper resource="com/crs/data/cmQueries.xml"/>
     </mappers>
 
 </configuration>

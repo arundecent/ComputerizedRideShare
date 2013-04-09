@@ -136,7 +136,7 @@ public class LoginService implements LoginServiceInterface{
 		return employeeDetails;
 	}
 	
-<<<<<<< HEAD
+
 	public void createNewMember(CarPoolMemberForm carPoolMember){
 		System.out.println("Creating new member");
 		dao.createNewMember(carPoolMember);

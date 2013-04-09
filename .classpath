@@ -108,5 +108,13 @@
 	<classpathentry kind="lib" path="C:/Users/Subramanian/Desktop/UIC/Spring Sem/SE 2 - CS 442/CoursePro/struts-2.3.12-all/struts-2.3.12/lib/xpp3_min-1.1.4c.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Subramanian/Desktop/UIC/Spring Sem/SE 2 - CS 442/CoursePro/struts-2.3.12-all/struts-2.3.12/lib/xstream-1.4.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Subramanian/Desktop/UIC/DOP/Course Project/Workspace2/ComputerizedRideShare/web/WEB-INF/lib/struts2-jquery-plugin-3.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Subramanian/Desktop/UIC/Spring Sem/SE 2 - CS 442/CoursePro/quartz-2.1.7/quartz-2.1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Subramanian/Desktop/UIC/Spring Sem/SE 2 - CS 442/CoursePro/quartz-2.1.7/quartz-all-2.1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Subramanian/Desktop/UIC/Spring Sem/SE 2 - CS 442/CoursePro/quartz-2.1.7/quartz-backward-compat-2.1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Subramanian/Desktop/UIC/Spring Sem/SE 2 - CS 442/CoursePro/quartz-2.1.7/quartz-commonj-2.1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Subramanian/Desktop/UIC/Spring Sem/SE 2 - CS 442/CoursePro/quartz-2.1.7/lib/c3p0-0.9.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Subramanian/Desktop/UIC/Spring Sem/SE 2 - CS 442/CoursePro/quartz-2.1.7/lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Subramanian/Desktop/UIC/Spring Sem/SE 2 - CS 442/CoursePro/quartz-2.1.7/lib/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Subramanian/Desktop/UIC/Spring Sem/SE 2 - CS 442/CoursePro/quartz-2.1.7/lib/slf4j-log4j12-1.6.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

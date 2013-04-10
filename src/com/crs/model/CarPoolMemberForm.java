@@ -1,13 +1,32 @@
 package com.crs.model;
 import java.util.Date;
+import java.util.List;
 
 public class CarPoolMemberForm {
-	EmployeeForm employee;
-	int carpoolId;
-	int isTemporary;
-	int isPickUp;
-	int isDriver;
-	Date dateJoined;
+	private EmployeeForm employee;
+	private List<EmployeeForm> employeeList;
+	
+	private int carpoolID;
+	private int isTemporary;
+	private int isPickUp;
+	private int isDriver;
+	private Date dateJoined;
+	private int employeeID;
+	
+	
+	public List<EmployeeForm> getEmployeeList() {
+		return employeeList;
+	}
+	public void setEmployeeList(List<EmployeeForm> employeeList) {
+		this.employeeList = employeeList;
+	}
+	
+	public int getEmployeeID() {
+		return employeeID;
+	}
+	public void setEmployeeID(int employeeID) {
+		this.employeeID = employeeID;
+	}
 	
 	public EmployeeForm getEmployee() {
 		return employee;
@@ -15,11 +34,12 @@ public class CarPoolMemberForm {
 	public void setEmployee(EmployeeForm employee) {
 		this.employee = employee;
 	}
-	public int getCarpoolId() {
-		return carpoolId;
+	
+	public int getCarpoolID() {
+		return carpoolID;
 	}
-	public void setCarpoolId(int carpoolId) {
-		this.carpoolId = carpoolId;
+	public void setCarpoolID(int carpoolID) {
+		this.carpoolID = carpoolID;
 	}
 	public int getIsTemporary() {
 		return isTemporary;

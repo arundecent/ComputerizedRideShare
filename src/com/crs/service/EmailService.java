@@ -158,7 +158,7 @@ public class EmailService implements Job{
 	 * of this email.
 	 */
 	@SuppressWarnings("unchecked")
-	public void getEmail(){
+	public void generateEmailForCarpoolers(){
 		
 		HashMap<Integer,List<EmployeeForm>> passengerMap = new HashMap<Integer, List<EmployeeForm>>();
 		

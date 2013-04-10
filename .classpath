@@ -56,9 +56,5 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/struts2-jquery-plugin-3.5.1.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/xwork-core-2.3.12.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/xwork-core-2.3.8-sources.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/commons-codec-1.7.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-log4j12-1.7.5.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-jdk14-1.7.5.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-api-1.7.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

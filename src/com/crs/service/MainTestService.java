@@ -8,7 +8,7 @@ public class MainTestService {
 /*	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		EmailService emailSericeObj = new EmailService();
-		emailSericeObj.getEmail();
+		emailSericeObj.generateEmailForCarpoolers();
 	}*/
 
 }

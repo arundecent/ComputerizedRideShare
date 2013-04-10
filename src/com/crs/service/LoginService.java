@@ -68,7 +68,7 @@ public class LoginService implements LoginServiceInterface{
 	/**
 	 * This method is used to employee details after 
 	 * user enters his/her login credentials. 
-	 * @return EmployeeForm (Empployee bean)
+	 * @return EmployeeForm (Employee bean)
 	 * @author Subbu
 	 */
 	@Override
@@ -123,12 +123,12 @@ public class LoginService implements LoginServiceInterface{
 		carPoolMember.setIsPickUp(1);
 		carPoolMember.setIsTemporary(0);
 		if(carPoolForm != null){
-			carPoolMember.setCarpoolId(carPoolForm.getCarpoolId());
+			carPoolMember.setCarpoolID(carPoolForm.getCarpoolId());
 			createNewMember(carPoolMember);
 		}
 		else{
 			carPoolForm = dao.createNewCarPoolGroup();
-			carPoolMember.setCarpoolId(carPoolForm.getCarpoolId());
+			carPoolMember.setCarpoolID(carPoolForm.getCarpoolId());
 			createNewMember(carPoolMember);
 		}
 		System.out.println("Car Pool Group Details : "+carPoolForm.getCarpoolId());

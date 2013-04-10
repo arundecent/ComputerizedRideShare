@@ -41,7 +41,6 @@ public class CarPoolMemberForm {
 	public void setCarpoolID(int carpoolID) {
 		this.carpoolID = carpoolID;
 	}
-	
 	public int getIsTemporary() {
 		return isTemporary;
 	}

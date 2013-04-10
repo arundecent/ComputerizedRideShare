@@ -14,10 +14,12 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.JobKey;
-
 import com.crs.dao.CrsDAO;
 import com.crs.model.CarPoolMemberForm;
 import com.crs.model.EmployeeForm;
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 
 /*public class EmailService implements Job {
 
@@ -74,7 +76,7 @@ public class EmailService implements Job{
 	public void setStrUsername(String strUsername) {
 		this.strUsername = strUsername;
 	}
- 
+
 	/**
 	 * getter method for the password
 	 * @return
@@ -319,7 +321,4 @@ public class EmailService implements Job{
 	private CrsDAO dao;
 
 	
-	
 }
-
-	

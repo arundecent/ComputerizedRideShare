@@ -111,14 +111,17 @@ public class LoginService implements LoginServiceInterface{
 		CarPoolMemberForm carPoolMember = new CarPoolMemberForm();
 		carPoolMember.setEmployee(employee);
 		carPoolMember.setDateJoined(new Date());
-		carPoolMember.setIsDriver(0);
 		carPoolMember.setIsPickUp(1);
 		carPoolMember.setIsTemporary(0);
 		if(carPoolForm != null){
+			//Member who joins first will be the driver
+			carPoolMember.setIsDriver(0);
 			carPoolMember.setCarpoolID(carPoolForm.getCarpoolId());
 			createNewMember(carPoolMember);
 		}
 		else{
+			//Member who joins first will be the driver
+			carPoolMember.setIsDriver(1);
 			carPoolForm = dao.createNewCarPoolGroup();
 			carPoolMember.setCarpoolID(carPoolForm.getCarpoolId());
 			createNewMember(carPoolMember);
@@ -127,6 +130,7 @@ public class LoginService implements LoginServiceInterface{
 		EmployeeForm employeeDetails = null;
 		return employeeDetails;
 	}
+	
 	
 	public void createNewMember(CarPoolMemberForm carPoolMember){
 		System.out.println("Creating new member");

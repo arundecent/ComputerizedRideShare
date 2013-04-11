@@ -57,7 +57,8 @@ public class EmailService implements Job{
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		// TODO Auto-generated method stub
 		JobKey jobKey = context.getJobDetail().getKey();
-        System.out.println("SimpleJob says: " + jobKey + " executing at " + new Date());
+		System.out.println("Email Service sending emails to users: " + jobKey + " executing at " + new Date());
+		generateEmailForCarpoolers();
 
 	}
 	
@@ -224,6 +225,7 @@ public class EmailService implements Job{
 		
 		//for each driver, get the passengers in his/her list
 		itDriver = carpoolDriverList.iterator();
+		Date todayDate = new Date();
 		
 		while(itDriver.hasNext()){
 			
@@ -244,7 +246,7 @@ public class EmailService implements Job{
 					
 					//generate the driver email message
 					driverMessageBuffer.append("Hello " + employeeDriverObj.getFirstName() + " " + employeeDriverObj.getLastName() + ",\n");
-					driverMessageBuffer.append("You are the driver for <some date> belonging to CRPID = "+carpoolID+"\n\n");
+					driverMessageBuffer.append("You are the driver for "+todayDate+" belonging to CRPID = "+carpoolID+"\n\n");
 					driverMessageBuffer.append("Please find the passenger details below : \n\n");
 				
 					//get the list of passengers in the car pool from the passenger hash map

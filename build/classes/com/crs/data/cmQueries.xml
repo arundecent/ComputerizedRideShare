@@ -5,14 +5,16 @@
 
 <mapper namespace="CarpoolMember">
 	<resultMap id="result" type="CarpoolMember">
-<<<<<<< HEAD
-		<result property="employeeID" column="employee_id" />
-		<result property="carpoolID" column="carpool_id" />
-		<result property="dateJoined" column="date_joined" />
-		<result property="isDriver" column="is_driver" />
-		<result property="pickUp" column="pick_up" />
-		<result property="isTemporary" column="is_temporary" />
-	</resultMap>
+		<result property="employeeID" column="employee_id"/>
+	    <result property="carpoolID" column="carpool_id"/>
+	    <result property="dateJoined" column="date_joined"/>
+	    <result property="isDriver" column="is_driver"/>
+	    <result property="isPickUp" column="pick_up"/>
+	    <result property="isTemporary" column="is_temporary"/>
+	 	<collection property="employeeList" column="employee_id" javaType="ArrayList"
+	 	ofType="com.crs.model.EmployeeForm" resultMap="resultEmployee"/>
+     </resultMap>
+
 
 	<insert id="insertRecord" parameterType="CarpoolMember">
 		INSERT INTO CarpoolMember (employee_id,carpool_id,is_driver,is_temporary)
@@ -34,16 +36,8 @@
 	<delete id="removeTemporaryMembers" parameterType="CarpoolMember">
 		DELETE FROM CarpoolMember WHERE is_temporary = 1
 	</delete>
-=======
-	    <result property="employeeID" column="employee_id"/>
-	    <result property="carpoolID" column="carpool_id"/>
-	    <result property="dateJoined" column="date_joined"/>
-	    <result property="isDriver" column="is_driver"/>
-	    <result property="isPickUp" column="pick_up"/>
-	    <result property="isTemporary" column="is_temporary"/>
-	 	<collection property="employeeList" column="employee_id" javaType="ArrayList"
-	 	ofType="com.crs.model.EmployeeForm" resultMap="resultEmployee"/>
-     </resultMap>
+
+	 
     
     <resultMap id="resultEmployee" type="com.crs.model.EmployeeForm">
 	    <result property="employeeID" column="employee_id"/>
@@ -96,5 +90,4 @@
     <delete id="removeTemporaryMembers" parameterType="CarpoolMember">
     	DELETE FROM CarpoolMember WHERE is_temporary = 1
     </delete>
->>>>>>> 47aff135d94b3d2b484ed09d3d69841b75c6e43b
 </mapper>

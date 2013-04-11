@@ -73,17 +73,9 @@ public class LoginService implements LoginServiceInterface{
 	 */
 	@Override
 	public EmployeeForm login(EmployeeForm employee) {
-		SchedulerService scheduleJob = new SchedulerService();
-		try {
-			scheduleJob.run();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		System.out.println("In Login Service");
-		EmployeeForm employeeDetails = null;
-		//EmployeeForm employeeDetails = dao.getLoginRecord(employee);
-		//System.out.println("Result : " +employeeDetails.getFirstName());
+		EmployeeForm employeeDetails = dao.getLoginRecord(employee);
+		System.out.println("Result : " +employeeDetails.getFirstName());
 		return employeeDetails;
 	}
 
@@ -136,7 +128,6 @@ public class LoginService implements LoginServiceInterface{
 		return employeeDetails;
 	}
 	
-<<<<<<< HEAD
 	public void createNewMember(CarPoolMemberForm carPoolMember){
 		System.out.println("Creating new member");
 		dao.createNewMember(carPoolMember);

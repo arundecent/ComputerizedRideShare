@@ -10,8 +10,9 @@
 			<result name="input">/login.jsp</result>
 			<result name="login">/login.jsp</result>
 		</action>
-		
-		<action name="register" class="com.crs.action.LoginAction" method="registerNewUser">
+
+		<action name="register" class="com.crs.action.LoginAction"
+			method="registerNewUser">
 			<result name="success">/rideshareRequest.jsp</result>
 			<result name="input">/login.jsp</result>
 			<result name="login">/login.jsp</result>

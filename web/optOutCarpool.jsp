@@ -31,7 +31,7 @@ body
 
 /*--------------------*/
 
-#optOutCrp
+#optOutCarpool
 {
     background-color: #fff;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
@@ -74,7 +74,7 @@ body
           0 7px 0 rgba(0, 0, 0, .2);
 }
 
-#optOutCrp:before
+#optOutCarpool:before
 {
     content: '';
     position: absolute;
@@ -278,15 +278,15 @@ input[type="submit"]
 </style>
 </head>
 <body>
-	<font color="blue"><center><h1><u><i>Opt out of system</i></u></h1></center></font>
-	<s:form action="optOutCrp" method="post">
+	<font color="blue"><center><h1><u><i>Opt out of carpool</i></u></h1></center></font>
+	<s:form action="optOutCarpool" method="post">
 		<h1>Confirm</h1>
 		<s:div cssStyle="text-align:center;">
-			Are you sure you want to leave the system?
+			Are you sure you want to leave the carpool?
 		</s:div>
 		<s:div cssClass="actions">
 			<s:submit id="cancel" button="true" align="center" value="Go Back" onClick="history.back();return false;" theme="simple"/>
-			<s:submit id="submit" button="true" align="center" value="Leave System" theme="simple"/>
+			<s:submit id="submit" button="true" align="center" value="Leave Carpool" theme="simple"/>
 		</s:div>
 	</s:form>
 </body>

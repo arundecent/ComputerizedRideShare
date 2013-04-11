@@ -5,6 +5,11 @@
 
 <struts>
 	<package name="struts" namespace="/" extends="struts-default">
+	
+		<action name="carpoolMemberAction" class="com.crs.action.CarpoolMemberAction">
+			<result name="success">/rideshareRequest.jsp</result>
+		</action>
+		
 		<action name="login" class="com.crs.action.LoginAction" method="login">
 			<result name="success">/rideshareRequest.jsp</result>
 			<result name="input">/login.jsp</result>

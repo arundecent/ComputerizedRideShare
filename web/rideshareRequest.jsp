@@ -44,7 +44,6 @@ body
     background-image: -ms-linear-gradient(top, #fff, #eee);
     background-image: -o-linear-gradient(top, #fff, #eee);
     background-image: linear-gradient(top, #fff, #eee);  
-    height: 240px;
     width: 400px;
     margin: -150px 0 0 -230px;
     padding: 30px;
@@ -299,6 +298,35 @@ fieldset
 	</s:form>
 	
 	<font color="blue"><h3>Car Pool Members</h3></font>
+	<%--
+	
+	To see this part you must visit:
+	http://localhost:8080/ComputerizedRideShare/carpoolMemberAction.action
+	
+	--%>
+	<table border="0" cellspacing="0" cellpadding="1" width="100%" style="text-align:center;">
+		<tr>
+	  		<th>Name</th>
+	  		<th>Is Driver</th>
+	  		<th>Address</th>
+	  		<th>Phone</th>
+		</tr>
+		<p/>
+		<s:iterator value="carpoolMembers" status="rowstatus" var="employee">
+	  		<tr>
+	    		<s:if test="#rowstatus.odd == true">
+	    			<s:iterator value="#employee">
+	      				<td style="background: lightgrey"><s:property/></td>
+	      			</s:iterator>
+	    		</s:if>
+	    		<s:else>
+	    			<s:iterator value="#employee">
+	      				<td><s:property/></td>
+	      			</s:iterator>
+	    		</s:else>
+	  		</tr>
+		</s:iterator>
+	</table>
 	</div>
 </body>
 </html>

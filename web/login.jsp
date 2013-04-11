@@ -11,20 +11,25 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="../css/crp.css" /> 
+<font color="blue"><center><h1><u><i>Computerized RideShare Program</i></u></h1></center></font>
 <sj:head jqueryui="true" jquerytheme="blitzer"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Computerized Ride Share Login</title>
+<title>login</title>
 </head>
 <body>
-	<h1>Welcome to SNDU Computerized Ride Share System</h1>
+	<!-- <img src="/ComputerizedRideShare/images/carpool.png" height="200" width="500"> -->
 	<s:form action="login" method="post">
-		<sj:textfield id="userName" key="employee.emailID" label="Email id "></sj:textfield>
-		<s:password id="password" key="employee.password" label="Password"></s:password>
-		<sj:submit button="true" align="center"/>
-	</s:form>
-	<a href="createNewUser.jsp">Sign Up</a>
-	<s:form action="register" method="post">
-		<s:label label="New User ?"><a href="createNewUser.jsp">Sign Up</a></s:label>
-	</s:form>
+	<table style="border:3px solid black;">
+	<tr>
+		<td><sj:textfield id="userName" key="employee.emailID" label="Email id "></sj:textfield></td>
+		<td><s:password id="password" key="employee.password" label="Password"></s:password></td>
+		<td><sj:submit button="true" align="center"/></td>
+		</tr></table><br>
+		</s:form>
+			<s:form action="register" method="post">
+			<table style="border:3px solid black;"><tr>
+		<td><s:label label="New User ?"><a href="createNewUser.jsp">Sign Up</a></s:label></td>
+	</tr></table></s:form>
 </body>
 </html>

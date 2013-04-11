@@ -11,12 +11,13 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<font color="blue"><center><h1><i><u>Please enter details to register</u></i></h1></center></font>
 <sj:head jqueryui="true" jquerytheme="blitzer"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Register</title>
 </head>
 <body>
-	<s:form action="register" method="post">
+	<s:form action="register" method="post"><table border="2"><tr>
 		<sj:textfield id="employeeId" key="employee.employeeID" dataType="Integer" label="Employee id "></sj:textfield>
 		<sj:textfield id="userName" key="employee.emailID" dataType="String" label="Email id "></sj:textfield>
 		<s:password id="password" key="employee.password" label="Password"></s:password>
@@ -37,7 +38,7 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 		<sj:textfield id="phoneNo" key="employee.phoneNo" label="Phone Number "></sj:textfield>
 		<sj:radio list="{'Email', 'Mobile'}" label="Notify Type " key="employee.notifyType"></sj:radio>
 		<sj:textfield id="address" key="employee.address" label="Address "></sj:textfield>
-		<sj:submit button="true" align="center"/>
+		</tr></table><br><sj:submit button="true" align="center"/>
 	</s:form>
 </body>
 </html>

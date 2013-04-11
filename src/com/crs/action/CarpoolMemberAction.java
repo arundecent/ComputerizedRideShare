@@ -17,4 +17,22 @@ public class CarpoolMemberAction extends ActionSupport {
 		tmp.add(new String[] {"Who What", "No", "7688 Harrison St", "(773)234-6547"});
 		return tmp;
 	}
+	
+	public String cancelPickupConfirm() {
+		Boolean canceled = true;
+		
+		if(canceled)
+			return SUCCESS;
+		else
+			return ERROR;
+	}
+	
+	public String cancelDrivingConfirm() {
+		Boolean canceled = true;
+		
+		if(canceled)
+			return SUCCESS;
+		else
+			return ERROR;
+	}
 }

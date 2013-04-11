@@ -9,10 +9,29 @@
 		<action name="error">
 			<result>/error.jsp</result>
 		</action>
+		
 		<action name="myCarpool" class="com.crs.action.CarpoolMemberAction">
 			<result name="success">/rideshareRequest.jsp</result>
 		</action>
+		
+		<action name="cancelPickup">
+			<result name="success">/cancelPickup.jsp</result>
+		</action>
 	
+		<action name="cancelPickupConfirm" class="com.crs.action.CarpoolMemberAction" method="cancelPickupConfirm">
+			<result name="success" type="redirect">/myCarpool.action</result>
+			<result name="error" type="redirect">/error.action</result>
+		</action>
+		
+		<action name="cancelDriving">
+			<result name="success">/cancelDriving.jsp</result>
+		</action>
+	
+		<action name="cancelDrivingConfirm" class="com.crs.action.CarpoolMemberAction" method="cancelDrivingConfirm">
+			<result name="success" type="redirect">/myCarpool.action</result>
+			<result name="error" type="redirect">/error.action</result>
+		</action>
+		
 		<action name="modifyEmployeeDetails" class="com.crs.action.EmployeeAction">
 			<result name="success">/modifyEmployeeDetails.jsp</result>
 		</action>

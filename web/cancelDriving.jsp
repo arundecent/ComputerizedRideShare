@@ -1,21 +1,17 @@
-<%--
-
-https://code.google.com/p/struts2-jquery/wiki/News
-http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d8888d844329a8dfe02723de3e5700bbb34ecf36ce5959f380e613cafa997b39424a52ffc947ae6386d03dcb468a5a6d1623ac0d0e3e18cdf4fca8f2d1c997c7af2b425437a134e5b366f618af5193c1d8772b526c0c53c8f5528cb98c54b6fe385b01ee1763c1d4611100b242ec920a41206d3963eee0327838569a479d191f5adfb7b3ffee4f7265bdf6e03b09d243b90abaeb609b96eee56cef6cc0633865895078988ec40819895711fa7efb93b110f6e1b1b1557039d6178c8824adfa105fdfe1f7011f178cbd9f593de821bf90d0a04f35b5f6ca2fe4ccb9ee832eb806819e5b9aa863e9b8246d16fb230a7cb628f97fc471014be50dac4872e81d9821984e5cb27e4c8026968a9b1e80247bd040d1ef8e047f0ae98998cf329c56654903d9807c1e8c51dcb22b9bb42ca22a9b30ab0c2ae230b6228bbf56f8dbb62a2e49281585710b64c5e25d34da872f883d0d15a3f9716d9f34e297cc883697927ddea3a4e56a1de81985f7db5ee4e62567eaaedcd8b802411687a738bb9921d9eba82ca5c09d328015ecf731114054d32c5cb2354800f07cf72fe329c69ef9a2b9f897e6a0e64abf6d605c0ce92167ab590565246907805b9d96399a15ff8a61c815970937e0cc48650f5e8bd2de19096fe950d8484dff5f18410d74ffdd71567
- 
---%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="s" uri="/struts-tags" %>
-    <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+
+
+<!DOCTYPE html>
+
 <html>
 <head>
-<title>Car Pool Ride Share Program</title>
+<title>Opt Out</title>
 <!--<link href="css/style.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" type="text/css" href="css/style9.css" />
-    <link rel="stylesheet" type="text/css" href="css/demo.css" /> 
-    author: Rajeev   
+  author: Rajeev
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />    
         <link href='http://fonts.googleapis.com/css?family=Terminal+Dosis' rel='stylesheet' type='text/css' /> -->
         <style type="text/css">
 <style>
@@ -35,7 +31,7 @@ body
 
 /*--------------------*/
 
-#register
+#cancelDrivingConfirm
 {
     background-color: #fff;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
@@ -44,6 +40,7 @@ body
     background-image: -ms-linear-gradient(top, #fff, #eee);
     background-image: -o-linear-gradient(top, #fff, #eee);
     background-image: linear-gradient(top, #fff, #eee);  
+    height: 240px;
     width: 400px;
     margin: -150px 0 0 -230px;
     padding: 30px;
@@ -77,7 +74,7 @@ body
           0 7px 0 rgba(0, 0, 0, .2);
 }
 
-#login:before
+#cancelDrivingConfirm:before
 {
     content: '';
     position: absolute;
@@ -190,7 +187,7 @@ fieldset
     margin: 25px 0 0 0;
 }
 
-#submit
+#submit,#cancel
 {		
     background-color: #ffb94b;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
@@ -223,7 +220,7 @@ fieldset
     color: #8f5a0a;
 }
 
-#submit:hover,#submit:focus
+#submit:hover,#submit:focus,#cancel:hover,#cancel:focus
 {		
     background-color: #fddb6f;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#ffb94b), to(#fddb6f));
@@ -234,7 +231,7 @@ fieldset
     background-image: linear-gradient(top, #ffb94b, #fddb6f);
 }	
 
-#submit:active
+#submit:active,#cancel:active
 {		
     outline: none;
    
@@ -243,7 +240,7 @@ fieldset
      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;		
 }
 
-#submit::-moz-focus-inner
+#submit::-moz-focus-inner,#cancel::-moz-focus-inner
 {
   border: none;
 }
@@ -255,7 +252,7 @@ fieldset
     line-height: 35px;
     margin-left: 10px;
 }
-
+/*__________*/
 /*--------------------*/
 
 #message
@@ -268,65 +265,29 @@ fieldset
     color: #FF0000;
     /*z-index:9999;*/
 }
+.actions
+{
+	margin-top:20px;
+	margin-left:20%;
+}
+input[type="submit"] 
+{
+	margin-right:5px;
+}
 
 </style>
-<sj:head jqueryui="true" jquerytheme="blitzer"/>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Success</title>
 </head>
 <body>
-	<font color="blue"><center><h1><u><i>Welcome</i></u></h1></center></font>
-	<div id="register">
-	<s:form action="optOutCrp" method="post">
-		<s:submit id="submit" button="true" align="center" value="Opt Out CRP"/>
+	<font color="blue"><center><h1><u><i>Cancel driving</i></u></h1></center></font>
+	<s:form action="cancelDrivingConfirm" method="post">
+		<h1>Confirm</h1>
+		<s:div cssStyle="text-align:center;">
+			Are you sure you want to cancel driving for today?
+		</s:div>
+		<s:div cssClass="actions">
+			<s:submit id="cancel" button="true" align="center" value="Go Back" onClick="history.back();return false;" theme="simple"/>
+			<s:submit id="submit" button="true" align="center" value="Cancel Driving" theme="simple"/>
+		</s:div>
 	</s:form>
-	<s:form action="shiftCarpool" method="post">
-		<s:submit id="submit" button="true" value="Shift Pool"/>
-	</s:form>
-	<s:form action="optOutCarpool" method="post">
-		<s:submit id="submit" button="true" value="Opt Out Carpool"/>
-	</s:form>
-	<s:form action="modifyEmployeeDetails" method="post">
-		<s:submit id="submit" button="true" value="Edit Details"/>
-	</s:form>
-	<s:form action="emergency" method="post">
-	<sj:radio list="{'Breakdown', 'Other'}" label="Emergency " key="emergency"></sj:radio>
-	</s:form>
-	<s:form action="cancel" method="post">
-	<sj:radio list="{'Pickup', 'Driving'}" label="Cancel " key="cancel"></sj:radio>
-	</s:form>
-	
-	<font color="blue"><h3>Carpool Members</h3></font>
-	<%--
-	
-	To see this part you must visit:
-	http://localhost:8080/ComputerizedRideShare/myCarpool
-	
-	--%>
-	<table border="0" cellspacing="0" cellpadding="1" width="100%" style="text-align:center;">
-		<tr>
-	  		<th>Name</th>
-	  		<th>Is Driver</th>
-	  		<th>Address</th>
-	  		<th>Phone</th>
-		</tr>
-		<p/>
-		<s:iterator value="carpoolMembers" status="rowstatus" var="employee">
-	  		<tr>
-	    		<s:if test="#rowstatus.odd == true">
-	    			<s:iterator value="#employee">
-	      				<td style="background: lightgrey"><s:property/></td>
-	      			</s:iterator>
-	    		</s:if>
-	    		<s:else>
-	    			<s:iterator value="#employee">
-	      				<td><s:property/></td>
-	      			</s:iterator>
-	    		</s:else>
-	  		</tr>
-		</s:iterator>
-	</table>
-	</div>
 </body>
 </html>

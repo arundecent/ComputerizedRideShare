@@ -7,7 +7,7 @@
 
 <html>
 <head>
-<title>Car Pool Ride Share Program</title>
+<title>Opt Out</title>
 <!--<link href="css/style.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" type="text/css" href="css/style9.css" />
   author: Rajeev
@@ -31,7 +31,7 @@ body
 
 /*--------------------*/
 
-#login
+#optOutCrp
 {
     background-color: #fff;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
@@ -74,7 +74,7 @@ body
           0 7px 0 rgba(0, 0, 0, .2);
 }
 
-#login:before
+#optOutCrp:before
 {
     content: '';
     position: absolute;
@@ -187,7 +187,7 @@ fieldset
     margin: 25px 0 0 0;
 }
 
-#submit
+#submit,#cancel
 {		
     background-color: #ffb94b;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
@@ -220,7 +220,7 @@ fieldset
     color: #8f5a0a;
 }
 
-#submit:hover,#submit:focus
+#submit:hover,#submit:focus,#cancel:hover,#cancel:focus
 {		
     background-color: #fddb6f;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#ffb94b), to(#fddb6f));
@@ -231,7 +231,7 @@ fieldset
     background-image: linear-gradient(top, #ffb94b, #fddb6f);
 }	
 
-#submit:active
+#submit:active,#cancel:active
 {		
     outline: none;
    
@@ -240,7 +240,7 @@ fieldset
      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;		
 }
 
-#submit::-moz-focus-inner
+#submit::-moz-focus-inner,#cancel::-moz-focus-inner
 {
   border: none;
 }
@@ -265,41 +265,29 @@ fieldset
     color: #FF0000;
     /*z-index:9999;*/
 }
+.actions
+{
+	margin-top:20px;
+	margin-left:20%;
+}
+input[type="submit"] 
+{
+	margin-right:5px;
+}
 
 </style>
 </head>
-
 <body>
-	<font color="blue"><center><h1><u><i>Computerized RideShare Program</i></u></h1></center></font>
-	<s:form action="login" method="post">
-		<h1>login</h1>
-		<fieldset id="inputs">
-			<s:textfield id="userName" key="employee.emailID" label="Email id "></s:textfield>
-			<s:password id="password" key="employee.password" label="Password"></s:password>
-		</fieldset>
-		<fieldset id="actions">
-			<s:submit id="submit" button="true" align="center"/>
-			<a href="createNewUser.jsp"><h3>Register</h3></a>
-  		</fieldset>
+	<font color="blue"><center><h1><u><i>Opt out of system</i></u></h1></center></font>
+	<s:form action="optOutCrp" method="post">
+		<h1>Confirm</h1>
+		<s:div cssStyle="text-align:center;">
+			Are you sure you want to leave the system?
+		</s:div>
+		<s:div cssClass="actions">
+			<s:submit id="cancel" button="true" align="center" value="Go Back" onClick="history.back();return false;" theme="simple"/>
+			<s:submit id="submit" button="true" align="center" value="Leave System" theme="simple"/>
+		</s:div>
 	</s:form>
 </body>
 </html>
-
-<%-- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
-<s:actionmessage/>
-	<s:form action="login" method="post">
-	<s:textfield name="passName" label="Username" />
-	<s:password name="passCode" label="Password" />
-	<s:submit />
-	</s:form>
-
-</body>
-</html> --%>
-

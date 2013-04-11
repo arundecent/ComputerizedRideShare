@@ -5,7 +5,7 @@
 
 <mapper namespace="CarpoolMember">
 	<resultMap id="result" type="CarpoolMember">
-		<result property="employeeID" column="employee_id"/>
+	    <result property="employeeID" column="employee_id"/>
 	    <result property="carpoolID" column="carpool_id"/>
 	    <result property="dateJoined" column="date_joined"/>
 	    <result property="isDriver" column="is_driver"/>
@@ -14,30 +14,6 @@
 	 	<collection property="employeeList" column="employee_id" javaType="ArrayList"
 	 	ofType="com.crs.model.EmployeeForm" resultMap="resultEmployee"/>
      </resultMap>
-
-
-	<insert id="insertRecord" parameterType="CarpoolMember">
-		INSERT INTO CarpoolMember (employee_id,carpool_id,is_driver,is_temporary)
-		VALUES (#{employeeID},#{carpoolID},#{isDriver},#{isTemporary})
-	</insert>
-
-	<select id="carpoolMembers" parameterType="int" resultMap="result">
-		SELECT * FROM CarpoolMember WHERE carpool_id = #{value}
-	</select>
-
-	<update id="cancelPickup" parameterType="CarpoolMember">
-		UPDATE CarpoolMember SET pick_up = 0 WHERE employee_id = #{employeeID}
-	</update>
-
-	<delete id="removeMember" parameterType="CarpoolMember">
-		DELETE FROM CarpoolMember WHERE employee_id = #{employeeID}
-	</delete>
-
-	<delete id="removeTemporaryMembers" parameterType="CarpoolMember">
-		DELETE FROM CarpoolMember WHERE is_temporary = 1
-	</delete>
-
-	 
     
     <resultMap id="resultEmployee" type="com.crs.model.EmployeeForm">
 	    <result property="employeeID" column="employee_id"/>

@@ -143,8 +143,8 @@ public class CrsDAO {
 	public void cancelCarpoolPickUp(CarPoolMemberForm carPoolMember){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			EmployeeForm employeeDetail = (EmployeeForm) session.selectOne("CarpoolMember.cancelPickup",empID);
-			return employeeDetail;
+			EmployeeForm employeeDetail = (EmployeeForm) session.selectOne("CarpoolMember.cancelPickup",carPoolMember.getEmployeeID());
+
 		}finally {
 			session.close();
 		}

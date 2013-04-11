@@ -1,19 +1,21 @@
 
 package com.crs.service;
 
+import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
-import static org.quartz.CronScheduleBuilder.cronSchedule;
 
 import java.util.Date;
 
 import org.quartz.CronTrigger;
-import org.quartz.DateBuilder;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerFactory;
 import org.quartz.SchedulerMetaData;
 import org.quartz.impl.StdSchedulerFactory;
+
+import com.crs.dao.CrsDAO;
+import com.crs.model.CarPoolMemberForm;
 
 public class SchedulerService {
 	
@@ -40,7 +42,7 @@ public class SchedulerService {
 	}
 	
 	//Cancelling pick up request for that day
-	pubic void cancelPickUpRequest(CarPoolMemberForm carPoolMember){
+	public void cancelPickUpRequest(CarPoolMemberForm carPoolMember){
 			System.out.println("Cancelling car pool request");
 			
 	}

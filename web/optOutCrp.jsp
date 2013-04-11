@@ -31,7 +31,7 @@ body
 
 /*--------------------*/
 
-#optOutCrp
+#optOutCrpConfirm
 {
     background-color: #fff;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
@@ -74,7 +74,7 @@ body
           0 7px 0 rgba(0, 0, 0, .2);
 }
 
-#optOutCrp:before
+#optOutCrpConfirm:before
 {
     content: '';
     position: absolute;

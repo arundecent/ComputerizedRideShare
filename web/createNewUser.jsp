@@ -300,12 +300,12 @@ fieldset
 }
 
 </style>
-<font color="blue"><center><h1><i><u>Please enter your details to register</u></i></h1></center></font>
 <sj:head jqueryui="true" jquerytheme="blitzer"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Register</title>
 </head>
 <body>
+	<font color="blue"><center><h1><i><u>Please enter your details to register</u></i></h1></center></font>
 	<s:form action="register" method="post">
 	<fieldset id="inputs">
 		<s:textfield id="employeeId" key="employee.employeeID" dataType="Integer" label="Employee id "></s:textfield>

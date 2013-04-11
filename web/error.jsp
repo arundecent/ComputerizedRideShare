@@ -267,9 +267,9 @@ fieldset
 }
 
 </style>
-<font color="blue"><center><h1><u><i>Error</i></u></h1></center></font>
 </head>
 <body>
+	<font color="blue"><center><h1><u><i>Error</i></u></h1></center></font>
 	<s:div id="error">
 		<s:div cssStyle="text-align:center;margin-top:25%;font-size:16px;">Uh-oh, Seems you have encountered an error</s:div>
 		<s:div cssStyle="text-align:center;"><s:a href="javascript:history.back();">Go Back</s:a></s:div>

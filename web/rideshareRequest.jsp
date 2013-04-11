@@ -271,15 +271,15 @@ fieldset
 }
 
 </style>
-<font color="blue"><center><h1><u><i>Welcome</i></u></h1></center></font>
 <sj:head jqueryui="true" jquerytheme="blitzer"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Success</title>
 </head>
-
-<div id="register">
-<s:form action="optOutCrp" method="post">
+<body>
+	<font color="blue"><center><h1><u><i>Welcome</i></u></h1></center></font>
+	<div id="register">
+	<s:form action="optOutCrp" method="post">
 		<s:submit id="submit" button="true" align="center" value="OptOutCRP"/>
 	</s:form>
 	<s:form action="shiftCarpool" method="post">
@@ -288,7 +288,7 @@ fieldset
 	<s:form action="optoutCarpool" method="post">
 		<s:submit id="submit" button="true" value="OptoutCarpool"/>
 	</s:form>
-	<s:form action="edit" method="post">
+	<s:form action="modifyEmployeeDetails" method="post">
 		<s:submit id="submit" button="true" value="Edit Details"/>
 	</s:form>
 	<s:form action="emergency" method="post">

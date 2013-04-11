@@ -280,11 +280,10 @@ fieldset
 		</fieldset>
 		<fieldset id="actions">
 		<s:submit id="submit" button="true" align="center"/>
+		<a href="createNewUser.jsp"><h3>Register</h3></a>
 		<fieldset id="message">
     <s:actionmessage/>
     </fieldset>
-						
-		<s:label label="New User ?"><a href="createNewUser.jsp">Sign Up</a></s:label>
 			</s:form>
 </body>
 </html>

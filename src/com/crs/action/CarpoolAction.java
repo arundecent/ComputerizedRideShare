@@ -9,7 +9,12 @@ public class CarpoolAction extends ActionSupport {
 	}
 	
 	public String confirm() {
+		Boolean removed = true;
 		//remove member from carpool
-		return SUCCESS;
+		
+		if(removed)
+			return SUCCESS;
+		else
+			return ERROR;
 	}
 }

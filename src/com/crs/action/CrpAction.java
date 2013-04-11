@@ -9,7 +9,12 @@ public class CrpAction extends ActionSupport {
 	}
 	
 	public String confirm() {
+		Boolean removed = true;
 		//remove member from crp
-		return SUCCESS;
+		
+		if (removed)
+			return SUCCESS;
+		else
+			return ERROR;
 	}
 }

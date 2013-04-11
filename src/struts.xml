@@ -6,6 +6,9 @@
 <struts>
 	<package name="struts" namespace="/" extends="struts-default">
 	
+		<action name="error">
+			<result>/error.jsp</result>
+		</action>
 		<action name="myCarpool" class="com.crs.action.CarpoolMemberAction">
 			<result name="success">/rideshareRequest.jsp</result>
 		</action>
@@ -20,6 +23,7 @@
 	
 		<action name="optOutCrpConfirm" class="com.crs.action.CrpAction" method="confirm">
 			<result name="success" type="redirect">/login.action</result>
+			<result name="error" type="redirect">/error.action</result>
 		</action>
 	
 		<action name="optOutCarpool" class="com.crs.action.CarpoolAction">
@@ -28,6 +32,7 @@
 	
 		<action name="optOutCarpoolConfirm" class="com.crs.action.CarpoolAction" method="confirm">
 			<result name="success" type="redirect">/myCarpool.action</result>
+			<result name="error" type="redirect">/error.action</result>
 		</action>
 		
 		<action name="login" class="com.crs.action.LoginAction" method="login">

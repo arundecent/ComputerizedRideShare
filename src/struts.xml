@@ -18,8 +18,16 @@
 			<result name="success">/optOutCrp.jsp</result>
 		</action>
 	
+		<action name="optOutCrpConfirm" class="com.crs.action.CrpAction" method="confirm">
+			<result name="success">/login.jsp</result>
+		</action>
+	
 		<action name="optOutCarpool" class="com.crs.action.CarpoolAction">
 			<result name="success">/optOutCarpool.jsp</result>
+		</action>
+	
+		<action name="optOutCarpoolConfirm" class="com.crs.action.CarpoolAction" method="confirm">
+			<result name="success">/rideshareRequest.jsp</result>
 		</action>
 		
 		<action name="login" class="com.crs.action.LoginAction" method="login">

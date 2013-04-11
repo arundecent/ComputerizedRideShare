@@ -292,10 +292,10 @@ fieldset
 		<s:submit id="submit" button="true" value="Edit Details"/>
 	</s:form>
 	<s:form action="emergency" method="post">
-	<sj:radio list="{'Breakdown', 'Other'}" label="Emergency "></sj:radio>
+	<sj:radio list="{'Breakdown', 'Other'}" label="Emergency " key="emergency"></sj:radio>
 	</s:form>
 	<s:form action="cancel" method="post">
-	<sj:radio list="{'Pickup', 'Driving'}" label="Cancel "></sj:radio>
+	<sj:radio list="{'Pickup', 'Driving'}" label="Cancel " key="cancel"></sj:radio>
 	</s:form>
 	
 	<font color="blue"><h3>Car Pool Members</h3></font>

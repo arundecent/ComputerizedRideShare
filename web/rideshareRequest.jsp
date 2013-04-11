@@ -11,10 +11,40 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<font color="blue"><center><h1><u><i>Welcome</i></u></h1></center></font>
+<font color="blue"><h3><a href="faq.jsp">FAQ</a></h3></font>
+
+<sj:head jqueryui="true" jquerytheme="blitzer"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Success</title>
 </head>
-<body>
-<h1>SUCCESS</h1>
+<body background="../images/carpool_02.jpg" >
+
+<s:form action="optOutCrp" method="post">
+<table style="border:3px solid black;">
+<tr><td>
+		<sj:submit button="true" align="center" value="OptOutCRP"/>
+	</s:form>
+	<s:form action="shiftCarpool" method="post">
+		<sj:submit button="true" value="Shift Pool"/>
+	</s:form>
+	<s:form action="optoutCarpool" method="post">
+		<sj:submit button="true" value="OptoutCarpool"/>
+	</s:form>
+	<s:form action="edit" method="post">
+		<sj:submit  button="true" value="Edit Details"/>
+	</s:form>
+	<s:form action="emergency" method="post">
+	<sj:radio list="{'Breakdown', 'Other'}" label="Emergency "></sj:radio>
+	</s:form>
+	<s:form action="cancel" method="post">
+	<sj:radio list="{'Pickup', 'Driving'}" label="Cancel "></sj:radio>
+	</s:form>
+	</td>
+	</tr>
+	</table>
+	<font color="blue"><h3>Car Pool Members</h3></font>
+	
 </body>
 </html>

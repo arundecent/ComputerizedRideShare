@@ -28,6 +28,10 @@
 		<result property="noOfMembers" column="noOfMembers" />
 	</resultMap>
 
+	<select id="getRecordWithEmail" parameterType="Employee" resultMap="result">
+		SELECT * FROM Employee WHERE email = #{emailID}
+	</select>
+	
 	<select id="getRecord" parameterType="Employee" resultMap="result">
 		SELECT * FROM Employee WHERE employee_id = #{employeeID}
 	</select>

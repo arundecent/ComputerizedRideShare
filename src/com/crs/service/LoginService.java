@@ -74,9 +74,35 @@ public class LoginService implements LoginServiceInterface{
 	@Override
 	public EmployeeForm login(EmployeeForm employee) {
 		System.out.println("In Login Service");
-		EmployeeForm employeeDetails = dao.getLoginRecord(employee);
-		System.out.println("Result : " +employeeDetails.getFirstName());
-		return employeeDetails;
+		
+		if(employee.getEmailID() != null && employee.getPassword() != null){
+			EmployeeForm employeeDetails = dao.getLoginRecord(employee);
+			
+			if(employeeDetails != null){
+				//check for username and password
+				if(employee.getEmailID().equals(employeeDetails.getEmailID())){
+					//check for the password
+					String hashPasswordFromDB = employeeDetails.getPassword();
+					String passEntered = this.generateMD5HashForPasswordWithSalt(employee.getPassword());
+					
+					if(hashPasswordFromDB.equals(passEntered)){
+						System.out.println("Result : " +employeeDetails.getFirstName());
+						return employeeDetails;
+					}
+					else{
+						return null;
+					}
+				}
+				else{
+					return null;
+				}
+			}
+			else{
+				return null;
+			}
+		}else{
+			return null;
+		}		
 	}
 
 	/**

@@ -48,7 +48,7 @@ public class CrsDAO {
 		//opens the database connection instance
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			EmployeeForm employeeDetail = (EmployeeForm) session.selectOne("Employee.getRecord",employee);
+			EmployeeForm employeeDetail = (EmployeeForm) session.selectOne("Employee.getRecordWithEmail",employee);
 			return employeeDetail;
 		}finally {
 			session.close();

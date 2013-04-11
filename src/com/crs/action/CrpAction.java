@@ -8,7 +8,7 @@ public class CrpAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
-	public String confirm() {
+	public String confirmOptOut() {
 		Boolean removed = true;
 		//remove member from crp
 		

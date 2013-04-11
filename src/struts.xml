@@ -40,7 +40,7 @@
 			<result name="success">/optOutCrp.jsp</result>
 		</action>
 	
-		<action name="optOutCrpConfirm" class="com.crs.action.CrpAction" method="confirm">
+		<action name="optOutCrpConfirm" class="com.crs.action.CrpAction" method="confirmOptOut">
 			<result name="success" type="redirect">/login.action</result>
 			<result name="error" type="redirect">/error.action</result>
 		</action>
@@ -49,7 +49,7 @@
 			<result name="success">/optOutCarpool.jsp</result>
 		</action>
 	
-		<action name="optOutCarpoolConfirm" class="com.crs.action.CarpoolAction" method="confirm">
+		<action name="optOutCarpoolConfirm" class="com.crs.action.CarpoolAction" method="confirmOptOut">
 			<result name="success" type="redirect">/myCarpool.action</result>
 			<result name="error" type="redirect">/error.action</result>
 		</action>

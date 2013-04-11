@@ -279,13 +279,13 @@ fieldset
 	<font color="blue"><center><h1><u><i>Welcome</i></u></h1></center></font>
 	<div id="register">
 	<s:form action="optOutCrp" method="post">
-		<s:submit id="submit" button="true" align="center" value="OptOutCRP"/>
+		<s:submit id="submit" button="true" align="center" value="Opt Out CRP"/>
 	</s:form>
 	<s:form action="shiftCarpool" method="post">
 		<s:submit id="submit" button="true" value="Shift Pool"/>
 	</s:form>
-	<s:form action="optoutCarpool" method="post">
-		<s:submit id="submit" button="true" value="OptoutCarpool"/>
+	<s:form action="optOutCarpool" method="post">
+		<s:submit id="submit" button="true" value="Opt Out Carpool"/>
 	</s:form>
 	<s:form action="modifyEmployeeDetails" method="post">
 		<s:submit id="submit" button="true" value="Edit Details"/>
@@ -301,7 +301,7 @@ fieldset
 	<%--
 	
 	To see this part you must visit:
-	http://localhost:8080/ComputerizedRideShare/carpoolMemberAction.action
+	http://localhost:8080/ComputerizedRideShare/myCarpool
 	
 	--%>
 	<table border="0" cellspacing="0" cellpadding="1" width="100%" style="text-align:center;">

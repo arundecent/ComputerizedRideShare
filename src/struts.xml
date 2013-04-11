@@ -6,8 +6,20 @@
 <struts>
 	<package name="struts" namespace="/" extends="struts-default">
 	
-		<action name="carpoolMemberAction" class="com.crs.action.CarpoolMemberAction">
+		<action name="myCarpool" class="com.crs.action.CarpoolMemberAction">
 			<result name="success">/rideshareRequest.jsp</result>
+		</action>
+	
+		<action name="modifyEmployeeDetails" class="com.crs.action.EmployeeAction">
+			<result name="success">/modifyEmployeeDetails.jsp</result>
+		</action>
+	
+		<action name="optOutCrp" class="com.crs.action.CrpAction">
+			<result name="success">/optOutCrp.jsp</result>
+		</action>
+	
+		<action name="optOutCarpool" class="com.crs.action.CarpoolAction">
+			<result name="success">/optOutCarpool.jsp</result>
 		</action>
 		
 		<action name="login" class="com.crs.action.LoginAction" method="login">

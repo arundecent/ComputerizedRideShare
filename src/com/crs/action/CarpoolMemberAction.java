@@ -7,7 +7,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class CarpoolMemberAction extends ActionSupport {
 	
-	// http://localhost:8080/ComputerizedRideShare/carpoolMemberAction.action
+	// http://localhost:8080/ComputerizedRideShare/myCarpool
 	public List<String[]> getCarpoolMembers() {
 		//Temporary testing values
 		List<String[]> tmp = new ArrayList<String[]>();

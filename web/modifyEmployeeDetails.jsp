@@ -34,7 +34,7 @@ body
 
 /*--------------------*/
 
-#modifyEmployeeDetails
+#modifyEmployeeDetailsSubmit
 {
     background-color: #fff;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
@@ -77,7 +77,7 @@ body
           0 7px 0 rgba(0, 0, 0, .2);
 }
 
-#modifyEmployeeDetails:before
+#modifyEmployeeDetails:before,#modifyEmployeeDetailsSubmit:before
 {
     content: '';
     position: absolute;
@@ -219,7 +219,7 @@ fieldset
     margin: 25px 0 0 0;
 }
 
-#submit
+#submit,#cancel
 {		
     background-color: #ffb94b;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
@@ -252,7 +252,7 @@ fieldset
     color: #8f5a0a;
 }
 
-#submit:hover,#submit:focus
+#submit:hover,#submit:focus,#cancel:hover,#cancel:focus
 {		
     background-color: #fddb6f;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#ffb94b), to(#fddb6f));
@@ -263,7 +263,7 @@ fieldset
     background-image: linear-gradient(top, #ffb94b, #fddb6f);
 }	
 
-#submit:active
+#submit:active,#cancel:active
 {		
     outline: none;
    
@@ -272,7 +272,7 @@ fieldset
      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;		
 }
 
-#submit::-moz-focus-inner
+#submit::-moz-focus-inner,#cancel::-moz-focus-inner
 {
   border: none;
 }
@@ -297,6 +297,15 @@ fieldset
     color: #FF0000;
     /*z-index:9999;*/
 }
+.actions
+{
+	margin-top:20px;
+	margin-left:20%;
+}
+input[type="submit"] 
+{
+	margin-right:5px;
+}
 
 </style>
 <sj:head jqueryui="true" jquerytheme="blitzer"/>
@@ -305,23 +314,24 @@ fieldset
 </head>
 <body>
 	<font color="blue"><center><h1><i><u>Modify your details</u></i></h1></center></font>
-	<s:form action="modifyEmployeeDetails" method="post">
-	<fieldset id="inputs">
-		<s:hidden id="employeeId" key="employee.employeeID" dataType="Integer" label="Employee id "></s:hidden>
-		
-		<%-- New password is optional, but if filled in must match confirmPassword --%>
-		
-		<s:password id="password" key="employee.password" label="New Password"></s:password>
-		<s:password id="confirmPassword" key="employee.confirmPassword" label="Confirm Password"></s:password>
-		<s:textfield id="securityQn" key="employee.securityQn" label="Security Question "></s:textfield>
-		<s:textfield id="securityAn" key="employee.securityAn" label="Security Answer "></s:textfield>
-		<sj:textfield id="phoneNo" key="employee.phoneNo" label="Phone Number "></sj:textfield>
-		<sj:radio list="{'Email', 'Mobile'}" label="Notify Type " key="employee.notifyType"></sj:radio>
-		<s:textfield id="address" key="employee.address" label="Address "></s:textfield>
+	<s:form action="modifyEmployeeDetailsSubmit" method="post">
+		<fieldset id="inputs">
+			<s:hidden id="employeeId" key="employee.employeeID" dataType="Integer" label="Employee id "></s:hidden>
+			
+			<%-- New password is optional, but if filled in must match confirmPassword --%>
+			
+			<s:password id="password" key="employee.password" label="New Password"></s:password>
+			<s:password id="confirmPassword" key="employee.confirmPassword" label="Confirm Password"></s:password>
+			<s:textfield id="securityQn" key="employee.securityQn" label="Security Question "></s:textfield>
+			<s:textfield id="securityAn" key="employee.securityAn" label="Security Answer "></s:textfield>
+			<sj:textfield id="phoneNo" key="employee.phoneNo" label="Phone Number "></sj:textfield>
+			<sj:radio list="{'Email', 'Mobile'}" label="Notify Type " key="employee.notifyType"></sj:radio>
+			<s:textfield id="address" key="employee.address" label="Address "></s:textfield>
 		</fieldset>
-		<fieldset id="actions">
+		<fieldset id="action">
 			<s:submit id="submit" button="true" align="center"/>
-    	</fieldset>
+			<s:submit id="cancel" button="true" align="center" value="Go Back" onClick="history.back();return false;"/>
+	   	</fieldset>
 	</s:form>
 </body>
 </html>

@@ -279,7 +279,7 @@ input[type="submit"]
 </head>
 <body>
 	<font color="blue"><center><h1><u><i>Opt out of system</i></u></h1></center></font>
-	<s:form action="optOutCrp" method="post">
+	<s:form action="optOutCrpConfirm" method="post">
 		<h1>Confirm</h1>
 		<s:div cssStyle="text-align:center;">
 			Are you sure you want to leave the system?

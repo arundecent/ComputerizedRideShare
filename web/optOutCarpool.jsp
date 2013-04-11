@@ -279,7 +279,7 @@ input[type="submit"]
 </head>
 <body>
 	<font color="blue"><center><h1><u><i>Opt out of carpool</i></u></h1></center></font>
-	<s:form action="optOutCarpool" method="post">
+	<s:form action="optOutCarpoolConfirm" method="post">
 		<h1>Confirm</h1>
 		<s:div cssStyle="text-align:center;">
 			Are you sure you want to leave the carpool?

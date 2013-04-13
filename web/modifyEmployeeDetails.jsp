@@ -20,7 +20,7 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 	<h1 style="color: blue">
 		<i>Computerized RideShare Program Login</i>
 	</h1>
-	<s:form action="modifyEmployeeDetails" method="post">
+	<s:form action="modifyEmployeeDetailsSubmit" method="post">
 		<fieldset id="inputs">
 			<s:hidden id="employeeId" key="employee.employeeID"
 				dataType="Integer" label="Employee id "></s:hidden>

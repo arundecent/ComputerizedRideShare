@@ -37,13 +37,24 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 		<s:form action="modifyEmployeeDetails" method="post">
 			<s:submit id="submit" button="true" value="Edit Details" />
 		</s:form>
+		<s:set name="driver" value="isDriver"/>
+		<s:if test="%{#driver==true}">
+			<s:form action="cancelDriving" method="post">
+				<s:submit id="submit" button="true" value="Cancel Driving" />
+			</s:form>
+		</s:if>
+		<s:else>
+			<s:form action="cancelPickup" method="post">
+				<s:submit id="submit" button="true" value="Cancel Pickup" />
+			</s:form>
+		</s:else>
 		<s:form action="emergency" method="post">
 			<sj:radio list="{'Breakdown', 'Other'}" label="Emergency "
 				key="emergency"></sj:radio>
 		</s:form>
-		<s:form action="cancel" method="post">
+		<%-- <s:form action="cancel" method="post">
 			<sj:radio list="{'Pickup', 'Driving'}" label="Cancel " key="cancel"></sj:radio>
-		</s:form>
+		</s:form> --%>
 
 		<h2 style="color: blue">Carpool Rideshare</h2>
 		<%--

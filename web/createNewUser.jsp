@@ -22,23 +22,23 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 	</h1>
 	<s:form action="register" method="post" >
 		<fieldset id="inputs">
-			<s:textfield id="employeeId" key="employee.employeeID"
-				dataType="Integer" label="Employee id "></s:textfield>
-			<s:textfield id="userName" key="employee.emailID" dataType="String"
+			<%-- <s:textfield id="employeeId" key="employee.employeeID"
+				dataType="Integer" label="Employee id "></s:textfield> --%>
+			<s:textfield id="userName" name="emailID" key="employee.emailID" dataType="String"
 				label="Email id "></s:textfield>
-			<s:password id="password" key="employee.password" label="Password"></s:password>
-			<s:textfield id="firstName" key="employee.firstName"
+			<s:password id="password" name="password" key="employee.password" label="Password"></s:password>
+			<s:textfield id="firstName" name="firstName" key="employee.firstName"
 				label="First Name "></s:textfield>
-			<s:textfield id="lastName" key="employee.lastName" label="Last Name "></s:textfield>
-			<s:textfield id="securityQn" key="employee.securityQn"
+			<s:textfield id="lastName" name="lastName" key="employee.lastName" label="Last Name "></s:textfield>
+			<s:textfield id="securityQn" name="securityQn" key="employee.securityQn"
 				label="Security Question "></s:textfield>
-			<s:textfield id="securityAn" key="employee.securityAn"
+			<s:textfield id="securityAns" name="securityAns" key="employee.securityAns"
 				label="Security Answer "></s:textfield>
-			<sj:textfield id="phoneNo" key="employee.phoneNo"
+			<sj:textfield id="phoneNo" name="phoneNo" key="employee.phoneNo"
 				label="Phone Number "></sj:textfield>
-			<sj:radio list="{'Email', 'Mobile'}" label="Notify Type "
+			<sj:radio list="{'Email', 'Mobile'}" name="notifyType" label="Notify Type "
 				key="employee.notifyType"></sj:radio>
-			<s:textfield id="address" key="employee.address" label="Address "></s:textfield>
+			<s:textfield id="address" name="address" key="employee.address" label="Address "></s:textfield>
 		</fieldset>
 		<fieldset id="actions">
 			<s:submit id="submit" button="true" align="center" />

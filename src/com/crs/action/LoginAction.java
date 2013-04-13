@@ -36,7 +36,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 	public String registerNewUser() {
 		System.out.println("======In Login Action register========");
 		employee.setDateJoined(new Date());
-		employee.setPoints(25);
+		employee.setPoints(10);
 		if (employee.getNotifyTypeStr().equals("Email"))
 			employee.setNotifyType(0);
 		else

@@ -16,18 +16,18 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 <title>Modify Account Details</title>
 <link href="jspCSS/modifyCSS.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body style="text-align: center;">
 	<h1 style="color: blue">
 		<i>Computerized RideShare Program Login</i>
 	</h1>
-	<s:form action="modifyEmployeeDetailsSubmit" method="post">
+	<s:form action="modifyEmployeeDetails" method="post">
 		<fieldset id="inputs">
 			<s:hidden id="employeeId" key="employee.employeeID"
 				dataType="Integer" label="Employee id "></s:hidden>
 
 			<%-- New password is optional, but if filled in must match confirmPassword --%>
 
-			<s:password id="password" key="employee.password"
+			<s:password name = "password" id="password" key="employee.password"
 				label="New Password"></s:password>
 			<s:password id="confirmPassword" key="employee.confirmPassword"
 				label="Confirm Password"></s:password>

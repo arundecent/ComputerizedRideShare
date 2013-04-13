@@ -29,18 +29,18 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 				<s:submit id="submit" button="true" align="center"
 					value="Opt Out CRP" />
 			</s:form>
-			<s:form action="shiftCarpool" method="post" theme="simple">
+			<%-- <s:form action="shiftCarpool" method="post" theme="simple">
 				<s:submit id="submit" button="true" value="Shift Pool" />
-			</s:form>
+			</s:form> --%>
 			<s:form action="optOutCarpool" method="post" theme="simple">
 				<s:submit id="submit" button="true" value="Opt Out Carpool" />
 			</s:form>
 			<s:form action="modifyEmployeeDetails" method="post" theme="simple">
-				<s:submit id="submit" button="true" value="Edit Details" />
+				<s:submit id="submit" button="true" value="Edit My Details" />
 			</s:form>
 			<s:set name="driver" value="isDriver"/>
 			<s:if test="%{#driver==true}">
-				<s:form action="cancelDriving" method="post" theme="simple">
+				<s:form action="cancelDriving" method="post" theme="simple" cssStyle="margin-left:65px;">
 					<s:submit id="submit" button="true" value="Cancel Driving" />
 				</s:form>
 			</s:if>
@@ -59,8 +59,8 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 			<s:form action="cancel" method="post">
 				<sj:radio list="{'Pickup', 'Driving'}" label="Cancel " key="cancel"></sj:radio>
 			</s:form> --%>
-		</s:div>
-		<h2 style="color: blue">Carpool Rideshare</h2>
+		</s:div><br />
+		<h2 style="color: blue;padding-top:50px;">Carpool Rideshare</h2>
 		<%--
 	
 	To see this part you must visit:

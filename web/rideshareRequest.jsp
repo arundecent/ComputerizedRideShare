@@ -40,9 +40,20 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 			</s:form>
 			<s:set name="driver" value="isDriver"/>
 			<s:if test="%{#driver==true}">
-				<s:form action="cancelDriving" method="post" theme="simple" cssStyle="margin-left:65px;">
+				<s:set name="checkedIn" value="atWork"/>
+				<s:form action="cancelDriving" method="post" theme="simple">
 					<s:submit id="submit" button="true" value="Cancel Driving" />
 				</s:form>
+				<s:if test="%{#checkedIn==false}">
+					<s:form action="checkin" method="post" theme="simple">
+						<s:submit id="submit" button="true" value="Checkin" />
+					</s:form>
+				</s:if>
+				<s:else>
+					<s:form action="checkout" method="post" theme="simple">
+						<s:submit id="submit" button="true" value="Checkout" />
+					</s:form>
+				</s:else>
 			</s:if>
 			<s:else>
 				<s:form action="cancelPickup" method="post" theme="simple">

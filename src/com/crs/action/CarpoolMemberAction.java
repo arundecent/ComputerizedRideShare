@@ -7,6 +7,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class CarpoolMemberAction extends ActionSupport {
 	private Boolean isDriver = false;
+	private Boolean at_work = false;
 	
 	// http://localhost:8080/ComputerizedRideShare/myCarpool
 	public List<String[]> getCarpoolMembers() {
@@ -39,6 +40,10 @@ public class CarpoolMemberAction extends ActionSupport {
 	
 	public Boolean getIsDriver() {
 		return isDriver;
+	}
+	
+	public Boolean getAtWork() {
+		return at_work;
 	}
 	
 	public String cancelDrivingConfirm() {

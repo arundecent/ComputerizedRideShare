@@ -46,7 +46,7 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 			</s:if>
 			<s:else>
 				<s:form action="cancelPickup" method="post" theme="simple">
-					<s:submit id="submit" button="true" value="Cancel Pickup" />
+					<s:submit id="submit" button="true" value="Cancel Pickup" cssStyle="margin-left:65px;"/>
 				</s:form>
 			</s:else>
 			<s:form action="issueEmergency" method="post" theme="simple">

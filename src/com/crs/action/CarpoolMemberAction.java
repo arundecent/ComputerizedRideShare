@@ -6,7 +6,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CarpoolMemberAction extends ActionSupport {
-	private Boolean isDriver = true;
+	private Boolean isDriver = false;
 	
 	// http://localhost:8080/ComputerizedRideShare/myCarpool
 	public List<String[]> getCarpoolMembers() {

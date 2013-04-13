@@ -28,6 +28,15 @@ public class CarpoolMemberAction extends ActionSupport {
 			return ERROR;
 	}
 	
+	public String confirmEmergency() {
+		Boolean switchedCarpool = true;
+
+		if(switchedCarpool)
+			return SUCCESS;
+		else
+			return ERROR;
+	}
+	
 	public Boolean getIsDriver() {
 		return isDriver;
 	}

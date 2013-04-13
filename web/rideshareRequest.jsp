@@ -24,38 +24,42 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 		<i>Carpool Rideshare</i>
 	</h1>
 	<div id="register">
-		<s:form action="optOutCrp" method="post">
-			<s:submit id="submit" button="true" align="center"
-				value="Opt Out CRP" />
-		</s:form>
-		<s:form action="shiftCarpool" method="post">
-			<s:submit id="submit" button="true" value="Shift Pool" />
-		</s:form>
-		<s:form action="optOutCarpool" method="post">
-			<s:submit id="submit" button="true" value="Opt Out Carpool" />
-		</s:form>
-		<s:form action="modifyEmployeeDetails" method="post">
-			<s:submit id="submit" button="true" value="Edit Details" />
-		</s:form>
-		<s:set name="driver" value="isDriver"/>
-		<s:if test="%{#driver==true}">
-			<s:form action="cancelDriving" method="post">
-				<s:submit id="submit" button="true" value="Cancel Driving" />
+		<s:div id="buttonGroup">
+			<s:form action="optOutCrp" method="post" theme="simple">
+				<s:submit id="submit" button="true" align="center"
+					value="Opt Out CRP" />
 			</s:form>
-		</s:if>
-		<s:else>
-			<s:form action="cancelPickup" method="post">
-				<s:submit id="submit" button="true" value="Cancel Pickup" />
+			<s:form action="shiftCarpool" method="post" theme="simple">
+				<s:submit id="submit" button="true" value="Shift Pool" />
 			</s:form>
-		</s:else>
-		<s:form action="emergency" method="post">
-			<sj:radio list="{'Breakdown', 'Other'}" label="Emergency "
-				key="emergency"></sj:radio>
-		</s:form>
-		<%-- <s:form action="cancel" method="post">
-			<sj:radio list="{'Pickup', 'Driving'}" label="Cancel " key="cancel"></sj:radio>
-		</s:form> --%>
-
+			<s:form action="optOutCarpool" method="post" theme="simple">
+				<s:submit id="submit" button="true" value="Opt Out Carpool" />
+			</s:form>
+			<s:form action="modifyEmployeeDetails" method="post" theme="simple">
+				<s:submit id="submit" button="true" value="Edit Details" />
+			</s:form>
+			<s:set name="driver" value="isDriver"/>
+			<s:if test="%{#driver==true}">
+				<s:form action="cancelDriving" method="post" theme="simple">
+					<s:submit id="submit" button="true" value="Cancel Driving" />
+				</s:form>
+			</s:if>
+			<s:else>
+				<s:form action="cancelPickup" method="post" theme="simple">
+					<s:submit id="submit" button="true" value="Cancel Pickup" />
+				</s:form>
+			</s:else>
+			<s:form action="issueEmergency" method="post" theme="simple">
+				<s:submit id="submit" button="true" value="Emergency" />
+			</s:form>
+			<%-- <s:form action="emergency" method="post">
+				<sj:radio list="{'Breakdown', 'Other'}" label="Emergency "
+					key="emergency"></sj:radio>
+			</s:form>
+			<s:form action="cancel" method="post">
+				<sj:radio list="{'Pickup', 'Driving'}" label="Cancel " key="cancel"></sj:radio>
+			</s:form> --%>
+		</s:div>
 		<h2 style="color: blue">Carpool Rideshare</h2>
 		<%--
 	

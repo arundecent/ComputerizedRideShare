@@ -14,7 +14,7 @@ body
 
 /*--------------------*/
 
-#register
+#issueEmergencyConfirm
 {
     background-color: #fff;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
@@ -23,6 +23,7 @@ body
     background-image: -ms-linear-gradient(top, #fff, #eee);
     background-image: -o-linear-gradient(top, #fff, #eee);
     background-image: linear-gradient(top, #fff, #eee);  
+    height: 240px;
     width: 400px;
     margin: -150px 0 0 -230px;
     padding: 30px;
@@ -56,7 +57,7 @@ body
           0 7px 0 rgba(0, 0, 0, .2);
 }
 
-#login:before
+#issueEmergencyConfirm:before
 {
     content: '';
     position: absolute;
@@ -168,14 +169,8 @@ fieldset
 {
     margin: 25px 0 0 0;
 }
-form {
-	margin-left:auto;
-	margin-right:auto;
-}
-#buttonGroup {
-	margin-left:10px;
-}
-#submit
+
+#submit,#cancel
 {		
     background-color: #ffb94b;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
@@ -206,11 +201,9 @@ form {
     cursor: pointer;
     font: bold 15px Arial, Helvetica;
     color: #8f5a0a;
-    margin-left:5px;
-    margin-bottom:5px;
 }
 
-#submit:hover,#submit:focus
+#submit:hover,#submit:focus,#cancel:hover,#cancel:focus
 {		
     background-color: #fddb6f;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#ffb94b), to(#fddb6f));
@@ -221,7 +214,7 @@ form {
     background-image: linear-gradient(top, #ffb94b, #fddb6f);
 }	
 
-#submit:active
+#submit:active,#cancel:active
 {		
     outline: none;
    
@@ -230,7 +223,7 @@ form {
      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;		
 }
 
-#submit::-moz-focus-inner
+#submit::-moz-focus-inner,#cancel::-moz-focus-inner
 {
   border: none;
 }
@@ -242,7 +235,7 @@ form {
     line-height: 35px;
     margin-left: 10px;
 }
-
+/*__________*/
 /*--------------------*/
 
 #message
@@ -254,4 +247,13 @@ form {
     top: 3px;
     color: #FF0000;
     /*z-index:9999;*/
+}
+.actions
+{
+	margin-top:20px;
+	margin-left:20%;
+}
+input[type="submit"] 
+{
+	margin-right:5px;
 }

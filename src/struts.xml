@@ -53,6 +53,15 @@
 			<result name="success" type="redirect">/myCarpool.action</result>
 			<result name="error" type="redirect">/error.action</result>
 		</action>
+	
+		<action name="issueEmergency" class="com.crs.action.CarpoolMemberAction">
+			<result name="success">/issueEmergency.jsp</result>
+		</action>
+	
+		<action name="issueEmergencyConfirm" class="com.crs.action.CarpoolMemberAction" method="confirmEmergency">
+			<result name="success" type="redirect">/myCarpool.action</result>
+			<result name="error" type="redirect">/error.action</result>
+		</action>
 		
 		<action name="login" class="com.crs.action.LoginAction" method="login">
 			<result name="success" type="redirect">/myCarpool.action</result>

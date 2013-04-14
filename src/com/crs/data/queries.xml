@@ -59,8 +59,8 @@
 		VALUES (#{dateJoined}, #{isDriver}, #{isPickUp}, #{isTemporary},#{employee.employeeID}, #{carpoolID});
 	</insert>
 
-	<insert id="createNewCarPoolGroup">
-		INSERT INTO CARPOOL (AT_WORK, DATE_CREATED) VALUES (1, NOW())
+	<insert id="createNewCarPoolGroup" useGeneratedKeys="true" keyProperty="carpoolID">
+		INSERT INTO CARPOOL (AT_WORK, DATE_CREATED) VALUES (1, NOW());
 	</insert>
 
 	<select id="getCarPoolGroup" resultMap="resultCarpool">

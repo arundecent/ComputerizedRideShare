@@ -6,7 +6,7 @@
 <struts>
 	<package name="struts" namespace="/" extends="struts-default">
 	
-		<action name="error">
+		<!--  action name="error">
 			<result>/error.jsp</result>
 		</action>
 		
@@ -61,19 +61,17 @@
 		<action name="issueEmergencyConfirm" class="com.crs.action.CarpoolMemberAction" method="confirmEmergency">
 			<result name="success" type="redirect">/myCarpool.action</result>
 			<result name="error" type="redirect">/error.action</result>
-		</action>
+		</action-->
 		
 		<action name="login" class="com.crs.action.LoginAction" method="login">
 			<result name="success">/rideshareRequest.jsp</result>
-			<result name="input">/login.jsp</result>
 			<result name="login">/login.jsp</result>
 		</action>
 
-		<action name="register" class="com.crs.action.LoginAction"
-			method="registerNewUser">
+		<action name="register" class="com.crs.action.LoginAction" method="registerNewUser">
 			<result name="success">/rideshareRequest.jsp</result>
 			<result name="input">/login.jsp</result>
-			<result name="login">/login.jsp</result>
+			<result name="error">/createNewUser.jsp</result>
 		</action>
 	</package>
 </struts>

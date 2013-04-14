@@ -16,8 +16,7 @@
 		<fieldset id="inputs">
 			<s:textfield name= "emailID" key="employee.emailID" label="Email id "></s:textfield>
 			<s:password name="password" id="password" key="employee.password" label="Password"></s:password>
-		</fieldset>
-		<fieldset id="actions">
+		<!--fieldset id="actions"-->
 			<s:submit id="submit" button="true" align="center" />
 			<a href="createNewUser.jsp">Register</a>
 		</fieldset>

@@ -12,6 +12,7 @@ import com.opensymphony.xwork2.ModelDriven;
 public class LoginAction extends ActionSupport implements ModelDriven<EmployeeForm> {
 
 	private EmployeeForm employee = new EmployeeForm();
+	private CarPoolMemberForm carPoolMember = new CarPoolMemberForm();
 	LoginServiceInterface loginService = new LoginService();
 
 	public EmployeeForm getEmployee() {
@@ -21,13 +22,22 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 	public void setEmployee(EmployeeForm employee) {
 		this.employee = employee;
 	}
+	
+	public CarPoolMemberForm getCarPoolMember() {
+		return carPoolMember;
+	}
+
+	public void setCarPoolMember(CarPoolMemberForm carPoolMember) {
+		this.carPoolMember = carPoolMember;
+	}
 
 	public String login() {
 		System.out.println("======In Login Action login========");
 
-		EmployeeForm employeeDetails;
-		employeeDetails = loginService.login(employee);
-		if (employeeDetails != null)
+		//EmployeeForm employeeDetails;
+		carPoolMember = loginService.login(employee);
+		System.out.println("Details : "+carPoolMember.getCarpoolID()+" == "+carPoolMember.getEmployee().getFirstName());
+		if (carPoolMember != null)
 			return SUCCESS;
 		else
 			return LOGIN;
@@ -42,12 +52,11 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 			employee.setNotifyType(0);
 		else
 			employee.setNotifyType(1);
-		EmployeeForm employeeDetails;
-		employeeDetails = loginService.registerNewUser(employee);
-		if (employeeDetails != null)
+		carPoolMember = loginService.registerNewUser(employee);
+		if (carPoolMember != null)
 			return SUCCESS;
 		else
-			return LOGIN;
+			return ERROR;
 	}
 
 	public void validate() {
@@ -57,28 +66,6 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 		} 
 		if (StringUtils.isEmpty(employee.getPassword())) {
 			addFieldError("password", "Password is required.");
-		}
-		
-		if(StringUtils.isEmpty(employee.getFirstName())){
-			addFieldError("firstName", "First Name is required.");
-		}
-		if(StringUtils.isEmpty(employee.getLastName())){
-			addFieldError("lastName", "Last Name is required.");
-		}
-		if(StringUtils.isEmpty(employee.getSecurityQn())){
-			addFieldError("securityQn", "Security Question is required.");
-		}
-		if(StringUtils.isEmpty(employee.getSecurityAns())){
-			addFieldError("securityAns", "Security Answer is required.");
-		}
-		if(StringUtils.isEmpty(employee.getPhoneNo())){
-			addFieldError("phoneNo", "Phone Number is required.");
-		}
-		if(StringUtils.isEmpty(employee.getNotifyTypeStr())){
-			addFieldError("notifyType", "Notify Type is required.");
-		}
-		if(StringUtils.isEmpty(employee.getAddress())){
-			addFieldError("address", "Address is required.");
 		}
 	}
 

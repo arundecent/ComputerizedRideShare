@@ -11,10 +11,20 @@
 	    <result property="isDriver" column="is_driver"/>
 	    <result property="isPickUp" column="pick_up"/>
 	    <result property="isTemporary" column="is_temporary"/>
-	    <result property="driveFlag" column="drive_flag" />
 	 	<collection property="employeeList" column="employee_id" javaType="ArrayList"
 	 	ofType="com.crs.model.EmployeeForm" resultMap="resultEmployee"/>
      </resultMap>
+    
+    <resultMap id="result" type="com.crs.model.CarPoolMemberForm">
+	    <result property="employeeID" column="employee_id"/>
+	    <result property="carpoolID" column="carpool_id"/>
+	    <result property="dateJoined" column="date_joined"/>
+	    <result property="isDriver" column="is_driver"/>
+	    <result property="isPickUp" column="pick_up"/>
+	    <result property="isTemporary" column="is_temporary"/>
+	 </resultMap>
+    
+    
     
     <resultMap id="resultEmployee" type="com.crs.model.EmployeeForm">
 	    <result property="employeeID" column="employee_id"/>
@@ -38,6 +48,10 @@
     
     <select id="carpoolMembers" parameterType="int" resultMap="resultCarpoolMember">
     	SELECT * FROM CarpoolMember WHERE carpool_id = #{value}
+    </select>
+    
+    <select id="getMemberDetails" parameterType="int" resultMap="result">
+    	SELECT * FROM CarpoolMember WHERE employee_id = #{employeeID}
     </select>
     
     <select id="getCarpoolMemberDrivers" parameterType="int" resultMap="resultCarpoolMember">

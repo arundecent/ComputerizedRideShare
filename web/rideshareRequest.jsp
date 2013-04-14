@@ -21,7 +21,7 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 </head>
 <body>
 	<h1 style="color: blue">
-		<i>Carpool Rideshare</i>
+		<i>SDNU Computerised Ride Share System</i> <a href="login.jsp">Log out</a>
 	</h1>
 	<div id="register">
 		<s:div id="buttonGroup">
@@ -71,7 +71,7 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 				<sj:radio list="{'Pickup', 'Driving'}" label="Cancel " key="cancel"></sj:radio>
 			</s:form> --%>
 		</s:div><br />
-		<h2 style="color: blue;padding-top:50px;">Carpool Rideshare</h2>
+		<h2 style="color: blue;padding-top:50px;">Ride Share Group</h2>
 		<%--
 	
 	To see this part you must visit:
@@ -85,19 +85,24 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 				<th>Is Driver</th>
 				<th>Address</th>
 				<th>Phone</th>
+				<th>Group ID</th>
 			</tr>
-			<s:iterator value="carpoolMembers" status="rowstatus" var="employee">
+			<!-- <s:iterator value="carPoolMember" status="rowstatus" var="employee"> -->
 				<tr>
-					<s:if test="#rowstatus.odd == true">
-						<s:iterator value="#employee">
-							<td style="background: lightgrey"><s:property /></td>
-						</s:iterator>
-					</s:if>
-					<s:else>
+				<!-- 	<s:if test="#rowstatus.odd == true">  -->
+						<!-- <s:iterator value="#employee"> -->
+							<td style="background: lightgrey"><s:property value="employee.firstName" /></td>
+							<td style="background: lightgrey"><s:property value="carPoolMember.isDriver" /></td>
+							<td style="background: lightgrey"><s:property value="employee.address" /></td>
+							<td style="background: lightgrey"><s:property value="employee.phoneNo" /></td>
+							<td style="background: lightgrey"><s:property value="carPoolMember.carpoolID" /></td>
+						<!-- </s:iterator> -->
+					<!-- </s:if> -->
+					<!-- <s:else>
 						<s:iterator value="#employee">
 							<td><s:property /></td>
 						</s:iterator>
-					</s:else>
+					</s:else> -->
 				</tr>
 			</s:iterator>
 		</table>

@@ -5,7 +5,7 @@
 
 <mapper namespace="Employee">
 
-	<resultMap id="result" type="com.crs.model.EmployeeForm">
+	<resultMap id="resultEmployee" type="com.crs.model.EmployeeForm">
 		<result property="employeeID" column="employee_id" />
 		<result property="emailID" column="email" />
 		<result property="password" column="password" />
@@ -13,7 +13,7 @@
 		<result property="firstName" column="first_name" />
 		<result property="lastName" column="last_name" />
 		<result property="securityQn" column="sec_question" />
-		<result property="securityAn" column="sec_answer" />
+		<result property="securityAns" column="sec_answer" />
 		<result property="phoneNo" column="phone" />
 		<result property="notifyType" column="notify_type" />
 		<result property="address" column="address" />
@@ -21,61 +21,58 @@
 		<result property="points" column="points" />
 	</resultMap>
 
-	<resultMap type="com.crs.model.CarPoolForm" id="result2">
-		<result property="carpoolId" column="carpool_id" />
+	<resultMap type="com.crs.model.CarPoolForm" id="resultCarpool">
+		<result property="carpoolID" column="carpool_id" />
 		<result property="dateCreated" column="date_created" />
 		<result property="atWork" column="at_work" />
-		<result property="noOfMembers" column="noOfMembers" />
 	</resultMap>
+	
+	<resultMap id="resultCarpoolMember" type="com.crs.model.CarPoolMemberForm">
+	    <result property="employeeID" column="employee_id"/>
+	    <result property="carpoolID" column="carpool_id"/>
+	    <result property="dateJoined" column="date_joined"/>
+	    <result property="isDriver" column="is_driver"/>
+	    <result property="isPickUp" column="pick_up"/>
+	    <result property="isTemporary" column="is_temporary"/>
+	 	<collection property="employeeList" column="employee_id" javaType="ArrayList"
+	 	ofType="com.crs.model.EmployeeForm" resultMap="resultEmployee"/>
+     </resultMap>
 
-	<select id="getRecordWithEmail" parameterType="Employee" resultMap="result">
+	<select id="getRecordWithEmail" parameterType="Employee" resultMap="resultEmployee">
 		SELECT * FROM Employee WHERE email = #{emailID}
 	</select>
 	
-	<select id="getRecord" parameterType="Employee" resultMap="result">
+	<select id="getRecord" parameterType="Employee" resultMap="resultEmployee">
 		SELECT * FROM Employee WHERE employee_id = #{employeeID}
 	</select>
 
-	<insert id="insertRecord" parameterType="Employee">
-		INSERT INTO EMPLOYEE (EMPLOYEE_ID, EMAIL,PASSWORD, SALT, FIRST_NAME,
-		LAST_NAME, SEC_QUESTION, SECURITY_ANS, PHONE, NOTIFY_TYPE, ADDRESS,
-		DATE_JOINED, POINTS)
+	<insert id="insertRecord" parameterType="com.crs.model.EmployeeForm" >
+		INSERT INTO employee 
+		(EMAIL,PASSWORD, SALT, FIRST_NAME,LAST_NAME, SEC_QUESTION, SEC_ANSWER, PHONE, NOTIFY_TYPE, ADDRESS)
 		VALUES
-		(#{employeeID},#{emailID},#{password},#{salt},#{firstName},#{lastName},#{securityQn},#{securityAns},#{phoneNo},#{notifyType},#{address},#{dateJoined},#{points})
+		(#{emailID},#{password},#{salt},#{firstName},#{lastName},#{securityQn},#{securityAns},#{phoneNo},#{notifyType},#{address});
 	</insert>
 
 	<insert id="createNewMember" parameterType="com.crs.model.CarPoolMemberForm">
-		INSERT INTO CARPOOLMEMBER (DATE_JOINED, IS_DRIVER, PICK_UP, IS_TEMPORRARY,
-		EMPLOYEE_ID, CARPOOL_ID)
-		VALUES (#{dateJoined}, #{isDriver}, #{isPickUp}, #{isTemporary},
-		#{employee.employeeID}, #{carpoolId});
-		UPDATE CARPOOL SET NOOFMEMBERS = NOOFMEMBERS + 1 WHERE CARPOOL_ID =
-		#{carpoolId};
+		INSERT INTO CARPOOLMEMBER (DATE_JOINED, IS_DRIVER, PICK_UP, IS_TEMPORARY,EMPLOYEE_ID, CARPOOL_ID)
+		VALUES (#{dateJoined}, #{isDriver}, #{isPickUp}, #{isTemporary},#{employee.employeeID}, #{carpoolID});
 	</insert>
 
 	<insert id="createNewCarPoolGroup">
 		INSERT INTO CARPOOL (AT_WORK, DATE_CREATED) VALUES (1, NOW())
 	</insert>
 
-	<select id="getCarPoolGroup" resultMap="result2">
-		SELECT * FROM CARPOOL WHERE NOOFMEMBERS &lt; 4 ORDER BY DATE_CREATED DESC
-		LIMIT 1
+	<select id="getCarPoolGroup" resultMap="resultCarpool">
+		SELECT * FROM carpoolmember
+		GROUP BY carpool_id
+		HAVING COUNT(carpool_id) &lt; 4;
 	</select>
-
-
-	<!-- select id="getById" parameterType="int" resultMap="result"> SELECT 
-		* FROM CONTACT WHERE CONTACT_ID = #{id} </select -->
 
 	<update id="updateRecord" parameterType="Employee">
 		UPDATE Employee SET phone = #{phoneNo}, address = #{address}, password =
 		#{password} WHERE employee_id = #{employeeID}
 	</update>
 
-
-	<!-- insert id="insertRecord" parameterType="Employee"> INSERT INTO Employee 
-		(email,password,salt,first_name,last_name,sec_question,sec_answer,phone,address) 
-		VALUES (#{emailID},#{password},#{salt},#{firstName},#{lastName},#{securityQn},#{securityAn},#{phoneNo},#{address}) 
-		</insert -->
 
 	<update id="updatePoints" parameterType="Employee">
 		UPDATE Employee SET points = #{points} WHERE employee_id = #{employeeID}

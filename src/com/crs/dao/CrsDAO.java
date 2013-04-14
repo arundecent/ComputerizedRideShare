@@ -63,8 +63,12 @@ public class CrsDAO {
 	public void insertEmployeeRecord(EmployeeForm employee){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			session.insert("Employee.insertRecord",employee);
-		}finally {
+			int a = session.insert("Employee.insertRecord",employee);
+			System.out.println("a:" + a);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		finally {
 			session.close();
 		}
 	}

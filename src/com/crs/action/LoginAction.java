@@ -8,6 +8,7 @@ import com.crs.model.*;
 import com.crs.service.LoginService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.validator.annotations.Validation;
 
 public class LoginAction extends ActionSupport implements ModelDriven<EmployeeForm> {
 
@@ -43,9 +44,15 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 			return LOGIN;
 	}
 
+	/**
+	 * This method is called when the user clicks on the 
+	 * submit to register into the car pool system.
+	 * Call to this method is configured in struts.xml
+	 * @return
+	 */
 	public String registerNewUser() {
 		System.out.println("======In Login Action register========");
-		validate();
+	
 		employee.setDateJoined(new Date());
 		employee.setPoints(10);
 		if (employee.getNotifyTypeStr().equals("Email"))
@@ -57,16 +64,6 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 			return SUCCESS;
 		else
 			return ERROR;
-	}
-
-	public void validate() {
-
-		if (StringUtils.isEmpty(employee.getEmailID())) {
-			addFieldError("emailID", "Username (Email ID) is required");
-		} 
-		if (StringUtils.isEmpty(employee.getPassword())) {
-			addFieldError("password", "Password is required.");
-		}
 	}
 
 	@Override

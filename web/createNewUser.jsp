@@ -18,33 +18,23 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 </head>
 <body style="text-align: center;">
 	<h1 style="color: blue">
-		<i>SDNU Computerised Ride Share Program - User Registration</i>
+		<i>SDNU Computerized Ride Share Program - User Registration</i>
 	</h1>
 	<s:form action="register" method="post" >
 		<fieldset id="inputs">
-			<%-- <s:textfield id="employeeId" key="employee.employeeID"
-				dataType="Integer" label="Employee id "></s:textfield> --%>
-			<s:textfield id="userName" name="emailID" key="employee.emailID" dataType="String"
-				label="Email id "></s:textfield>
+			<s:textfield id="userName" name="emailID" key="employee.emailID" dataType="String" label="Email id "></s:textfield>
 			<s:password id="password" name="password" key="employee.password" label="Password"></s:password>
-			<s:textfield id="firstName" name="firstName" key="employee.firstName"
-				label="First Name "></s:textfield>
+			<s:textfield id="firstName" name="firstName" key="employee.firstName" label="First Name "></s:textfield>
 			<s:textfield id="lastName" name="lastName" key="employee.lastName" label="Last Name "></s:textfield>
-			<s:textfield id="securityQn" name="securityQn" key="employee.securityQn"
-				label="Security Question "></s:textfield>
-			<s:textfield id="securityAns" name="securityAns" key="employee.securityAns"
-				label="Security Answer "></s:textfield>
-			<sj:textfield id="phoneNo" name="phoneNo" key="employee.phoneNo"
-				label="Phone Number "></sj:textfield>
-			<sj:radio list="{'Email', 'Mobile'}" name="notifyTypeStr" label="Notify Type "
-				key="employee.notifyTypeStr"></sj:radio>
+			<s:textfield id="securityQn" name="securityQn" key="employee.securityQn" label="Security Question "></s:textfield>
+			<s:textfield id="securityAns" name="securityAns" key="employee.securityAns"	label="Security Answer "></s:textfield>
+			<sj:textfield id="phoneNo" name="phoneNo" key="employee.phoneNo" label="Phone Number "></sj:textfield>
+			<sj:radio list="{'Email', 'Mobile'}"  name="notifyTypeStr" label="Notify Type" key="employee.notifyTypeStr"></sj:radio>
 			<s:textfield id="address" name="address" key="employee.address" label="Address "></s:textfield>
 		</fieldset>
 		<fieldset id="actions">
 			<s:submit id="submit" button="true" align="center" />
-			<fieldset id="message">
-				<s:actionmessage />
-			</fieldset>
+			<fieldset id="message"><s:actionmessage /></fieldset>
 		</fieldset>
 	</s:form>
 </body>

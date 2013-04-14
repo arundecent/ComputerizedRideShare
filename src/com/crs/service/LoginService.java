@@ -74,26 +74,34 @@ public class LoginService implements LoginServiceInterface{
 	 * This method is used to employee details after 
 	 * user enters his/her login credentials. 
 	 * @return EmployeeForm (Employee bean)
-	 * @author Subbu @author login check made by mohan
+	 * @author Subbu/mohan
 	 */
 	@Override
 	public EmployeeForm login(EmployeeForm employee) {
-		
-		
+				
 		if(employee.getEmailID() != null && employee.getPassword() != null){
 			EmployeeForm employeeDetails = dao.getLoginRecord(employee);
 			
 			if(employeeDetails != null){
-				//check for username and password
+				//check for user name and password
 				if(employee.getEmailID().equals(employeeDetails.getEmailID())){
+					
 					//check for the password
 					String hashPasswordFromDB = employeeDetails.getPassword();
+					
+					//get the salt for the particular user
 					String salt = employeeDetails.getSalt();
 					this.setStrSalt(salt);
+					
+					/*
+					 * hash the password entered using the salt generated for that
+					 * particular user id
+					 */
 					String passEntered = this.generateMD5HashForPasswordWithSalt(employee.getPassword());
 					
+					//check for password match
 					if(hashPasswordFromDB.equals(passEntered)){
-						System.out.println("Result : " +employeeDetails.getFirstName());
+						System.out.println("Successful Login : " +employeeDetails.getFirstName());
 						return employeeDetails;
 					}
 					else{
@@ -129,7 +137,7 @@ public class LoginService implements LoginServiceInterface{
 	 * employee bean as the input and saves the details into the database
 	 * by invoking a method on the dao object.
 	 * @return EmployeeForm
-	 * @author Subbu
+	 * @author Subbu/mohan
 	 */
 	@Override
 	public EmployeeForm registerNewUser(EmployeeForm employee) {
@@ -152,7 +160,7 @@ public class LoginService implements LoginServiceInterface{
 		 * saving the new user details to the database using dao
 		 */
 		dao.insertEmployeeRecord(employee);		
-		
+		System.out.println("New Employee record inserted");
 		
 		/*
 		 * Getting the car pool with the free places
@@ -182,7 +190,7 @@ public class LoginService implements LoginServiceInterface{
 			 */
 			carPoolMember.setIsDriver(0);
 			carPoolMember.setCarpoolID(carPoolForm.getCarpoolID());
-			createNewMember(carPoolMember);
+			this.createNewMember(carPoolMember);
 			
 		}
 		else{
@@ -191,9 +199,23 @@ public class LoginService implements LoginServiceInterface{
 			 * to be the driver
 			 */
 			carPoolMember.setIsDriver(1);
-			carPoolForm = dao.createNewCarPoolGroup();
-			carPoolMember.setCarpoolID(carPoolForm.getCarpoolID());
-			createNewMember(carPoolMember);
+			
+			/*
+			 *create a new car pool group in carpool table
+			 */
+			dao.createNewCarPoolGroup();
+			
+			/*
+			 *retrieve the newly created car pool group id 
+			 */
+			CarPoolForm carPoolFormObj = dao.getLatestCarpoolGroup();
+			
+			/*
+			 * assign the user to the new group creater
+			 */
+			carPoolMember.setCarpoolID(carPoolFormObj.getCarpoolID());
+			this.createNewMember(carPoolMember);
+			System.out.println("new user - driver created");
 			
 		}
 		

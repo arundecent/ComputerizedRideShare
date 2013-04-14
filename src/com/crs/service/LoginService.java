@@ -71,7 +71,7 @@ public class LoginService implements LoginServiceInterface{
 	public LoginService(){
 		this.dao = new CrsDAO();
 		this.strSalt = this.generateSalt();
-		PropertyConfigurator.configure("Log4j/log4j.properties");
+		//PropertyConfigurator.configure("Log4j/log4j.properties");
 	}
 	
 	

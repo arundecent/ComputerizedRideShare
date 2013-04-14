@@ -18,7 +18,7 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 </head>
 <body style="text-align: center;">
 	<h1 style="color: blue">
-		<i>Enter User Details</i>
+		<i>SDNU Computerised Ride Share Program - User Registration</i>
 	</h1>
 	<s:form action="register" method="post" >
 		<fieldset id="inputs">

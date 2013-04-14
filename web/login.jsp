@@ -6,11 +6,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>CarPool RideShare Program Login</title>
+<title>Computerised RideShare Program Login</title>
 <link href="jspCSS/loginCSS.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<h1 style="color: blue"><i>Computerized RideShare Program Login</i></h1>
+	<h1 style="color: blue"><i>SDNU Computerised RideShare Program Login</i></h1>
 	<s:form action="login" method="post">
 		<h1>login</h1>
 		<fieldset id="inputs">

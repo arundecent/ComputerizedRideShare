@@ -35,6 +35,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 
 	public String registerNewUser() {
 		System.out.println("======In Login Action register========");
+		validate();
 		employee.setDateJoined(new Date());
 		employee.setPoints(10);
 		if (employee.getNotifyTypeStr().equals("Email"))
@@ -56,6 +57,28 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 		} 
 		if (StringUtils.isEmpty(employee.getPassword())) {
 			addFieldError("password", "Password is required.");
+		}
+		
+		if(StringUtils.isEmpty(employee.getFirstName())){
+			addFieldError("firstName", "First Name is required.");
+		}
+		if(StringUtils.isEmpty(employee.getLastName())){
+			addFieldError("lastName", "Last Name is required.");
+		}
+		if(StringUtils.isEmpty(employee.getSecurityQn())){
+			addFieldError("securityQn", "Security Question is required.");
+		}
+		if(StringUtils.isEmpty(employee.getSecurityAns())){
+			addFieldError("securityAns", "Security Answer is required.");
+		}
+		if(StringUtils.isEmpty(employee.getPhoneNo())){
+			addFieldError("phoneNo", "Phone Number is required.");
+		}
+		if(StringUtils.isEmpty(employee.getNotifyTypeStr())){
+			addFieldError("notifyType", "Notify Type is required.");
+		}
+		if(StringUtils.isEmpty(employee.getAddress())){
+			addFieldError("address", "Address is required.");
 		}
 	}
 

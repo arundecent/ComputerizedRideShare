@@ -64,14 +64,14 @@
 		</action>
 		
 		<action name="login" class="com.crs.action.LoginAction" method="login">
-			<result name="success" type="redirect">/myCarpool.action</result>
+			<result name="success">/rideshareRequest.jsp</result>
 			<result name="input">/login.jsp</result>
 			<result name="login">/login.jsp</result>
 		</action>
 
 		<action name="register" class="com.crs.action.LoginAction"
 			method="registerNewUser">
-			<result name="success" type="redirect">/myCarpool.action</result>
+			<result name="success">/rideshareRequest.jsp</result>
 			<result name="input">/login.jsp</result>
 			<result name="login">/login.jsp</result>
 		</action>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias alias="Employee" type="com.crs.model.EmployeeForm" />
+		<typeAlias alias="Carpool" type="com.crs.model.CarPoolForm" />
+		<typeAlias alias="CarpoolMember" type="com.crs.model.CarPoolMemberForm" />
+	</typeAliases>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/crp" />
+				<property name="username" value="root" />
+				<property name="password" value="root" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<mapper resource="com/crs/data/queries.xml" />
+		<mapper resource="com/crs/data/cQueries.xml" />
+		<mapper resource="com/crs/data/cmQueries.xml" />
+	</mappers>
+
+</configuration>

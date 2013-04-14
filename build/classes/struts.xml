@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="struts" namespace="/" extends="struts-default">
+	
+		<action name="error">
+			<result>/error.jsp</result>
+		</action>
+		
+		<action name="myCarpool" class="com.crs.action.CarpoolMemberAction">
+			<result name="success">/rideshareRequest.jsp</result>
+		</action>
+		
+		<action name="cancelPickup">
+			<result name="success">/cancelPickup.jsp</result>
+		</action>
+	
+		<action name="cancelPickupConfirm" class="com.crs.action.CarpoolMemberAction" method="cancelPickupConfirm">
+			<result name="success" type="redirect">/myCarpool.action</result>
+			<result name="error" type="redirect">/error.action</result>
+		</action>
+		
+		<action name="cancelDriving">
+			<result name="success">/cancelDriving.jsp</result>
+		</action>
+	
+		<action name="cancelDrivingConfirm" class="com.crs.action.CarpoolMemberAction" method="cancelDrivingConfirm">
+			<result name="success" type="redirect">/myCarpool.action</result>
+			<result name="error" type="redirect">/error.action</result>
+		</action>
+		
+		<action name="modifyEmployeeDetails" class="com.crs.action.EmployeeAction">
+			<result name="success">/modifyEmployeeDetails.jsp</result>
+		</action>
+	
+		<action name="optOutCrp" class="com.crs.action.CrpAction">
+			<result name="success">/optOutCrp.jsp</result>
+		</action>
+	
+		<action name="optOutCrpConfirm" class="com.crs.action.CrpAction" method="confirmOptOut">
+			<result name="success" type="redirect">/login.action</result>
+			<result name="error" type="redirect">/error.action</result>
+		</action>
+	
+		<action name="optOutCarpool" class="com.crs.action.CarpoolAction">
+			<result name="success">/optOutCarpool.jsp</result>
+		</action>
+	
+		<action name="optOutCarpoolConfirm" class="com.crs.action.CarpoolAction" method="confirmOptOut">
+			<result name="success" type="redirect">/myCarpool.action</result>
+			<result name="error" type="redirect">/error.action</result>
+		</action>
+	
+		<action name="issueEmergency" class="com.crs.action.CarpoolMemberAction">
+			<result name="success">/issueEmergency.jsp</result>
+		</action>
+	
+		<action name="issueEmergencyConfirm" class="com.crs.action.CarpoolMemberAction" method="confirmEmergency">
+			<result name="success" type="redirect">/myCarpool.action</result>
+			<result name="error" type="redirect">/error.action</result>
+		</action>
+		
+		<action name="login" class="com.crs.action.LoginAction" method="login">
+			<result name="success">/rideshareRequest.jsp</result>
+			<result name="input">/login.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+
+		<action name="register" class="com.crs.action.LoginAction"
+			method="registerNewUser">
+			<result name="success">/rideshareRequest.jsp</result>
+			<result name="input">/login.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+	</package>
+</struts>

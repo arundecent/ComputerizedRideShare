@@ -87,7 +87,7 @@ public class EmployeeForm {
 		if(notifyType != null){
 			this.notifyType = notifyType;
 		}else{
-			this.notifyType = Integer.parseInt(this.getNotifyTypeStr());
+			this.notifyType = Integer.parseInt("0");
 		}
 		
 	}

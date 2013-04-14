@@ -46,7 +46,8 @@
 		SELECT * FROM Employee WHERE employee_id = #{employeeID}
 	</select>
 
-	<insert id="insertRecord" parameterType="com.crs.model.EmployeeForm" >
+	<insert id="insertRecord" parameterType="com.crs.model.EmployeeForm" useGeneratedKeys="true"
+		keyProperty="employeeID">
 		INSERT INTO employee 
 		(EMAIL,PASSWORD, SALT, FIRST_NAME,LAST_NAME, SEC_QUESTION, SEC_ANSWER, PHONE, NOTIFY_TYPE, ADDRESS)
 		VALUES

@@ -8,8 +8,7 @@ import java.util.Date;
 import java.util.Random;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+
 
 import com.crs.dao.CrsDAO;
 import com.crs.interfaces.LoginServiceInterface;
@@ -34,10 +33,6 @@ public class LoginService implements LoginServiceInterface{
 	//salt for the password hash
 	private String strSalt;
 	
-	/*
-	 * Log file for this class
-	 */
-	static Logger logger = Logger.getLogger(LoginService.class);
 	
 	
 	public String getStrSalt() {
@@ -71,7 +66,7 @@ public class LoginService implements LoginServiceInterface{
 	public LoginService(){
 		this.dao = new CrsDAO();
 		this.strSalt = this.generateSalt();
-		PropertyConfigurator.configure("Log4j/log4j.properties");
+		
 	}
 	
 	
@@ -83,7 +78,7 @@ public class LoginService implements LoginServiceInterface{
 	 */
 	@Override
 	public EmployeeForm login(EmployeeForm employee) {
-		logger.info("starting to execute Employee Login");
+		
 		
 		if(employee.getEmailID() != null && employee.getPassword() != null){
 			EmployeeForm employeeDetails = dao.getLoginRecord(employee);
@@ -138,7 +133,7 @@ public class LoginService implements LoginServiceInterface{
 	 */
 	@Override
 	public EmployeeForm registerNewUser(EmployeeForm employee) {
-		logger.info("In Login Service  executing method Register New User");
+		
 		
 		/*
 		 *Setting the salt used for this employee
@@ -157,7 +152,7 @@ public class LoginService implements LoginServiceInterface{
 		 * saving the new user details to the database using dao
 		 */
 		dao.insertEmployeeRecord(employee);		
-		logger.debug("Employee details inserted into Employee Table");
+		
 		
 		/*
 		 * Getting the car pool with the free places
@@ -188,7 +183,7 @@ public class LoginService implements LoginServiceInterface{
 			carPoolMember.setIsDriver(0);
 			carPoolMember.setCarpoolID(carPoolForm.getCarpoolID());
 			createNewMember(carPoolMember);
-			logger.debug("Calling function to create a new carpool passenger in the db");
+			
 		}
 		else{
 			/*
@@ -199,10 +194,10 @@ public class LoginService implements LoginServiceInterface{
 			carPoolForm = dao.createNewCarPoolGroup();
 			carPoolMember.setCarpoolID(carPoolForm.getCarpoolID());
 			createNewMember(carPoolMember);
-			logger.debug("Calling function to create a new carpool driver in the db");
+			
 		}
 		
-		logger.info("Car Pool Group Assigned Details : "+carPoolForm.getCarpoolID());
+		
 		EmployeeForm employeeDetails = null;
 		return employeeDetails;
 	}
@@ -210,7 +205,7 @@ public class LoginService implements LoginServiceInterface{
 	
 	public void createNewMember(CarPoolMemberForm carPoolMember){
 		dao.createNewMember(carPoolMember);
-		logger.info("created a new carpool member");
+		
 	}
 	/**
 	 * This method is used to generate the hashing of password without salt

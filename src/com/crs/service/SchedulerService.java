@@ -1,10 +1,12 @@
-
 package com.crs.service;
 
+import com.crs.model.*;
+import com.crs.dao.*;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.quartz.CronTrigger;
@@ -40,11 +42,26 @@ public class SchedulerService {
 	}
 	
 	//Cancelling pick up request for that day
-	pubic void cancelPickUpRequest(CarPoolMemberForm carPoolMember){
+	public void cancelCarpoolPickUp(CarPoolMemberForm carPoolMember){
 			System.out.println("Cancelling car pool request");
-			
+			dao.cancelCarpoolPickUp(carPoolMember);
 	}
 	
+	public boolean cancelCarpoolDrive(CarPoolMemberForm carPoolMember){
+		System.out.println("Cancelling car pool drive");
+		if(carPoolMember.getEmployee().getPoints() <= 0)
+			return false;
+		else{
+			dao.cancelCarpoolDrive(carPoolMember);
+			String message = "Car Pool Driver has cancelled his drive for the day";
+			notifyUsersByEmail(message, carPoolMember);
+			return true;
+		}
+	}
+	
+	public void notifyUsersByEmail(String message,CarPoolMemberForm carPoolMember){
+		
+	}
 		
 	public void run() throws Exception{
         System.out.println("------- Initializing -------------------");

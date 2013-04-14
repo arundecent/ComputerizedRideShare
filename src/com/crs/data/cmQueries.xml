@@ -11,6 +11,7 @@
 	    <result property="isDriver" column="is_driver"/>
 	    <result property="isPickUp" column="pick_up"/>
 	    <result property="isTemporary" column="is_temporary"/>
+	    <result property="driveFlag" column="drive_flag" />
 	 	<collection property="employeeList" column="employee_id" javaType="ArrayList"
 	 	ofType="com.crs.model.EmployeeForm" resultMap="resultEmployee"/>
      </resultMap>
@@ -57,6 +58,11 @@
     
     <update id="cancelPickup" parameterType="CarpoolMember">
     	UPDATE CarpoolMember SET pick_up = 0 WHERE employee_id = #{employeeID}
+    </update>
+    
+    <update id="cancelDrive" parameterType="CarpoolMember">
+    	UPDATE CarpoolMember SET is_driver = 1 and is_temporary = 1 WHERE (SELECT * from Carpoolmember where date_joined > #{dateJoined} limit 1)
+    	UPDATE Employee SET points = points - 5 WHERE employee_id = #{employeeID}
     </update>
     
     <delete id="removeMember" parameterType="CarpoolMember">

@@ -135,7 +135,7 @@ public class CrsDAO {
 	}
 	
 	/**
-	 * This method will cancel car pool request
+	 * This method will cancel car pool pick up 
 	 * @param employee
 	 * @return
 	 */
@@ -143,12 +143,27 @@ public class CrsDAO {
 	public void cancelCarpoolPickUp(CarPoolMemberForm carPoolMember){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			EmployeeForm employeeDetail = (EmployeeForm) session.selectOne("CarpoolMember.cancelPickup",empID);
-			return employeeDetail;
+			session.selectOne("CarpoolMember.cancelPickup",carPoolMember);
 		}finally {
 			session.close();
 		}
 	}
+	
+	/**
+	 * This method will cancel car pool pick up 
+	 * @param employee
+	 * @return
+	 */
+	
+	public void cancelCarpoolDrive(CarPoolMemberForm carPoolMember){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			session.selectOne("CarpoolMember.cancelDrive",carPoolMember);
+		}finally {
+			session.close();
+		}
+	}
+	
 	
 	/**
 	 * This method will return an employee's details given his ID

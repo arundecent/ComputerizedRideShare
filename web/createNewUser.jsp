@@ -36,8 +36,8 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 				label="Security Answer "></s:textfield>
 			<sj:textfield id="phoneNo" name="phoneNo" key="employee.phoneNo"
 				label="Phone Number "></sj:textfield>
-			<sj:radio list="{'Email', 'Mobile'}" name="notifyType" label="Notify Type "
-				key="employee.notifyType"></sj:radio>
+			<sj:radio list="{'Email', 'Mobile'}" name="notifyTypeStr" label="Notify Type "
+				key="employee.notifyTypeStr"></sj:radio>
 			<s:textfield id="address" name="address" key="employee.address" label="Address "></s:textfield>
 		</fieldset>
 		<fieldset id="actions">

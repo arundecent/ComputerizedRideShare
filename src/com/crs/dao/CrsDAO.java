@@ -65,6 +65,7 @@ public class CrsDAO {
 		try{
 			int a = session.insert("Employee.insertRecord",employee);
 			System.out.println("a:" + a);
+			session.commit();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -88,16 +89,17 @@ public class CrsDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
 			 session.insert("Employee.createNewMember",carPoolMember);
+			 session.commit();
 		}finally {
 			session.close();
 		}
 	}
 	
-	public CarPoolForm createNewCarPoolGroup(){
+	public void createNewCarPoolGroup(){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			CarPoolForm carPoolGroup = session.selectOne("Employee.getCarPoolGroup");
-			return carPoolGroup;
+			session.insert("Employee.createNewCarPoolGroup");
+			session.commit();
 		}finally {
 			session.close();
 		}
@@ -132,6 +134,22 @@ public class CrsDAO {
 			//tempList retrieves the result set from the database
 			tempList = session.selectList("CarpoolMember.getCarpoolMemberPassengers",carpoolID);
 			return tempList;
+			
+		}finally {
+			session.close();
+		}
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public CarPoolForm getLatestCarpoolGroup(){
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		try{
+			CarPoolForm objCarPoolForm = session.selectOne("Carpool.getLatestCarpool");
+			if(objCarPoolForm != null){
+				System.out.println("retrieved latest carpool id");
+			}
+			return objCarPoolForm;
 			
 		}finally {
 			session.close();

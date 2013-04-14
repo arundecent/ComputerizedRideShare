@@ -8,8 +8,7 @@ import java.util.Date;
 import java.util.Random;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+
 
 import com.crs.dao.CrsDAO;
 import com.crs.interfaces.LoginServiceInterface;
@@ -34,10 +33,6 @@ public class LoginService implements LoginServiceInterface{
 	//salt for the password hash
 	private String strSalt;
 	
-	/*
-	 * Log file for this class
-	 */
-	static Logger logger = Logger.getLogger(LoginService.class);
 	
 	
 	public String getStrSalt() {
@@ -71,7 +66,7 @@ public class LoginService implements LoginServiceInterface{
 	public LoginService(){
 		this.dao = new CrsDAO();
 		this.strSalt = this.generateSalt();
-		PropertyConfigurator.configure("Log4j/log4j.properties");
+		
 	}
 	
 	
@@ -79,26 +74,34 @@ public class LoginService implements LoginServiceInterface{
 	 * This method is used to employee details after 
 	 * user enters his/her login credentials. 
 	 * @return EmployeeForm (Employee bean)
-	 * @author Subbu @author login check made by mohan
+	 * @author Subbu/mohan
 	 */
 	@Override
 	public EmployeeForm login(EmployeeForm employee) {
-		logger.info("starting to execute Employee Login");
-		
+				
 		if(employee.getEmailID() != null && employee.getPassword() != null){
 			EmployeeForm employeeDetails = dao.getLoginRecord(employee);
 			
 			if(employeeDetails != null){
-				//check for username and password
+				//check for user name and password
 				if(employee.getEmailID().equals(employeeDetails.getEmailID())){
+					
 					//check for the password
 					String hashPasswordFromDB = employeeDetails.getPassword();
+					
+					//get the salt for the particular user
 					String salt = employeeDetails.getSalt();
 					this.setStrSalt(salt);
+					
+					/*
+					 * hash the password entered using the salt generated for that
+					 * particular user id
+					 */
 					String passEntered = this.generateMD5HashForPasswordWithSalt(employee.getPassword());
 					
+					//check for password match
 					if(hashPasswordFromDB.equals(passEntered)){
-						System.out.println("Result : " +employeeDetails.getFirstName());
+						System.out.println("Successful Login : " +employeeDetails.getFirstName());
 						return employeeDetails;
 					}
 					else{
@@ -134,11 +137,11 @@ public class LoginService implements LoginServiceInterface{
 	 * employee bean as the input and saves the details into the database
 	 * by invoking a method on the dao object.
 	 * @return EmployeeForm
-	 * @author Subbu
+	 * @author Subbu/mohan
 	 */
 	@Override
 	public EmployeeForm registerNewUser(EmployeeForm employee) {
-		logger.info("In Login Service  executing method Register New User");
+		
 		
 		/*
 		 *Setting the salt used for this employee
@@ -157,7 +160,7 @@ public class LoginService implements LoginServiceInterface{
 		 * saving the new user details to the database using dao
 		 */
 		dao.insertEmployeeRecord(employee);		
-		logger.debug("Employee details inserted into Employee Table");
+		System.out.println("New Employee record inserted");
 		
 		/*
 		 * Getting the car pool with the free places
@@ -187,8 +190,8 @@ public class LoginService implements LoginServiceInterface{
 			 */
 			carPoolMember.setIsDriver(0);
 			carPoolMember.setCarpoolID(carPoolForm.getCarpoolID());
-			createNewMember(carPoolMember);
-			logger.debug("Calling function to create a new carpool passenger in the db");
+			this.createNewMember(carPoolMember);
+			
 		}
 		else{
 			/*
@@ -196,13 +199,27 @@ public class LoginService implements LoginServiceInterface{
 			 * to be the driver
 			 */
 			carPoolMember.setIsDriver(1);
-			carPoolForm = dao.createNewCarPoolGroup();
-			carPoolMember.setCarpoolID(carPoolForm.getCarpoolID());
-			createNewMember(carPoolMember);
-			logger.debug("Calling function to create a new carpool driver in the db");
+			
+			/*
+			 *create a new car pool group in carpool table
+			 */
+			dao.createNewCarPoolGroup();
+			
+			/*
+			 *retrieve the newly created car pool group id 
+			 */
+			CarPoolForm carPoolFormObj = dao.getLatestCarpoolGroup();
+			
+			/*
+			 * assign the user to the new group creater
+			 */
+			carPoolMember.setCarpoolID(carPoolFormObj.getCarpoolID());
+			this.createNewMember(carPoolMember);
+			System.out.println("new user - driver created");
+			
 		}
 		
-		logger.info("Car Pool Group Assigned Details : "+carPoolForm.getCarpoolID());
+		
 		EmployeeForm employeeDetails = null;
 		return employeeDetails;
 	}
@@ -210,7 +227,7 @@ public class LoginService implements LoginServiceInterface{
 	
 	public void createNewMember(CarPoolMemberForm carPoolMember){
 		dao.createNewMember(carPoolMember);
-		logger.info("created a new carpool member");
+		
 	}
 	/**
 	 * This method is used to generate the hashing of password without salt

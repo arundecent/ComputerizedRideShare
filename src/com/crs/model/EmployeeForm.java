@@ -13,7 +13,7 @@ public class EmployeeForm {
 	private String securityAns;
 	private String phoneNo;
 	private String notifyTypeStr;
-	private int notifyType;
+	private Integer notifyType;
 	private String address;
 	private Date dateJoined;
 	private int points;
@@ -80,11 +80,16 @@ public class EmployeeForm {
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
-	public int getNotifyType() {
+	public Integer getNotifyType() {
 		return notifyType;
 	}
-	public void setNotifyType(int notifyType) {
-		this.notifyType = notifyType;
+	public void setNotifyType(Integer notifyType) {
+		if(notifyType != null){
+			this.notifyType = notifyType;
+		}else{
+			this.notifyType = Integer.parseInt("0");
+		}
+		
 	}
 	public String getAddress() {
 		return address;
@@ -104,4 +109,6 @@ public class EmployeeForm {
 	public void setPoints(int points) {
 		this.points = points;
 	}
+	
+	
 }

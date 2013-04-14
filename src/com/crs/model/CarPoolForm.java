@@ -3,7 +3,7 @@ import java.util.Date;
 
 
 public class CarPoolForm {
-	int carpoolId;
+	int carpoolID;
 	Date dateCreated;
 	int atWork;
 	int noOfMembers;
@@ -14,11 +14,12 @@ public class CarPoolForm {
 	public void setNoOfMembers(int noOfMembers) {
 		this.noOfMembers = noOfMembers;
 	}
-	public int getCarpoolId() {
-		return carpoolId;
+
+	public int getCarpoolID() {
+		return carpoolID;
 	}
-	public void setCarpoolId(int carpoolId) {
-		this.carpoolId = carpoolId;
+	public void setCarpoolID(int carpoolID) {
+		this.carpoolID = carpoolID;
 	}
 	public Date getDateCreated() {
 		return dateCreated;

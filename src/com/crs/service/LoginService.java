@@ -1,19 +1,24 @@
 package com.crs.service;
 
-import java.util.Date;
-/*import statements for the MD5 hash function*/
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Date;
+import java.util.Random;
 
-/*Apache code library for Password Hashing*/
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import com.crs.dao.CrsDAO;
 import com.crs.interfaces.LoginServiceInterface;
 import com.crs.model.CarPoolForm;
 import com.crs.model.CarPoolMemberForm;
 import com.crs.model.EmployeeForm;
+/*import statements for the MD5 hash function*/
+/*Apache code library for Password Hashing*/
+
 
 /**
  * This class will contain all the service methods relating to
@@ -29,6 +34,10 @@ public class LoginService implements LoginServiceInterface{
 	//salt for the password hash
 	private String strSalt;
 	
+	/*
+	 * Log file for this class
+	 */
+	static Logger logger = Logger.getLogger(LoginService.class);
 	
 	
 	public String getStrSalt() {
@@ -60,8 +69,9 @@ public class LoginService implements LoginServiceInterface{
 	 * data access object 
 	 */
 	public LoginService(){
-		dao = new CrsDAO();
-		strSalt = "#00jlasmdio2oj093-4923u8968912@$@4&#%^$*";
+		this.dao = new CrsDAO();
+		this.strSalt = this.generateSalt();
+		PropertyConfigurator.configure("Log4j/log4j.properties");
 	}
 	
 	
@@ -69,14 +79,42 @@ public class LoginService implements LoginServiceInterface{
 	 * This method is used to employee details after 
 	 * user enters his/her login credentials. 
 	 * @return EmployeeForm (Employee bean)
-	 * @author Subbu
+	 * @author Subbu @author login check made by mohan
 	 */
 	@Override
 	public EmployeeForm login(EmployeeForm employee) {
-		System.out.println("In Login Service");
-		EmployeeForm employeeDetails = dao.getLoginRecord(employee);
-		System.out.println("Result : " +employeeDetails.getFirstName());
-		return employeeDetails;
+		logger.info("starting to execute Employee Login");
+		
+		if(employee.getEmailID() != null && employee.getPassword() != null){
+			EmployeeForm employeeDetails = dao.getLoginRecord(employee);
+			
+			if(employeeDetails != null){
+				//check for username and password
+				if(employee.getEmailID().equals(employeeDetails.getEmailID())){
+					//check for the password
+					String hashPasswordFromDB = employeeDetails.getPassword();
+					String salt = employeeDetails.getSalt();
+					this.setStrSalt(salt);
+					String passEntered = this.generateMD5HashForPasswordWithSalt(employee.getPassword());
+					
+					if(hashPasswordFromDB.equals(passEntered)){
+						System.out.println("Result : " +employeeDetails.getFirstName());
+						return employeeDetails;
+					}
+					else{
+						return null;
+					}
+				}
+				else{
+					return null;
+				}
+			}
+			else{
+				return null;
+			}
+		}else{
+			return null;
+		}		
 	}
 
 	/**
@@ -100,41 +138,79 @@ public class LoginService implements LoginServiceInterface{
 	 */
 	@Override
 	public EmployeeForm registerNewUser(EmployeeForm employee) {
-		System.out.println("In Login Service Register New User");
+		logger.info("In Login Service  executing method Register New User");
+		
+		/*
+		 *Setting the salt used for this employee
+		 *A random salt is generated for each user for
+		 *the security of the application. A particular salt will
+		 *be used to check the login for a particular user
+		 */
 		employee.setSalt(this.getStrSalt());
-		//hashed password should be set to the employee object before database save.
+		
+		/*
+		 * hashed password should be set to the employee object before database save.
+		 */
 		employee.setPassword(this.generateMD5HashForPasswordWithSalt(employee.getPassword()));
 		
-		//saving the details to the database using dao
-		dao.insertEmployeeRecord(employee);
+		/*
+		 * saving the new user details to the database using dao
+		 */
+		dao.insertEmployeeRecord(employee);		
+		logger.debug("Employee details inserted into Employee Table");
+		
+		/*
+		 * Getting the car pool with the free places
+		 */
 		CarPoolForm carPoolForm = dao.getCarPoolGroup();
+		
+		/*
+		 * Create a new record for the user
+		 */
 		CarPoolMemberForm carPoolMember = new CarPoolMemberForm();
 		carPoolMember.setEmployee(employee);
 		carPoolMember.setDateJoined(new Date());
 		carPoolMember.setIsPickUp(1);
 		carPoolMember.setIsTemporary(0);
+			
+		/*
+		 * if a carPoolForm object is returned, then
+		 * there is a place in an already existing car pool
+		 * group.
+		 * If a null is returned, create a new group for
+		 * the user and make him as the driver
+		 */
 		if(carPoolForm != null){
-			//Member who joins first will be the driver
+			/*
+			 * The user will become a passenger in an already
+			 * existing carpool
+			 */
 			carPoolMember.setIsDriver(0);
-			carPoolMember.setCarpoolID(carPoolForm.getCarpoolId());
+			carPoolMember.setCarpoolID(carPoolForm.getCarpoolID());
 			createNewMember(carPoolMember);
+			logger.debug("Calling function to create a new carpool passenger in the db");
 		}
 		else{
-			//Member who joins first will be the driver
+			/*
+			 * New carpool is created and this user is assigned 
+			 * to be the driver
+			 */
 			carPoolMember.setIsDriver(1);
 			carPoolForm = dao.createNewCarPoolGroup();
-			carPoolMember.setCarpoolID(carPoolForm.getCarpoolId());
+			carPoolMember.setCarpoolID(carPoolForm.getCarpoolID());
 			createNewMember(carPoolMember);
+			logger.debug("Calling function to create a new carpool driver in the db");
 		}
-		System.out.println("Car Pool Group Details : "+carPoolForm.getCarpoolId());
+		
+		logger.info("Car Pool Group Assigned Details : "+carPoolForm.getCarpoolID());
 		EmployeeForm employeeDetails = null;
 		return employeeDetails;
 	}
 	
 	
 	public void createNewMember(CarPoolMemberForm carPoolMember){
-		System.out.println("Creating new member");
 		dao.createNewMember(carPoolMember);
+		logger.info("created a new carpool member");
 	}
 	/**
 	 * This method is used to generate the hashing of password without salt
@@ -165,7 +241,7 @@ public class LoginService implements LoginServiceInterface{
 		}
 		else {
 			String strHashedPassword = null;						
-			String strSaltPassword = strPassword + strSalt;
+			String strSaltPassword = strPassword + this.getStrSalt();
 			
 			try {
 				//MessageDigest Object for the hashing algorithm MD5
@@ -184,5 +260,15 @@ public class LoginService implements LoginServiceInterface{
 			return strHashedPassword;
 		}
 	}
-
+	
+	/**
+	 * Generate a secure random salt
+	 * @return
+	 */
+	public String generateSalt(){
+		String salt = null;
+		SecureRandom random = new SecureRandom();
+		salt = new BigInteger(130, random).toString(32);		
+		return salt;
+	}
 }

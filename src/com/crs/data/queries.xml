@@ -29,7 +29,7 @@
 	</resultMap>
 
 	<select id="getRecord" parameterType="Employee" resultMap="result">
-		SELECT * FROM Employee WHERE employee_id = #{employeeID}
+		SELECT * FROM Employee WHERE email = #{emailID}
 	</select>
 
 	<insert id="insertRecord" parameterType="Employee">

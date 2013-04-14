@@ -66,18 +66,6 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 			return ERROR;
 	}
 
-	public void validate() {
-
-		if (StringUtils.isEmpty(employee.getEmailID())) {
-			addFieldError("emailID", "Username (Email ID) is required");
-		} 
-		if (StringUtils.isEmpty(employee.getPassword())) {
-			addFieldError("password", "Password is required.");
-		}
-	}
-	
-
-
 	@Override
 	public EmployeeForm getModel() {
 		// TODO Auto-generated method stub

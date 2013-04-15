@@ -85,6 +85,8 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 			</s:else>
 			<s:if test="%{carPoolGroup.atWork==1}">
 				<s:form action="issueEmergency" method="post" theme="simple">
+					<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
+					<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
 					<s:submit id="submit" button="true" value="Emergency" />
 				</s:form>
 			</s:if>

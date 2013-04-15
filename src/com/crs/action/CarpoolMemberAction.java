@@ -2,17 +2,20 @@ package com.crs.action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
+import java.util.Iterator;
 
 import com.crs.dao.CrsDAO;
 import com.crs.model.CarPoolForm;
 import com.crs.model.CarPoolMemberForm;
 import com.crs.model.EmployeeForm;
+import com.crs.service.EmailService;
 import com.crs.service.LoginService;
 import com.crs.service.ScheduleService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CarpoolMemberAction extends ActionSupport {
-
+	
 	CrsDAO dao;
 	private CarPoolMemberForm carPoolMember = new CarPoolMemberForm();
 	private CarPoolForm carPoolGroup = new CarPoolForm();
@@ -111,12 +114,11 @@ public class CarpoolMemberAction extends ActionSupport {
 
 	@SuppressWarnings("unchecked")
 	public String checkOut() {
-		System.out.println("Checking out Member Action :" + carpoolGroupID
-				+ "======" + getEmployeeID());
+		System.out.println("Checking out Member Action :" + carpoolGroupID + "======" + getEmployeeID());
 		dao.checkOut(carpoolGroupID, getEmployeeID());
-		EmployeeForm employeeDetails = dao
-				.getLoginRecordWithEmpID(getEmployeeID());
-		System.out.println("Employee Name :" + employeeDetails.getFirstName());
+		
+		EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
+		System.out.println("Employee Name :"+employeeDetails.getFirstName());
 		carPoolMember = dao.getMemberInfo(getEmployeeID());
 		carPoolMember.setEmployee(employeeDetails);
 		carPoolGroup.setCarpoolID(carpoolGroupID);
@@ -130,8 +132,7 @@ public class CarpoolMemberAction extends ActionSupport {
 		System.out.println("Checking In " + carpoolGroupID + "========"
 				+ getEmployeeID());
 		dao.checkIn(carpoolGroupID);
-		EmployeeForm employeeDetails = dao
-				.getLoginRecordWithEmpID(getEmployeeID());
+		EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
 		carPoolMember = dao.getMemberInfo(getEmployeeID());
 		carPoolMember.setEmployee(employeeDetails);
 		carPoolGroup.setCarpoolID(carpoolGroupID);
@@ -178,55 +179,78 @@ public class CarpoolMemberAction extends ActionSupport {
 
 		return SUCCESS;
 	}
-
+	
 	public String cancelPickupConfirm() {
-		System.out.println("Cancelling car pool request");
-		EmployeeForm employeeDetails = dao
-				.getLoginRecordWithEmpID(getEmployeeID());
-		carPoolMember = dao.getMemberInfo(getEmployeeID());
-		carPoolMember.setEmployee(employeeDetails);
-		carPoolMember.setEmployeeID(getEmployeeID());
-		carPoolGroup.setCarpoolID(carpoolGroupID);
-		dao.cancelCarpoolPickUp(carPoolMember);
-		return SUCCESS;
+			System.out.println("Cancelling car pool request");
+			EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
+			carPoolMember = dao.getMemberInfo(getEmployeeID());
+			carPoolMember.setEmployee(employeeDetails);
+			carPoolMember.setEmployeeID(getEmployeeID());
+			carPoolGroup.setCarpoolID(carpoolGroupID);
+			dao.cancelCarpoolPickUp(carPoolMember);
+			setMemberList(dao.retrieveMembers(carPoolMember));
+			StringBuffer messageBuffer = new StringBuffer();
+			messageBuffer.append("This email is to notify you that member of your group "+employeeDetails.getFirstName()+" has cancelled pick up.");
+			String emailMessage = messageBuffer.toString();
+			notifyMembersOfGroup(carpoolGroupID, "User cancelled car pool pick up",emailMessage);
+			return SUCCESS;
+	}
+	
+	public void notifyMembersOfGroup(int carpoolID, String subject, String emailMessage){
+		EmailService emailSvc = new EmailService();
+		List<Object> emailIDList = dao.fetchMembersEmailID(carpoolID);
+		Iterator<Object> iter = emailIDList.iterator();
+		
+		while(iter.hasNext()){
+			String emailID = (String)iter.next();
+			emailSvc.sendSimpleMail(subject, emailMessage, emailID);
+		}
 	}
 
-	public String optOutCrp() {
+	public String optOutCrp(){
 		dao.optOutCrp(getEmployeeID());
 		return SUCCESS;
 	}
-
+	
 	public String confirmEmergency() {
-		Boolean switchedCarpool = true;
-
-		if (switchedCarpool)
+			EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
+			carPoolMember = dao.getMemberInfo(getEmployeeID());
+			carPoolMember.setEmployee(employeeDetails);
+			carPoolMember.setEmployeeID(getEmployeeID());
+			carPoolMember.setDateJoined(new Date());
+			carPoolMember.setIsDriver(0);
+			carPoolMember.setIsPickUp(1);
+			carPoolMember.setIsTemporary(1);
+			carPoolGroup.setCarpoolID(carpoolGroupID);
+			dao.processEmergencyRequest(carPoolMember);
 			return SUCCESS;
-		else
-			return ERROR;
 	}
-
+	
 	public String cancelDrivingConfirm() {
 		System.out.println("Cancelling car pool drive");
-		EmployeeForm employeeDetails = dao
-				.getLoginRecordWithEmpID(getEmployeeID());
+		EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
 		carPoolMember = dao.getMemberInfo(getEmployeeID());
 		carPoolMember.setEmployee(employeeDetails);
 		carPoolMember.setEmployeeID(getEmployeeID());
 		carPoolGroup.setCarpoolID(carpoolGroupID);
-		if ((carPoolMember.getEmployee().getPoints() - 3) <= 0)
+		setMemberList(dao.retrieveMembers(carPoolMember));
+		if((carPoolMember.getEmployee().getPoints()-3) <= 0)
 			return ERROR;
-		else {
+		else{
 			dao.cancelCarpoolDrive(carPoolMember);
-			CarPoolMemberForm nextDriver = dao
-					.getNextDriver(getEmployeeID(), 0);
-			if (nextDriver != null) {
+			CarPoolMemberForm nextDriver = dao.getNextDriver(getEmployeeID(), 0);
+			if(nextDriver != null){
 				dao.updateTemporaryDriver(nextDriver.getEmployeeID());
-			} else {
-				nextDriver = dao.getNextDriver(getEmployeeID(), 1);
+			}
+			else{
+				nextDriver = dao.getNextDriver(getEmployeeID(), 1); 
 				dao.updateTemporaryDriver(nextDriver.getEmployeeID());
 			}
 			String message = "Car Pool Driver has cancelled his drive for the day";
-			// notifyUsersByEmail(message, carPoolMember);
+			StringBuffer messageBuffer = new StringBuffer();
+			messageBuffer.append("This email is to notify you that driver of your group "+employeeDetails.getFirstName()+" has cancelled his drive.");
+			String emailMessage = messageBuffer.toString();
+			notifyMembersOfGroup(carpoolGroupID, message,emailMessage);
 			return SUCCESS;
 		}
 	}

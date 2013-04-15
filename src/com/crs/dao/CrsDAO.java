@@ -107,11 +107,36 @@ public class CrsDAO {
 		 
 	}
 	
+	public void processEmergencyRequest(CarPoolMemberForm carPoolMember){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			int carpoolID = session.selectOne("CarpoolMember.getFreeCarpoolGroups");
+			carPoolMember.setCarpoolID(carpoolID);
+			session.insert("CarpoolMember.insertRecord", carPoolMember);
+			session.update("Employee.updatePointsForEmergencyUsage", carPoolMember.getEmployeeID());
+			session.commit();
+		}finally{
+			session.close();
+		}
+	}
+	
+	public List fetchMembersEmailID(Integer carpoolID){
+		SqlSession session = sqlSessionFactory.openSession();
+		List<Object> tempList;
+		try{
+			tempList = session.selectList("CarpoolMember.getEmailID", carpoolID);
+			return tempList;
+		}finally{
+			session.close();
+		}
+	}
+	
 	public void checkOut(Integer carpoolID, Integer empID){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
 			session.update("Carpool.checkout",carpoolID);
 			session.update("CarpoolMember.resetTemporaryDrivers", carpoolID);
+			session.update("CarpoolMember.resetTemporaryDrivers2", carpoolID);
 			session.delete("CarpoolMember.removeTemporaryMembers", carpoolID);
 			session.update("Employee.updatePointsForDrive", empID);
 			session.update("CarpoolMember.updatePickUpFlag", carpoolID);
@@ -246,7 +271,7 @@ public class CrsDAO {
 			session.update("CarpoolMember.updateTemporaryDriver", empID);
 			session.commit();
 		}finally{
-			
+			session.close();
 		}
 	}
 	
@@ -332,7 +357,9 @@ public class CrsDAO {
 	public void cancelCarpoolDrive(CarPoolMemberForm carPoolMember){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			session.selectOne("CarpoolMember.cancelDrive",carPoolMember);
+			session.update("CarpoolMember.cancelDrive",carPoolMember);
+			session.update("CarpoolMember.cancelDrive2",carPoolMember);
+			session.commit();
 		}finally {
 			session.close();
 		}

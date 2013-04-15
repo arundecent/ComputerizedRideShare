@@ -49,6 +49,12 @@
     	INSERT INTO CarpoolMember (employee_id,carpool_id,is_driver,is_temporary) VALUES (#{employeeID},#{carpoolID},#{isDriver},#{isTemporary})
     </insert>
     
+    <select id="getEmailID" parameterType="int" resultType="String">
+    	SELECT email FROM Employee e JOIN CarpoolMember cm 
+    	ON e.employee_id = cm.employee_id
+    	WHERE cm.carpool_id = #{carpoolID} 
+    </select>
+    
     <delete id="optOutCarpool" parameterType="int">
     	DELETE FROM CarpoolMember WHERE employee_id = #{empID}  
     </delete>
@@ -99,7 +105,7 @@
     </update>
     
     <update id="updateTemporaryDriver" parameterType="int">
-    	UPDATE CarpoolMember SET is_driver = 1 and is_temporary  = 1 WHERE employee_id = #{currentDriver}
+    	UPDATE CarpoolMember SET is_driver = 1, is_temporary  = 1 WHERE employee_id = #{currentDriver}
     </update>
     
     <update id="updateNextDriver" parameterType="int">
@@ -115,6 +121,14 @@
 		GROUP BY carpool_id,CarpoolMember.employee_id;
     </select>
     
+    <select id="getFreeCarpoolGroups" resultType="int">
+    	SELECT cm.carpool_id FROM CarpoolMember cm JOIN Carpool c
+    	ON cm.carpool_id = c.carpool_id
+    	WHERE c.at_work = 1 
+    	GROUP BY cm.carpool_id 
+    	HAVING COUNT(cm.carpool_id) &lt; 4 
+    	LIMIT 1
+    </select>
     
     <update id="cancelPickup" parameterType="CarpoolMember">
     	UPDATE CarpoolMember SET pick_up = 0 WHERE employee_id = #{employeeID}
@@ -125,13 +139,19 @@
     </update>
     
     <update id="cancelDrive" parameterType="CarpoolMember">
-    	UPDATE CarpoolMember SET is_driver = 0 and is_temporary = 2 WHERE employee_id = #{employeeID};
+    	UPDATE CarpoolMember SET is_driver = 0, is_temporary = 2 WHERE employee_id = #{employeeID};
+    </update>
+    
+    <update id="cancelDrive2" parameterType="CarpoolMember">
     	UPDATE Employee SET points = points - 3 WHERE employee_id = #{employeeID};
     </update>
     
     <update id="resetTemporaryDrivers" parameterType="int">
-    	UPDATE SET is_driver = 0 and is_temporary = 0 WHERE carpool_id = #{carpoolID} AND is_driver = 1 and is_temporary = 1;
-    	UPDATE SET is_driver = 1 WHERE carpool_id = #{carpoolID} and is_temporary = 2;
+	    	UPDATE CarpoolMember SET is_driver = 0, is_temporary = 0 WHERE carpool_id = #{carpoolID} AND is_driver = 1 AND is_temporary = 1;
+    </update>
+    
+    <update id="resetTemporaryDrivers2" parameterType="int">
+	    	UPDATE CarpoolMember SET is_driver = 1 WHERE carpool_id = #{carpoolID} AND is_temporary = 2;
     </update>
     
     <delete id="removeMember" parameterType="int">

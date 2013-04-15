@@ -82,6 +82,8 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 			<s:else>
 				<s:if test="%{carPoolGroup.atWork==0}">
 					<s:form action="cancelPickup" method="post" theme="simple">
+						<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
+						<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
 						<s:submit id="submit" button="true" value="Cancel Pickup" cssStyle="margin-left:65px;"/>
 					</s:form>
 				</s:if>

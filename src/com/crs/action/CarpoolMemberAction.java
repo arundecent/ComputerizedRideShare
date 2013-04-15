@@ -119,17 +119,19 @@ public class CarpoolMemberAction extends ActionSupport {
 			carPoolMember.setEmployeeID(getEmployeeID());
 			carPoolGroup.setCarpoolID(carpoolGroupID);
 			dao.cancelCarpoolPickUp(carPoolMember);
-			notifyMembersOfGroup(carpoolGroupID, "User cancelled car pool pick up", employeeDetails.getFirstName());
+			setMemberList(dao.retrieveMembers(carPoolMember));
+			StringBuffer messageBuffer = new StringBuffer();
+			messageBuffer.append("This email is to notify you that member of your group "+employeeDetails.getFirstName()+" has cancelled pick up.");
+			String emailMessage = messageBuffer.toString();
+			notifyMembersOfGroup(carpoolGroupID, "User cancelled car pool pick up",emailMessage);
 			return SUCCESS;
 	}
 	
-	public void notifyMembersOfGroup(int carpoolID, String subject, String userName){
+	public void notifyMembersOfGroup(int carpoolID, String subject, String emailMessage){
 		EmailService emailSvc = new EmailService();
 		List<Object> emailIDList = dao.fetchMembersEmailID(carpoolID);
 		Iterator<Object> iter = emailIDList.iterator();
-		StringBuffer messageBuffer = new StringBuffer();
-		messageBuffer.append("This email is to notify you that member of your group "+userName+" has cancelled pick up.");
-		String emailMessage = messageBuffer.toString();
+		
 		while(iter.hasNext()){
 			String emailID = (String)iter.next();
 			emailSvc.sendSimpleMail(subject, emailMessage, emailID);
@@ -162,6 +164,7 @@ public class CarpoolMemberAction extends ActionSupport {
 		carPoolMember.setEmployee(employeeDetails);
 		carPoolMember.setEmployeeID(getEmployeeID());
 		carPoolGroup.setCarpoolID(carpoolGroupID);
+		setMemberList(dao.retrieveMembers(carPoolMember));
 		if((carPoolMember.getEmployee().getPoints()-3) <= 0)
 			return ERROR;
 		else{
@@ -175,7 +178,10 @@ public class CarpoolMemberAction extends ActionSupport {
 				dao.updateTemporaryDriver(nextDriver.getEmployeeID());
 			}
 			String message = "Car Pool Driver has cancelled his drive for the day";
-			//notifyUsersByEmail(message, carPoolMember);
+			StringBuffer messageBuffer = new StringBuffer();
+			messageBuffer.append("This email is to notify you that driver of your group "+employeeDetails.getFirstName()+" has cancelled his drive.");
+			String emailMessage = messageBuffer.toString();
+			notifyMembersOfGroup(carpoolGroupID, message,emailMessage);
 			return SUCCESS;
 		}
 	}

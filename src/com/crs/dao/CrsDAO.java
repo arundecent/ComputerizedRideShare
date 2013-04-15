@@ -136,6 +136,7 @@ public class CrsDAO {
 		try{
 			session.update("Carpool.checkout",carpoolID);
 			session.update("CarpoolMember.resetTemporaryDrivers", carpoolID);
+			session.update("CarpoolMember.resetTemporaryDrivers2", carpoolID);
 			session.delete("CarpoolMember.removeTemporaryMembers", carpoolID);
 			session.update("Employee.updatePointsForDrive", empID);
 			session.update("CarpoolMember.updatePickUpFlag", carpoolID);
@@ -324,7 +325,9 @@ public class CrsDAO {
 	public void cancelCarpoolDrive(CarPoolMemberForm carPoolMember){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			session.selectOne("CarpoolMember.cancelDrive",carPoolMember);
+			session.update("CarpoolMember.cancelDrive",carPoolMember);
+			session.update("CarpoolMember.cancelDrive2",carPoolMember);
+			session.commit();
 		}finally {
 			session.close();
 		}

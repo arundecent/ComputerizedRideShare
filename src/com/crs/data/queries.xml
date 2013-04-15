@@ -41,6 +41,10 @@
 	<select id="getRecordWithEmail" parameterType="Employee" resultMap="resultEmployee">
 		SELECT * FROM Employee WHERE email = #{emailID}
 	</select>
+
+	<select id="getRecordWithEmpID" parameterType="int" resultMap="resultEmployee">
+		SELECT * FROM Employee WHERE employee_id = #{empID}
+	</select>
 	
 	<select id="getRecord" parameterType="Employee" resultMap="resultEmployee">
 		SELECT * FROM Employee WHERE employee_id = #{employeeID}

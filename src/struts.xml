@@ -6,11 +6,11 @@
 <struts>
 	<package name="struts" namespace="/" extends="struts-default">
 	
-		<!--  action name="error">
+		<action name="error">
 			<result>/error.jsp</result>
 		</action>
 		
-		<action name="myCarpool" class="com.crs.action.CarpoolMemberAction">
+		<!--action name="myCarpool" class="com.crs.action.CarpoolMemberAction">
 			<result name="success">/rideshareRequest.jsp</result>
 		</action>
 		
@@ -73,6 +73,18 @@
 			<result name="success">/rideshareRequest.jsp</result>
 			<result name="input">/createNewUser.jsp</result>
 			<result name="error">/createNewUser.jsp</result>
+		</action>
+		
+		<action name="checkout" class="com.crs.action.CarpoolMemberAction" method="checkOut">
+			<result name="success">/rideshareRequest.jsp</result>
+		</action>
+		
+		<action name="checkin" class="com.crs.action.CarpoolMemberAction" method="checkIn">
+			<result name="success">/rideshareRequest.jsp</result>
+		</action>
+		
+		<action name="optOutCarpool" class="com.crs.action.CarpoolMemberAction" method="optOutCarpool">
+			<result name="success">/rideshareRequest.jsp</result>
 		</action>
 	</package>
 </struts>

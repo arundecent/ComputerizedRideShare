@@ -258,8 +258,12 @@ public class LoginService implements LoginServiceInterface{
 	}
 	
 	public CarPoolForm getCarPoolGroupDetails() {
+		if(getCarPoolMember() != null){
 		carPoolGroup = dao.getCarPoolGroupDetails(getCarPoolMember().getCarpoolID());
 		return carPoolGroup;
+		}
+		else 
+			return null;
 	}
 	
 	

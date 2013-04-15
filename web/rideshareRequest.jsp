@@ -11,6 +11,16 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript">
+	function optOutCarpool(){
+		if(confirm('Do you want to confirm opting out of carpool group ? ')){
+			document.getElementById("optOutCarpoolForm").submit();
+		}
+		else{
+			return false;
+		}
+	}
+</script>
 <title>Car Pool Ride Share Program</title>
 <link href="jspCSS/rideshareRequestCSS.css" rel="stylesheet"
 	type="text/css" />
@@ -33,15 +43,14 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 	<h3 align="center">
 		Welcome , <s:property value="carPoolMember.employee.firstName"/>
 	</h3>
-	
 	<div id="register">
 		<s:div id="buttonGroup">
 			<s:form action="optOutCrp" method="post" theme="simple">
 				<s:submit id="submit" button="true" align="center"
 					value="Opt Out CRP" />
 			</s:form>
-			<s:form action="optOutCarpool" method="post" theme="simple">
-				<s:submit id="submit" button="true" value="Opt Out Carpool" />
+			<s:form id="optOutCarpoolForm" action="optOutCarpool" method="post" theme="simple">
+				<s:submit id="submit" button="true" value="Opt Out Carpool" onClick="if(confirm('Do you want to confirm opting out of carpool group ? ')){form.action='optOutCarpool';}else{return false;}"/>
 			</s:form>
 			<s:form action="modifyEmployeeDetails" method="post" theme="simple">
 				<s:submit id="submit" button="true" value="Edit My Details" />
@@ -52,14 +61,27 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 				<s:form action="cancelDriving" method="post" theme="simple">
 					<s:submit id="submit" button="true" value="Cancel Driving" />
 				</s:form>
+				<!-- <s:set name="member" value="carPoolMember"/>
+				<s:set name="group" value="carPoolGroup"/>
+				<s:set name="list" value="memberList"/>-->
 				<s:if test="%{carPoolGroup.atWork==0}">
 					<s:form action="checkin" method="post" theme="simple">
+				<!--		<s:hidden key="carPoolMember" value="%{carPoolMember}"/>
+				 		<s:hidden key="carPoolGroup" value="#group"/>
+						<s:hidden key="memberList" value="#list"/>  -->
+						<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
+						<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
 						<s:submit id="submit" button="true" value="Checkin" />
 					</s:form>
 				</s:if>
 				<s:else>
 					<s:form action="checkout" method="post" theme="simple">
-						<s:submit id="submit" button="true" value="Checkout" />
+					<!--	<s:hidden key="carPoolMember" value="%{carPoolMember}"/>
+					 	<s:hidden key="carPoolGroup" value="#group"/>
+						<s:hidden key="memberList" value="#list"/> -->
+						<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
+						<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
+						<s:submit id="submit" button="true" value="Checkout"/>
 					</s:form>
 				</s:else>
 			</s:if>
@@ -71,13 +93,6 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 			<s:form action="issueEmergency" method="post" theme="simple">
 				<s:submit id="submit" button="true" value="Emergency" />
 			</s:form>
-			<%-- <s:form action="emergency" method="post">
-				<sj:radio list="{'Breakdown', 'Other'}" label="Emergency "
-					key="emergency"></sj:radio>
-			</s:form>
-			<s:form action="cancel" method="post">
-				<sj:radio list="{'Pickup', 'Driving'}" label="Cancel " key="cancel"></sj:radio>
-			</s:form> --%>
 		</s:div><br />
 		<h2 style="color: blue;padding-top:50px;">Ride Share Group</h2>
 		<%--

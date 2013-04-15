@@ -55,6 +55,17 @@ public class CrsDAO {
 		}
 	}
 	
+	public EmployeeForm getLoginRecordWithEmpID(Integer empID){
+		//opens the database connection instance
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			EmployeeForm employeeDetail = (EmployeeForm) session.selectOne("Employee.getRecordWithEmpID",empID);
+			return employeeDetail;
+		}finally {
+			session.close();
+		}
+	}
+	
 	/**
 	 * This method is used to insert a record into the 
 	 * Employee table as a result of new user registration
@@ -94,6 +105,26 @@ public class CrsDAO {
 			session.close();
 		}
 		 
+	}
+	
+	public void checkOut(Integer carpoolID){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			session.update("Carpool.checkout",carpoolID);
+			session.commit();
+		}finally {
+			session.close();
+		}
+	}
+	
+	public void checkIn(Integer carpoolID){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			session.update("Carpool.checkin",carpoolID);
+			session.commit();
+		}finally {
+			session.close();
+		}
 	}
 	
 	public void createNewMember(CarPoolMemberForm carPoolMember){
@@ -140,7 +171,8 @@ public class CrsDAO {
 		SqlSession session = sqlSessionFactory.openSession();		
 		
 		try{
-			session.update("CarPoolMember.updateCurrentDriver",currentDriver);			
+			session.update("CarPoolMember.updateCurrentDriver",currentDriver);
+			session.commit();
 		}finally {
 			session.close();
 		}
@@ -150,7 +182,8 @@ public class CrsDAO {
 		SqlSession session = sqlSessionFactory.openSession();		
 		
 		try{
-			session.update("CarPoolMember.updateNextDriver",nextDriver);			
+			session.update("CarPoolMember.updateNextDriver",nextDriver);	
+			session.commit();
 		}finally {
 			session.close();
 		}

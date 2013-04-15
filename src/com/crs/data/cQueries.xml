@@ -13,6 +13,7 @@
 	<select id="getCarPoolDetails" parameterType="int" resultMap="resultCarpool">
 		SELECT * FROM Carpool WHERE carpool_id = #{carpoolID}
 	</select>
+	
 
 	<insert id="createCarpool" parameterType="Carpool">
 		INSERT INTO Carpool (at_work) VALUES (0)
@@ -22,11 +23,11 @@
 		DELETE FROM Carpool WHERE carpool_id = #{carpoolID}
 	</delete>
 
-	<update id="checkin" parameterType="Carpool">
+	<update id="checkin" parameterType="int">
 		UPDATE Carpool SET at_work = 1 WHERE carpool_id = #{carpoolID}
 	</update>
 
-	<update id="checkout" parameterType="Carpool">
+	<update id="checkout" parameterType="int">
 		UPDATE Carpool SET at_work = 0 WHERE carpool_id = #{carpoolID}
 	</update>
 

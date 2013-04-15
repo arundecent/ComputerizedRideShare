@@ -3,6 +3,8 @@ package com.crs.action;
 import java.util.*;
 
 import org.apache.commons.lang.StringUtils;
+
+import com.crs.dao.CrsDAO;
 import com.crs.interfaces.LoginServiceInterface;
 import com.crs.model.*;
 import com.crs.service.LoginService;
@@ -17,7 +19,21 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 	private CarPoolForm carPoolGroup = new CarPoolForm();
 	LoginServiceInterface loginService = new LoginService();
 	List<CarPoolMemberForm> memberList = new ArrayList<CarPoolMemberForm>();
+	CrsDAO dao;
 	
+	public LoginAction() {
+		// TODO Auto-generated constructor stub
+		this.dao = new CrsDAO();
+	}
+	
+	public CrsDAO getDao() {
+		return dao;
+	}
+
+	public void setDao(CrsDAO dao) {
+		this.dao = dao;
+	}
+
 	public CarPoolForm getCarPoolGroup() {
 		return carPoolGroup;
 	}
@@ -57,8 +73,8 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 		memberList = loginService.login(employee);
 		setCarPoolMember(loginService.getCarPoolMemberDetails());
 		setCarPoolGroup(loginService.getCarPoolGroupDetails());
-		System.out.println("Member Details ===== "+getCarPoolMember().getIsDriver());
-		System.out.println("Group Details ===== "+getCarPoolGroup().getAtWork());
+		//System.out.println("Member Details ===== "+getCarPoolMember().getIsDriver());
+		//System.out.println("Group Details ===== "+getCarPoolGroup().getAtWork());
 		if (memberList.size() != 0)
 			return SUCCESS;
 		else
@@ -86,6 +102,18 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 		else
 			return ERROR;
 	}
+	
+	public String checkOut(){
+		System.out.println("Checking out "+carPoolGroup.getCarpoolID());
+		dao.checkOut(carPoolGroup.getCarpoolID());
+		return SUCCESS;
+	}
+	
+	public String checkIn(){
+		System.out.println("Checking In "+carPoolGroup.getCarpoolID());
+		dao.checkIn(carPoolGroup.getCarpoolID());
+		return SUCCESS;
+	}
 
 	@Override
 	public EmployeeForm getModel() {
@@ -94,43 +122,3 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 	}
 
 }
-/*
- * ======= package com.crs.action;
- * 
- * import org.apache.commons.lang.StringUtils; import
- * com.crs.interfaces.LoginServiceInterface; import com.crs.model.EmployeeForm;
- * import com.crs.service.LoginService; import
- * com.opensymphony.xwork2.ActionSupport; import
- * com.opensymphony.xwork2.ModelDriven;
- * 
- * 
- * @SuppressWarnings("serial") public class LoginAction extends ActionSupport
- * implements ModelDriven<EmployeeForm> {
- * 
- * private EmployeeForm employee = new EmployeeForm(); LoginServiceInterface
- * loginService = new LoginService();
- * 
- * public EmployeeForm getEmployee() { return employee; }
- * 
- * public void setEmployee(EmployeeForm employee) { this.employee = employee; }
- * 
- * public String login(){
- * System.out.println("======In Login Action login========");
- * 
- * EmployeeForm employeeDetails; employeeDetails = loginService.login(employee);
- * if(employeeDetails != null) return SUCCESS; else return LOGIN; }
- * 
- * public String registerNewUser(){
- * System.out.println("======In Login Action register========"); EmployeeForm
- * employeeDetails; employeeDetails = loginService.registerNewUser(employee);
- * if(employeeDetails != null) return SUCCESS; else return LOGIN; }
- * 
- * public void validate(){ if(StringUtils.isEmpty(employee.getEmailID()))
- * addFieldError(employee.getEmailID(), "Email ID is a required field");
- * if(StringUtils.isEmpty(employee.getPassword()))
- * addFieldError(employee.getPassword(), "Password is a required field"); }
- * 
- * @Override public EmployeeForm getModel() { return employee; }
- * 
- * } >>>>>>> 0b4de134922b56ebf242e047140c14585971127e
- */

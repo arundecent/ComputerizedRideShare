@@ -80,7 +80,6 @@ public class CarpoolMemberAction extends ActionSupport {
 		EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
 		System.out.println("Employee Name :"+employeeDetails.getFirstName());
 		carPoolMember = dao.getMemberInfo(getEmployeeID());
-		carPoolMember.setCarpoolID(carpoolGroupID);
 		carPoolMember.setEmployee(employeeDetails);
 		carPoolGroup.setCarpoolID(carpoolGroupID);
 		carPoolGroup.setAtWork(0);
@@ -93,7 +92,6 @@ public class CarpoolMemberAction extends ActionSupport {
 		dao.checkIn(carpoolGroupID);
 		EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
 		carPoolMember = dao.getMemberInfo(getEmployeeID());
-		carPoolMember.setCarpoolID(carpoolGroupID);
 		carPoolMember.setEmployee(employeeDetails);
 		carPoolGroup.setCarpoolID(carpoolGroupID);
 		carPoolGroup.setAtWork(1);
@@ -102,7 +100,10 @@ public class CarpoolMemberAction extends ActionSupport {
 	}
 	
 	public String optOutCarpool(){
-		
+		System.out.println("Checking In "+carpoolGroupID+"========"+getEmployeeID());
+		dao.optOutCarpool(getEmployeeID());
+		EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
+		carPoolMember.setEmployee(employeeDetails);
 		return SUCCESS;
 	}
 	

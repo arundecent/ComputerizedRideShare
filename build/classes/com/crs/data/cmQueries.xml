@@ -49,6 +49,10 @@
     	INSERT INTO CarpoolMember (employee_id,carpool_id,is_driver,is_temporary) VALUES (#{employeeID},#{carpoolID},#{isDriver},#{isTemporary})
     </insert>
     
+    <delete id="optOutCarpool" parameterType="int">
+    	DELETE FROM CarpoolMember WHERE employee_id = #{empID}  
+    </delete>
+    
     <select id="carpoolMembers" parameterType="int" resultMap="resultCarpoolMember">
     	SELECT * FROM CarpoolMember WHERE carpool_id = #{carpoolID} ORDER BY employee_id ASC
     </select>

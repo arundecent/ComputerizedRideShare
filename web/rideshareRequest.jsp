@@ -12,14 +12,6 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 <html>
 <head>
 <script type="text/javascript">
-	function optOutCarpool(){
-		if(confirm('Do you want to confirm opting out of carpool group ? ')){
-			document.getElementById("optOutCarpoolForm").submit();
-		}
-		else{
-			return false;
-		}
-	}
 </script>
 <title>Car Pool Ride Share Program</title>
 <link href="jspCSS/rideshareRequestCSS.css" rel="stylesheet"
@@ -50,6 +42,8 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 					value="Opt Out CRP" />
 			</s:form>
 			<s:form id="optOutCarpoolForm" action="optOutCarpool" method="post" theme="simple">
+				<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
+				<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
 				<s:submit id="submit" button="true" value="Opt Out Carpool" onClick="if(confirm('Do you want to confirm opting out of carpool group ? ')){form.action='optOutCarpool';}else{return false;}"/>
 			</s:form>
 			<s:form action="modifyEmployeeDetails" method="post" theme="simple">

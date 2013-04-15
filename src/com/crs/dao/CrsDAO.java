@@ -296,6 +296,18 @@ public class CrsDAO {
 		}
 	}
 	
+	public void optOutCarpool(Integer empID){
+		//opens the database connection instance
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			 session.delete("CarpoolMember.optOutCarpool",empID);
+			 session.update("Employee.updatePointsForOptingOut", empID);
+			 session.commit();
+		}finally {
+			session.close();
+		}
+	}
+	
 	/**
 	 * This method will return an employee's details from car pool member given his ID
 	 * @param employee

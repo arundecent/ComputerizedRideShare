@@ -66,6 +66,10 @@
 	<insert id="createNewCarPoolGroup" useGeneratedKeys="true" keyProperty="carpoolID">
 		INSERT INTO CARPOOL (AT_WORK, DATE_CREATED) VALUES (1, NOW());
 	</insert>
+	
+	<update id="updatePointsForOptingOut" parameterType="int">
+		UPDATE EMPLOYEE SET POINTS = POINTS - 3 WHERE EMPLOYEE_ID = #{empID}
+	</update>
 
 	<select id="getCarPoolGroup" resultMap="resultCarpool">
 		SELECT * FROM carpoolmember

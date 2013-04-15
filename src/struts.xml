@@ -79,7 +79,7 @@
 		</action>
 		
 		<action name="optOutCarpool" class="com.crs.action.CarpoolMemberAction" method="optOutCarpool">
-			<result name="success">/rideshareRequest.jsp</result>
+			<result name="success">/carpoolList.jsp</result>
 		</action>
 		
 		<action name="cancelPickup" class="com.crs.action.CarpoolMemberAction" method="cancelPickupConfirm">

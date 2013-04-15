@@ -18,38 +18,39 @@
 			style="text-align: center;">
 				<tr>
 					<th>Carpool ID</th>
-					<th>Member Count</th>
-					<th>At Work</th>
 					<th></th>
 				</tr>
-				<%-- <s:iterator value="memberList" status="memListStatus">
-				<s:if test="#memListStatus.odd == true"> --%>
-					<tr>
-						<td style="background: lightgrey">5001</td>
-						<td style="background: lightgrey">3</td>
-						<td style="background: lightgrey">Yes</td>
-						<td style="background: lightgrey">
-							<s:form action="joinCarpool" method="post" theme="simple">
-								<s:hidden name="carpoolId" value="5001" />
-								<s:submit id="submit" button="true" value="Join" />
-							</s:form>
-						</td>
-					</tr>
-				<%-- </s:if>
-				<s:else> --%>
-					<tr>
-						<td>5002</td>
-						<td>2</td>
-						<td>No</td>
-						<td>
-							<s:form action="joinCarpool" method="post" theme="simple">
-								<s:hidden name="carpoolId" value="5002" />
-								<s:submit id="submit" button="true" value="Join" />
-							</s:form>
-						</td>
-					</tr>
-				<%-- </s:else> --%>
-			<%-- </s:iterator> --%>
+				
+				<s:if test="%{getAvailableCarpoolList().isEmpty()}">
+					hiiiii
+  				</s:if>
+  				<s:else>
+  					<s:iterator value="availableCarpoolList" status="availableCarpoolListStatus">
+						<s:if test="#availableCarpoolListStatus.odd == true">
+							<tr>
+								<td style="background: lightgrey"><s:property value="carpoolID" /></td>
+								<td style="background: lightgrey">
+									<s:form action="joinCarpool" method="post" theme="simple">
+										<s:hidden name="carpoolId" value="carpoolID" />
+										<s:submit id="submit" button="true" value="Join" />
+									</s:form>
+								</td>
+							</tr>
+						</s:if>
+						<s:else>
+							<tr>
+								<td><s:property value="carpoolID" /></td>
+								<td>
+									<s:form action="joinCarpool" method="post" theme="simple">
+										<s:hidden name="carpoolId" value="carpoolID" />
+										<s:submit id="submit" button="true" value="Join" />
+									</s:form>
+								</td>
+							</tr>
+						</s:else>
+					</s:iterator>
+				</s:else>
+			
 			</table>
 		</s:div>
 	</s:form>

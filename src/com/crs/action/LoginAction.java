@@ -105,7 +105,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 	
 	public String checkOut(){
 		System.out.println("Checking out "+carPoolGroup.getCarpoolID());
-		dao.checkOut(carPoolGroup.getCarpoolID());
+		dao.checkOut(carPoolGroup.getCarpoolID(), employee.getEmployeeID());
 		return SUCCESS;
 	}
 	

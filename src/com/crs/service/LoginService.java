@@ -127,9 +127,12 @@ public class LoginService implements LoginServiceInterface{
 						//carPoolMember.setEmployee(employeeDetails);
 						List<CarPoolMemberForm> tempList = new ArrayList<CarPoolMemberForm>();
 						carPoolMember = dao.getMemberInfo(employeeDetails.getEmployeeID());
-						carPoolMember.setEmployee(employeeDetails);
-						tempList = dao.retrieveMembers(carPoolMember);
-						System.out.println("Size of the list : "+tempList.size());
+						if(carPoolMember != null){
+							carPoolMember.setEmployee(employeeDetails);
+							tempList = dao.retrieveMembers(carPoolMember);
+							System.out.println("Size of the list : "+tempList.size());
+							
+						}
 						return tempList;
 					}
 					else{

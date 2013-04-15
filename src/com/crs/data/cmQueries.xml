@@ -65,6 +65,16 @@
 		WHERE carpool_id = #{carpoolID}
     </select>
     
+    
+     <select id="getAvailableCarpoolList" resultMap="resultCarpoolMember" >
+    	SELECT *
+		FROM CarpoolMember 
+		JOIN Employee 
+		ON CarpoolMember.employee_id = employee.employee_id
+		GROUP BY carpool_id
+		HAVING COUNT(carpool_id) &lt; 4
+    </select>
+    
     <select id="getMemberDetails" parameterType="int" resultMap="result">
     	SELECT * FROM CarpoolMember WHERE employee_id = #{employeeID}
     </select>

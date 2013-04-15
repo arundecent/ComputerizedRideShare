@@ -115,7 +115,7 @@
     	DELETE FROM CarpoolMember WHERE employee_id = #{employeeID}
     </delete>
     
-    <delete id="removeTemporaryMembers" parameterType="CarpoolMember">
+    <delete id="removeTemporaryMembers" parameterType="int">
     	DELETE FROM CarpoolMember WHERE is_temporary = 1
     </delete>
 </mapper>

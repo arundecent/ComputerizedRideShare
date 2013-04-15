@@ -111,6 +111,7 @@ public class CrsDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
 			session.update("Carpool.checkout",carpoolID);
+			session.delete("CarpoolMember.removeTemporaryMembers", carpoolID);
 			session.commit();
 		}finally {
 			session.close();

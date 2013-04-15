@@ -22,7 +22,8 @@
 				</tr>
 				
 				<s:if test="%{getAvailableCarpoolList().isEmpty()}">
-					hiiiii
+					No free carpool available.
+					<a href="rideshareRequest.jsp">Go back</a>
   				</s:if>
   				<s:else>
   					<s:iterator value="availableCarpoolList" status="availableCarpoolListStatus">
@@ -31,7 +32,7 @@
 								<td style="background: lightgrey"><s:property value="carpoolID" /></td>
 								<td style="background: lightgrey">
 									<s:form action="joinCarpool" method="post" theme="simple">
-										<s:hidden name="carpoolId" value="carpoolID" />
+										<s:hidden key="carpoolGroupID" value="%{carpoolID}"/>
 										<s:submit id="submit" button="true" value="Join" />
 									</s:form>
 								</td>
@@ -42,7 +43,7 @@
 								<td><s:property value="carpoolID" /></td>
 								<td>
 									<s:form action="joinCarpool" method="post" theme="simple">
-										<s:hidden name="carpoolId" value="carpoolID" />
+										<s:hidden key="carpoolGroupID" value="%{carpoolID}" />
 										<s:submit id="submit" button="true" value="Join" />
 									</s:form>
 								</td>

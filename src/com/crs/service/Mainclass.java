@@ -13,9 +13,13 @@ public class Mainclass {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		CrsDAO dao = new CrsDAO();
+/*		CrsDAO dao = new CrsDAO();
 		List<CarPoolMemberForm> list = new ArrayList<CarPoolMemberForm>();
-		list = dao.retrieveAllFreeCarpoolGroups();
+		list = dao.retrieveAllFreeCarpoolGroups();*/
+		
+		
+		EmailService em = new EmailService();
+		em.sendSimpleMail("hi test email", "test email", "sarumu4@uic.edu");
  	}
 
 }

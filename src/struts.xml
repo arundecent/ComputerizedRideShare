@@ -94,6 +94,13 @@
 			<result name="success">/cancelDriving.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
+		
+		<action name="joinCarpool" class="com.crs.action.CarpoolMemberAction" method="joinCarpool">
+			<result name="success">/rideshareRequest.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="input">/carpoolList.jsp</result>
+		</action>
+		
 	
 	</package>
 </struts>

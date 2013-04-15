@@ -125,6 +125,41 @@ public class CrsDAO {
 		}
 	}
 	
+	public void updateCurrentDriver(int currentDriver){
+		SqlSession session = sqlSessionFactory.openSession();		
+		
+		try{
+			session.update("CarPoolMember.updateCurrentDriver",currentDriver);			
+		}finally {
+			session.close();
+		}
+	}
+	
+	public void updateNextDriver(int nextDriver){
+		SqlSession session = sqlSessionFactory.openSession();		
+		
+		try{
+			session.update("CarPoolMember.updateNextDriver",nextDriver);			
+		}finally {
+			session.close();
+		}
+	}
+	
+	public CarPoolMemberForm getNextDriver(int currentDriver, int flag){
+		SqlSession session = sqlSessionFactory.openSession();		
+		CarPoolMemberForm nextDriver;
+		
+		try{
+			if(flag == 0)
+				nextDriver = session.selectOne("CarPoolMember.getNextDriver",currentDriver);
+			else
+				nextDriver = session.selectOne("CarPoolMember.getFirstDriver");
+			return nextDriver;
+		}finally {
+			session.close();
+		}
+	}
+	
 	@SuppressWarnings("rawtypes")
 	public List retrievePassengers(Integer carpoolID){
 		SqlSession session = sqlSessionFactory.openSession();
@@ -133,6 +168,20 @@ public class CrsDAO {
 		try{
 			//tempList retrieves the result set from the database
 			tempList = session.selectList("CarpoolMember.getCarpoolMemberPassengers",carpoolID);
+			return tempList;
+			
+		}finally {
+			session.close();
+		}
+	}
+	
+	public List retrieveMembers(CarPoolMemberForm carPoolMember){
+		SqlSession session = sqlSessionFactory.openSession();
+		List<Object> tempList = new ArrayList<Object>();
+
+		try{
+			//tempList retrieves the result set from the database
+			tempList = session.selectList("CarpoolMember.getCarpoolMembers",carPoolMember);
 			return tempList;
 			
 		}finally {

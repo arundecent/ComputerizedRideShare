@@ -22,6 +22,10 @@ import com.crs.model.CarPoolMemberForm;
 
 public class SchedulerService {
 	
+
+    private SchedulerFactory sf;
+    private Scheduler sched;
+	
 	public SchedulerService(){
 		dao = new CrsDAO();
 	}
@@ -66,22 +70,37 @@ public class SchedulerService {
 	public void notifyUsersByEmail(String message,CarPoolMemberForm carPoolMember){
 		
 	}
+	
+	public void createScheduler() throws Exception{
+        sf = new StdSchedulerFactory();
+        sched = sf.getScheduler();
+	}
+	
+	public void destroyScheduler() throws Exception{
+		System.out.println("Scheduler Shutting down");
+		sched.shutdown();
+	}
 		
 	public void run() throws Exception{
         System.out.println("------- Initializing -------------------");
         // First we must get a reference to a scheduler
-        SchedulerFactory sf = new StdSchedulerFactory();
-        Scheduler sched = sf.getScheduler();
-        
+        createScheduler();
+                
         System.out.println("------- Initialization Complete --------");
         System.out.println("------- Scheduling Jobs ----------------");
         // jobs can be scheduled before sched.start() has been called
         // get a "nice round" time a few seconds in the future...
         // job1 will only fire once at date/time "ts"
         JobDetail job = newJob(EmailService.class).withIdentity("Email job", "Email Service").build();
-        CronTrigger trigger =  newTrigger().withIdentity("trigger5", "group1").withSchedule(cronSchedule("0 0 8,17 * * ? * MON-FRI")).build();
+        JobDetail job1 = newJob(MainTestService.class).withIdentity("Scheduling driver", "Changing Driver for the week").build();
+        
+        //Will be triggered daily morning at 8am and evening at 5pm
+        CronTrigger trigger =  newTrigger().withIdentity("trigger", "group1").withSchedule(cronSchedule("0 0 8,17 * * ? * MON-FRI")).build();
+        //Will be triggered every Monday at 6 am 
+        CronTrigger trigger1 =  newTrigger().withIdentity("trigger1", "group2").withSchedule(cronSchedule("0 0 6 * * ? * MON")).build();
             // schedule it to run!
         Date ft = sched.scheduleJob(job, trigger);
+        Date ft1 = sched.scheduleJob(job1,trigger1);
             
         System.out.println("------- Starting Scheduler ----------------");
 
@@ -91,6 +110,10 @@ public class SchedulerService {
             System.out.println(job.getKey() + " has been scheduled to run at: " + ft
                     + " and repeat based on expression: "
                     + trigger.getCronExpression());
+            
+            System.out.println(job1.getKey() + " has been scheduled to run at: " + ft
+                    + " and repeat based on expression: "
+                    + trigger1.getCronExpression());
             
             sched.start();
             

@@ -1,6 +1,6 @@
 package com.crs.action;
 
-import java.util.Date;
+import java.util.*;
 
 import org.apache.commons.lang.StringUtils;
 import com.crs.interfaces.LoginServiceInterface;
@@ -14,6 +14,15 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 	private EmployeeForm employee = new EmployeeForm();
 	private CarPoolMemberForm carPoolMember = new CarPoolMemberForm();
 	LoginServiceInterface loginService = new LoginService();
+	List<CarPoolMemberForm> memberList = new ArrayList<CarPoolMemberForm>();
+
+	public List<CarPoolMemberForm> getMemberList() {
+		return memberList;
+	}
+
+	public void setMemberList(List<CarPoolMemberForm> memberList) {
+		this.memberList = memberList;
+	}
 
 	public EmployeeForm getEmployee() {
 		return employee;
@@ -35,9 +44,8 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 		System.out.println("======In Login Action login========");
 
 		//EmployeeForm employeeDetails;
-		carPoolMember = loginService.login(employee);
-		System.out.println("Details : "+carPoolMember.getCarpoolID()+" == "+carPoolMember.getEmployee().getFirstName());
-		if (carPoolMember != null)
+		memberList = loginService.login(employee);
+		if (memberList.size() != 0)
 			return SUCCESS;
 		else
 			return LOGIN;
@@ -52,8 +60,8 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 			employee.setNotifyType(0);
 		else
 			employee.setNotifyType(1);
-		carPoolMember = loginService.registerNewUser(employee);
-		if (carPoolMember != null)
+		memberList = loginService.registerNewUser(employee);
+		if (memberList.size() != 0)
 			return SUCCESS;
 		else
 			return ERROR;

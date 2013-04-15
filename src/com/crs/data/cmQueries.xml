@@ -47,7 +47,16 @@
     </insert>
     
     <select id="carpoolMembers" parameterType="int" resultMap="resultCarpoolMember">
-    	SELECT * FROM CarpoolMember WHERE carpool_id = #{value}
+    	SELECT * FROM CarpoolMember WHERE carpool_id = #{carpoolID} ORDER BY employee_id ASC
+    </select>
+    
+     <select id="getCarpoolMembers" parameterType="CarpoolMember" resultMap="resultCarpoolMember" >
+    	SELECT first_name, last_name, phone, email, is_driver, address, carpool_id
+		FROM CarpoolMember 
+		JOIN Employee 
+		ON CarpoolMember.employee_id = employee.employee_id
+		WHERE carpool_id = #{carpoolID}
+		GROUP BY carpool_id,CarpoolMember.employee_id;
     </select>
     
     <select id="getMemberDetails" parameterType="int" resultMap="result">
@@ -61,14 +70,31 @@
 		GROUP BY carpool_id;
     </select>
     
+    <select id="getNextDriver" parameterType="int" resultMap="result">
+    	SELECT * FROM CarpoolMember WHERE date_joined > (SELECT date_joined FROM CarpoolMember WHERE employee_id = #{currentDriver}) LIMIT 1
+    </select>
+    
+    <select id="getFirstDriver" resultMap="result">
+    	SELECT * FROM CarpoolMember ORDER BY date_joined ASC LIMIT 1 
+    </select>
+    
+    <update id="updateCurrentDriver" parameterType="int">
+    	UPDATE CarpoolMember SET is_driver = 0 WHERE employee_id = #{currentDriver}
+    </update>
+    
+    <update id="updateNextDriver" parameterType="int">
+    	UPDATE CarpoolMember SET is_driver = 1 WHERE employee_id = #{nextDriver}
+    </update>
+    
     <select id="getCarpoolMemberPassengers" parameterType="CarpoolMember" resultMap="resultCarpoolMember" >
-    	SELECT first_name, last_name, phone, email
+    	SELECT first_name, last_name, phone, email, is_driver
 		FROM CarpoolMember 
 		JOIN Employee 
 		ON CarpoolMember.employee_id = employee.employee_id
 		WHERE carpool_id = #{carpoolID} AND CarpoolMember.is_driver &lt; 1
 		GROUP BY carpool_id,CarpoolMember.employee_id;
     </select>
+    
     
     <update id="cancelPickup" parameterType="CarpoolMember">
     	UPDATE CarpoolMember SET pick_up = 0 WHERE employee_id = #{employeeID}

@@ -4,7 +4,9 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -77,7 +79,7 @@ public class LoginService implements LoginServiceInterface{
 	 * @author Subbu/mohan
 	 */
 	@Override
-	public CarPoolMemberForm login(EmployeeForm employee) {
+	public List login(EmployeeForm employee) {
 		CarPoolMemberForm carPoolMember;
 				
 		if(employee.getEmailID() != null && employee.getPassword() != null){
@@ -104,10 +106,13 @@ public class LoginService implements LoginServiceInterface{
 					if(hashPasswordFromDB.equals(passEntered)){
 						System.out.println("Successful Login : " +employeeDetails.getFirstName());
 						//carPoolMember.setEmployee(employeeDetails);
+						List<CarPoolMemberForm> tempList = new ArrayList<CarPoolMemberForm>();
 						carPoolMember = dao.getMemberInfo(employeeDetails.getEmployeeID());
 						carPoolMember.setEmployee(employeeDetails);
 						System.out.println("CarPool ID : "+carPoolMember.getCarpoolID()+" employee details : "+carPoolMember.getEmployee().getFirstName());
-						return carPoolMember;
+						tempList = dao.retrieveMembers(carPoolMember);
+						System.out.println("Size of the list : "+tempList.size());
+						return tempList;
 					}
 					else{
 						return null;
@@ -131,11 +136,11 @@ public class LoginService implements LoginServiceInterface{
 	 * @return boolean depending on a successful reset or failure
 	 * @author Subbu
 	 */
-	@Override
-	public boolean resetPassword(String emailId) {
+	//@Override
+	/*public boolean resetPassword(String emailId) {
 		
 		return false;
-	}
+	}*/
 
 	/**
 	 * This method is used to register a new user which takes the 
@@ -145,9 +150,9 @@ public class LoginService implements LoginServiceInterface{
 	 * @author Subbu/mohan
 	 */
 	@Override
-	public CarPoolMemberForm registerNewUser(EmployeeForm employee) {
+	public List registerNewUser(EmployeeForm employee) {
 		
-		
+		List<CarPoolMemberForm> tempList = new ArrayList<CarPoolMemberForm>();
 		/*
 		 *Setting the salt used for this employee
 		 *A random salt is generated for each user for
@@ -223,7 +228,10 @@ public class LoginService implements LoginServiceInterface{
 			System.out.println("new user - driver created");
 			
 		}
-		return carPoolMember;
+		//return carPoolMember;
+		tempList = dao.retrieveMembers(carPoolMember);
+		System.out.println("Size of the list : "+tempList.size());
+		return tempList;
 	}
 	
 	

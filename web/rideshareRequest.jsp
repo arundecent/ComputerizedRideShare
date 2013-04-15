@@ -87,23 +87,16 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 				<th>Phone</th>
 				<th>Group ID</th>
 			</tr>
-			<!-- <s:iterator value="carPoolMember" status="rowstatus" var="employee"> -->
-				<tr>
-				<!-- 	<s:if test="#rowstatus.odd == true">  -->
-						<!-- <s:iterator value="#employee"> -->
-							<td style="background: lightgrey"><s:property value="employee.firstName" /></td>
-							<td style="background: lightgrey"><s:property value="carPoolMember.isDriver" /></td>
-							<td style="background: lightgrey"><s:property value="employee.address" /></td>
-							<td style="background: lightgrey"><s:property value="employee.phoneNo" /></td>
-							<td style="background: lightgrey"><s:property value="carPoolMember.carpoolID" /></td>
-						<!-- </s:iterator> -->
-					<!-- </s:if> -->
-					<!-- <s:else>
-						<s:iterator value="#employee">
-							<td><s:property /></td>
-						</s:iterator>
-					</s:else> -->
-				</tr>
+			 <s:iterator value="memberList" status="rowstatus">
+			 <tr>
+						<s:iterator value="employeeList">
+								<td style="background: lightgrey"><s:property value="firstName" /></td>
+								<td style="background: lightgrey"><s:property value="isDriver" /></td>
+								<td style="background: lightgrey"><s:property value="address" /></td>
+								<td style="background: lightgrey"><s:property value="phoneNo" /></td>
+								<td style="background: lightgrey"><s:property value="carpoolID" /></td>
+					</s:iterator>
+			</tr>
 			</s:iterator>
 		</table>
 	</div>

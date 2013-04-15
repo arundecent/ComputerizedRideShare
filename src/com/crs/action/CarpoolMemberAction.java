@@ -1,17 +1,17 @@
 package com.crs.action;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 import java.util.Iterator;
 
 import com.crs.dao.CrsDAO;
-import java.util.List;
-
 import com.crs.model.CarPoolForm;
 import com.crs.model.CarPoolMemberForm;
 import com.crs.model.EmployeeForm;
 import com.crs.service.EmailService;
 import com.crs.service.LoginService;
+import com.crs.service.ScheduleService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CarpoolMemberAction extends ActionSupport {
@@ -20,10 +20,39 @@ public class CarpoolMemberAction extends ActionSupport {
 	private CarPoolMemberForm carPoolMember = new CarPoolMemberForm();
 	private CarPoolForm carPoolGroup = new CarPoolForm();
 	private int carpoolGroupID;
+	private List<CarPoolMemberForm> availableCarpoolList;
 	List<CarPoolMemberForm> memberList = new ArrayList<CarPoolMemberForm>();
 	LoginService svc = new LoginService();
-	private int employeeID;
+	private ScheduleService schServiceObj;
 	
+
+	public ScheduleService getSchServiceObj() {
+		return schServiceObj;
+	}
+
+	public void setSchServiceObj(ScheduleService schServiceObj) {
+		this.schServiceObj = schServiceObj;
+	}
+
+	public List<CarPoolMemberForm> getAvailableCarpoolList() {
+		return availableCarpoolList;
+	}
+
+	public void setAvailableCarpoolList(
+			List<CarPoolMemberForm> availableCarpoolList) {
+		this.availableCarpoolList = availableCarpoolList;
+	}
+
+	public LoginService getSvc() {
+		return svc;
+	}
+
+	public void setSvc(LoginService svc) {
+		this.svc = svc;
+	}
+
+	private int employeeID;
+
 	public int getEmployeeID() {
 		return employeeID;
 	}
@@ -39,13 +68,13 @@ public class CarpoolMemberAction extends ActionSupport {
 	public void setMemberList(List<CarPoolMemberForm> memberList) {
 		this.memberList = memberList;
 	}
-	
+
 	public int getCarpoolGroupID() {
 		return carpoolGroupID;
 	}
 
 	public void setCarpoolGroupID(int carpoolGroupID) {
-		System.out.println("Setting value : "+carpoolGroupID);
+		System.out.println("Setting value : " + carpoolGroupID);
 		this.carpoolGroupID = carpoolGroupID;
 	}
 
@@ -73,14 +102,21 @@ public class CarpoolMemberAction extends ActionSupport {
 		this.dao = dao;
 	}
 
+	/**
+	 * Default Constructor for this class
+	 */
 	public CarpoolMemberAction() {
 		// TODO Auto-generated constructor stub
 		this.dao = new CrsDAO();
+		this.availableCarpoolList = new ArrayList<CarPoolMemberForm>();
+		this.schServiceObj = new ScheduleService();
 	}
-	
-	public String checkOut(){
-		System.out.println("Checking out Member Action :"+carpoolGroupID+"======"+getEmployeeID());
-		dao.checkOut(carpoolGroupID,getEmployeeID());
+
+	@SuppressWarnings("unchecked")
+	public String checkOut() {
+		System.out.println("Checking out Member Action :" + carpoolGroupID + "======" + getEmployeeID());
+		dao.checkOut(carpoolGroupID, getEmployeeID());
+		
 		EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
 		System.out.println("Employee Name :"+employeeDetails.getFirstName());
 		carPoolMember = dao.getMemberInfo(getEmployeeID());
@@ -90,9 +126,11 @@ public class CarpoolMemberAction extends ActionSupport {
 		setMemberList(dao.retrieveMembers(carPoolMember));
 		return SUCCESS;
 	}
-	
-	public String checkIn(){
-		System.out.println("Checking In "+carpoolGroupID+"========"+getEmployeeID());
+
+	@SuppressWarnings("unchecked")
+	public String checkIn() {
+		System.out.println("Checking In " + carpoolGroupID + "========"
+				+ getEmployeeID());
 		dao.checkIn(carpoolGroupID);
 		EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
 		carPoolMember = dao.getMemberInfo(getEmployeeID());
@@ -102,12 +140,43 @@ public class CarpoolMemberAction extends ActionSupport {
 		setMemberList(dao.retrieveMembers(carPoolMember));
 		return SUCCESS;
 	}
-	
-	public String optOutCarpool(){
-		System.out.println("Opting out "+carpoolGroupID+"========"+getEmployeeID());
+
+	/**
+	 * This method is used when the user clicks opt out of car pool meaning, the
+	 * user wants to leave a particular car pool to which he/she belongs. The
+	 * record from the car pool member table is deleted and the redirected to
+	 * another page where the list of available car pools will be displayed
+	 * 
+	 * @return
+	 */
+	public String optOutCarpool() {
+		System.out.println("Opting out " + carpoolGroupID + "========"
+				+ getEmployeeID());
+
+		List<CarPoolMemberForm> tempCarpoolList = new ArrayList<CarPoolMemberForm>();
+
+		/*
+		 * call to remove the employee record
+		 */
 		dao.optOutCarpool(getEmployeeID());
-		EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
+
+		/*
+		 * retrieve the employee details into the value stack
+		 */
+		EmployeeForm employeeDetails = dao
+				.getLoginRecordWithEmpID(getEmployeeID());
 		carPoolMember.setEmployee(employeeDetails);
+
+		/*
+		 * retrieve the list of the car pool with free space available
+		 */
+		if (this.schServiceObj.getFreeCarpoolList().size() != 0) {
+			this.setAvailableCarpoolList(this.schServiceObj
+					.getFreeCarpoolList());
+		} else {
+			this.setAvailableCarpoolList(tempCarpoolList);
+		}
+
 		return SUCCESS;
 	}
 	
@@ -186,5 +255,17 @@ public class CarpoolMemberAction extends ActionSupport {
 		}
 	}
 	
+	
+	/**
+	 * This method will be called when the user clicks the
+	 * join carpool in the carpoolList.jsp
+	 * @return
+	 */
+	public String joinCarpool(){
+		System.out.println("Carpool ID in joinCarpool Check:" + getCarpoolGroupID());
+		
+		//logic yet to be done
+		return SUCCESS;
+	}
 	
 }

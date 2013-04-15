@@ -23,7 +23,7 @@ import com.crs.model.EmployeeForm;
  * This class is the Data Access Object class
  * for which will be used to make all the direct database 
  * transactions using ibatis/mybatis
- * @author Subbu
+ * @author Subbu/mohan
  *
  */
 public class CrsDAO {
@@ -176,6 +176,38 @@ public class CrsDAO {
 		}
 	}
 	
+	/**
+	 * This method is used to retrieve all the 
+	 * car pool details which have a free place in them
+	 * @author mohan
+	 * @return
+	 */
+	public List<CarPoolMemberForm> retrieveAllFreeCarpoolGroups(){
+		SqlSession session = sqlSessionFactory.openSession();
+		List<CarPoolMemberForm> carpoolList  = new ArrayList<CarPoolMemberForm>();
+		List<Object> tempList = new ArrayList<Object>();
+		Iterator<Object> it;
+			
+		try{
+			
+			//tempList retrieves the result set from the database
+			tempList = session.selectList("CarpoolMember.getAvailableCarpoolList");
+			it  = tempList.iterator();	
+			while(it.hasNext()){
+				
+				carpoolList.add((CarPoolMemberForm) it.next());
+			}			
+			return carpoolList;
+			
+		}finally {
+			session.close();
+		}
+	}
+	
+	/**
+	 * This method is used to retrieve the drivers of carpool
+	 * @return
+	 */
 	public ArrayList<CarPoolMemberForm> retrieveDrivers(){
 		SqlSession session = sqlSessionFactory.openSession();
 		ArrayList<CarPoolMemberForm> carpoolDriversList  = new ArrayList<CarPoolMemberForm>();
@@ -350,6 +382,12 @@ public class CrsDAO {
 		}
 	}
 	
+	/**
+	 * This method is used to delete the employee record from the
+	 * car pool member table when indicating that
+	 * the member wants to be removed from a particular group
+	 * @param empID
+	 */
 	public void optOutCarpool(Integer empID){
 		//opens the database connection instance
 		SqlSession session = sqlSessionFactory.openSession();
@@ -372,7 +410,7 @@ public class CrsDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
 			CarPoolMemberForm carPoolMember = (CarPoolMemberForm) session.selectOne("CarpoolMember.getMemberDetails",employeeID);
-			System.out.println("Details : "+carPoolMember.getCarpoolID());
+			//System.out.println("Details : "+carPoolMember.getCarpoolID());
 			return carPoolMember;
 		}finally {
 			session.close();

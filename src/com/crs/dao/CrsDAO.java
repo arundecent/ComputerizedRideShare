@@ -263,8 +263,20 @@ public class CrsDAO {
 		try{
 			session.selectOne("CarpoolMember.cancelPickup",carPoolMember);
 			session.update("Employee.updatePointsForCancelPickUp", carPoolMember.getEmployeeID());
+			session.commit();
 		}finally {
 			session.close();
+		}
+	}
+	
+	public void optOutCrp(Integer empID){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			session.delete("CarpoolMember.removeMember", empID);
+			session.delete("Employee.removeMember", empID);
+			session.commit();
+		}finally{
+			
 		}
 	}
 	

@@ -78,6 +78,10 @@
 	<update id="updatePointsForCancelPickUp" parameterType="int">
 		UPDATE EMPLOYEE SET POINTS = POINTS - 2 WHERE EMPLOYEE_ID = #{employeeID}
 	</update>
+	
+	<delete id="removeMember" parameterType="int">
+		DELETE FROM EMPLOYEE WHERE EMPLOYEE_ID = #{empID}
+	</delete>
 
 	<select id="getCarPoolGroup" resultMap="resultCarpool">
 		SELECT * FROM carpoolmember

@@ -115,8 +115,8 @@
     	UPDATE Employee SET points = points - 5 WHERE employee_id = #{employeeID}
     </update>
     
-    <delete id="removeMember" parameterType="CarpoolMember">
-    	DELETE FROM CarpoolMember WHERE employee_id = #{employeeID}
+    <delete id="removeMember" parameterType="int">
+    	DELETE FROM CarpoolMember WHERE employee_id = #{empID}
     </delete>
     
     <delete id="removeTemporaryMembers" parameterType="int">

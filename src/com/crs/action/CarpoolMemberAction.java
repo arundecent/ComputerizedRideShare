@@ -117,6 +117,11 @@ public class CarpoolMemberAction extends ActionSupport {
 			dao.cancelCarpoolPickUp(carPoolMember);
 			return SUCCESS;
 	}
+
+	public String optOutCrp(){
+		dao.optOutCrp(getEmployeeID());
+		return SUCCESS;
+	}
 	
 	public String confirmEmergency() {
 		Boolean switchedCarpool = true;
@@ -128,11 +133,14 @@ public class CarpoolMemberAction extends ActionSupport {
 	}
 	
 	public String cancelDrivingConfirm() {
-		Boolean canceled = true;
-		
-		if(canceled)
-			return SUCCESS;
-		else
+		System.out.println("Cancelling car pool drive");
+		if(carPoolMember.getEmployee().getPoints() <= 0)
 			return ERROR;
-	}
+		else{
+			dao.cancelCarpoolDrive(carPoolMember);
+			String message = "Car Pool Driver has cancelled his drive for the day";
+			//notifyUsersByEmail(message, carPoolMember);
+			return SUCCESS;
+		}
+		}
 }

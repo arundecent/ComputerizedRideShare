@@ -38,6 +38,8 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 	<div id="register">
 		<s:div id="buttonGroup">
 			<s:form action="optOutCrp" method="post" theme="simple">
+				<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
+				<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
 				<s:submit id="submit" button="true" align="center"
 					value="Opt Out CRP" />
 			</s:form>
@@ -53,16 +55,12 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 			<s:if test="%{carPoolMember.isDriver==1}">
 				<!--<s:set name="checkedIn" value="carPoolGroup.atWork"/>-->
 				<s:form action="cancelDriving" method="post" theme="simple">
-					<s:submit id="submit" button="true" value="Cancel Driving" />
+						<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
+						<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
+						<s:submit id="submit" button="true" value="Cancel Driving" onClick="if(confirm('Do you want to confirm cancel driving ? ')){form.action='cancelDriving';}else{return false;}"/>
 				</s:form>
-				<!-- <s:set name="member" value="carPoolMember"/>
-				<s:set name="group" value="carPoolGroup"/>
-				<s:set name="list" value="memberList"/>-->
 				<s:if test="%{carPoolGroup.atWork==0}">
 					<s:form action="checkin" method="post" theme="simple">
-				<!--		<s:hidden key="carPoolMember" value="%{carPoolMember}"/>
-				 		<s:hidden key="carPoolGroup" value="#group"/>
-						<s:hidden key="memberList" value="#list"/>  -->
 						<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
 						<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
 						<s:submit id="submit" button="true" value="Checkin" />
@@ -70,9 +68,6 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 				</s:if>
 				<s:else>
 					<s:form action="checkout" method="post" theme="simple">
-					<!--	<s:hidden key="carPoolMember" value="%{carPoolMember}"/>
-					 	<s:hidden key="carPoolGroup" value="#group"/>
-						<s:hidden key="memberList" value="#list"/> -->
 						<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
 						<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
 						<s:submit id="submit" button="true" value="Checkout"/>
@@ -84,7 +79,7 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 					<s:form action="cancelPickup" method="post" theme="simple">
 						<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
 						<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
-						<s:submit id="submit" button="true" value="Cancel Pickup" cssStyle="margin-left:65px;"/>
+						<s:submit id="submit" button="true" value="Cancel Pickup" cssStyle="margin-left:65px;" onClick="if(confirm('Do you want to confirm cancel pickup ? ')){form.action='cancelPickup';}else{return false;}"/>
 					</s:form>
 				</s:if>
 			</s:else>

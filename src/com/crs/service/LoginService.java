@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -30,8 +31,26 @@ import com.crs.model.EmployeeForm;
 public class LoginService implements LoginServiceInterface{
 	
 	//CrsDAO to make database transactions
+	private CarPoolForm carPoolGroup ;
+	private CarPoolMemberForm carPoolMember;
 	private CrsDAO dao;
 	
+	public CarPoolForm getCarPoolGroup() {
+		return carPoolGroup;
+	}
+
+	public void setCarPoolGroup(CarPoolForm carPoolGroup) {
+		this.carPoolGroup = carPoolGroup;
+	}
+
+	public CarPoolMemberForm getCarPoolMember() {
+		return carPoolMember;
+	}
+
+	public void setCarPoolMember(CarPoolMemberForm carPoolMember) {
+		this.carPoolMember = carPoolMember;
+	}
+
 	//salt for the password hash
 	private String strSalt;
 	
@@ -80,7 +99,7 @@ public class LoginService implements LoginServiceInterface{
 	 */
 	@Override
 	public List login(EmployeeForm employee) {
-		CarPoolMemberForm carPoolMember;
+		
 				
 		if(employee.getEmailID() != null && employee.getPassword() != null){
 			EmployeeForm employeeDetails = dao.getLoginRecord(employee);
@@ -109,7 +128,6 @@ public class LoginService implements LoginServiceInterface{
 						List<CarPoolMemberForm> tempList = new ArrayList<CarPoolMemberForm>();
 						carPoolMember = dao.getMemberInfo(employeeDetails.getEmployeeID());
 						carPoolMember.setEmployee(employeeDetails);
-						System.out.println("CarPool ID : "+carPoolMember.getCarpoolID()+" employee details : "+carPoolMember.getEmployee().getFirstName());
 						tempList = dao.retrieveMembers(carPoolMember);
 						System.out.println("Size of the list : "+tempList.size());
 						return tempList;
@@ -229,9 +247,19 @@ public class LoginService implements LoginServiceInterface{
 			
 		}
 		//return carPoolMember;
+		
 		tempList = dao.retrieveMembers(carPoolMember);
 		System.out.println("Size of the list : "+tempList.size());
 		return tempList;
+	}
+	
+	public CarPoolMemberForm getCarPoolMemberDetails(){
+		return getCarPoolMember();
+	}
+	
+	public CarPoolForm getCarPoolGroupDetails() {
+		carPoolGroup = dao.getCarPoolGroupDetails(getCarPoolMember().getCarpoolID());
+		return carPoolGroup;
 	}
 	
 	

@@ -14,9 +14,18 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 
 	private EmployeeForm employee = new EmployeeForm();
 	private CarPoolMemberForm carPoolMember = new CarPoolMemberForm();
+	private CarPoolForm carPoolGroup = new CarPoolForm();
 	LoginServiceInterface loginService = new LoginService();
 	List<CarPoolMemberForm> memberList = new ArrayList<CarPoolMemberForm>();
+	
+	public CarPoolForm getCarPoolGroup() {
+		return carPoolGroup;
+	}
 
+	public void setCarPoolGroup(CarPoolForm carPoolGroup) {
+		this.carPoolGroup = carPoolGroup;
+	}
+	
 	public List<CarPoolMemberForm> getMemberList() {
 		return memberList;
 	}
@@ -46,6 +55,10 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 
 		//EmployeeForm employeeDetails;
 		memberList = loginService.login(employee);
+		setCarPoolMember(loginService.getCarPoolMemberDetails());
+		setCarPoolGroup(loginService.getCarPoolGroupDetails());
+		System.out.println("Member Details ===== "+getCarPoolMember().getIsDriver());
+		System.out.println("Group Details ===== "+getCarPoolGroup().getAtWork());
 		if (memberList.size() != 0)
 			return SUCCESS;
 		else

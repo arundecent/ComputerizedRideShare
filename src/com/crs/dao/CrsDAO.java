@@ -85,6 +85,17 @@ public class CrsDAO {
 		 
 	}
 	
+	public CarPoolForm getCarPoolGroupDetails(Integer carpoolID){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			CarPoolForm carPoolGroup = session.selectOne("Carpool.getCarPoolDetails",carpoolID);
+			return carPoolGroup;
+		}finally {
+			session.close();
+		}
+		 
+	}
+	
 	public void createNewMember(CarPoolMemberForm carPoolMember){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{

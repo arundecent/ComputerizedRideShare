@@ -22,6 +22,9 @@
 	    <result property="isDriver" column="is_driver"/>
 	    <result property="isPickUp" column="pick_up"/>
 	    <result property="isTemporary" column="is_temporary"/>
+	    <result property="employee.firstName" column="first_name"/>
+	    <result property="employee.address" column="address"/>
+	    <result property="employee.phoneNo" column="phone"/>
 	 </resultMap>
     
     
@@ -50,13 +53,12 @@
     	SELECT * FROM CarpoolMember WHERE carpool_id = #{carpoolID} ORDER BY employee_id ASC
     </select>
     
-     <select id="getCarpoolMembers" parameterType="CarpoolMember" resultMap="resultCarpoolMember" >
+     <select id="getCarpoolMembers" parameterType="CarpoolMember" resultMap="result" >
     	SELECT first_name, last_name, phone, email, is_driver, address, carpool_id
 		FROM CarpoolMember 
 		JOIN Employee 
 		ON CarpoolMember.employee_id = employee.employee_id
 		WHERE carpool_id = #{carpoolID}
-		GROUP BY carpool_id,CarpoolMember.employee_id;
     </select>
     
     <select id="getMemberDetails" parameterType="int" resultMap="result">

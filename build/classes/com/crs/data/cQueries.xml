@@ -9,6 +9,10 @@
 		<result property="dateCreated" column="date_created" />
 		<result property="atWork" column="at_work" />
 	</resultMap>
+	
+	<select id="getCarPoolDetails" parameterType="int" resultMap="resultCarpool">
+		SELECT * FROM Carpool WHERE carpool_id = #{carpoolID}
+	</select>
 
 	<insert id="createCarpool" parameterType="Carpool">
 		INSERT INTO Carpool (at_work) VALUES (0)

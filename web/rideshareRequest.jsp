@@ -21,30 +21,38 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 </head>
 <body>
 	<h1 style="color: blue">
-		<i>SDNU Computerised Ride Share System</i> <a href="login.jsp">Log out</a>
+		<i>SDNU Computerised Ride Share System</i> 
 	</h1>
+	<h4 style="color: red" align="right">
+		<a href="login.jsp">Logout</a>
+	</h4>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<h3 align="center">
+		Welcome , <s:property value="carPoolMember.employee.firstName"/>
+	</h3>
+	
 	<div id="register">
 		<s:div id="buttonGroup">
 			<s:form action="optOutCrp" method="post" theme="simple">
 				<s:submit id="submit" button="true" align="center"
 					value="Opt Out CRP" />
 			</s:form>
-			<%-- <s:form action="shiftCarpool" method="post" theme="simple">
-				<s:submit id="submit" button="true" value="Shift Pool" />
-			</s:form> --%>
 			<s:form action="optOutCarpool" method="post" theme="simple">
 				<s:submit id="submit" button="true" value="Opt Out Carpool" />
 			</s:form>
 			<s:form action="modifyEmployeeDetails" method="post" theme="simple">
 				<s:submit id="submit" button="true" value="Edit My Details" />
 			</s:form>
-			<s:set name="driver" value="isDriver"/>
-			<s:if test="%{#driver==true}">
-				<s:set name="checkedIn" value="atWork"/>
+			<!--<s:set name="driver" value="carPoolMember.isDriver"/>-->
+			<s:if test="%{carPoolMember.isDriver==1}">
+				<!--<s:set name="checkedIn" value="carPoolGroup.atWork"/>-->
 				<s:form action="cancelDriving" method="post" theme="simple">
 					<s:submit id="submit" button="true" value="Cancel Driving" />
 				</s:form>
-				<s:if test="%{#checkedIn==false}">
+				<s:if test="%{carPoolGroup.atWork==0}">
 					<s:form action="checkin" method="post" theme="simple">
 						<s:submit id="submit" button="true" value="Checkin" />
 					</s:form>
@@ -87,15 +95,13 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 				<th>Phone</th>
 				<th>Group ID</th>
 			</tr>
-			 <s:iterator value="memberList" status="rowstatus">
+			 <s:iterator value="memberList">
 			 <tr>
-						<s:iterator value="employeeList">
-								<td style="background: lightgrey"><s:property value="firstName" /></td>
+								<td style="background: lightgrey"><s:property value="employee.firstName" /></td>
 								<td style="background: lightgrey"><s:property value="isDriver" /></td>
-								<td style="background: lightgrey"><s:property value="address" /></td>
-								<td style="background: lightgrey"><s:property value="phoneNo" /></td>
+								<td style="background: lightgrey"><s:property value="employee.address" /></td>
+								<td style="background: lightgrey"><s:property value="employee.phoneNo" /></td>
 								<td style="background: lightgrey"><s:property value="carpoolID" /></td>
-					</s:iterator>
 			</tr>
 			</s:iterator>
 		</table>

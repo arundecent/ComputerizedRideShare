@@ -105,6 +105,14 @@
 		GROUP BY carpool_id,CarpoolMember.employee_id;
     </select>
     
+    <select id="getFreeCarpoolGroups" resultType="int">
+    	SELECT cm.carpool_id FROM CarpoolMember cm JOIN Carpool c
+    	ON cm.carpool_id = c.carpool_id
+    	WHERE c.at_work = 1 
+    	GROUP BY cm.carpool_id 
+    	HAVING COUNT(cm.carpool_id) &lt; 4 
+    	LIMIT 1
+    </select>
     
     <update id="cancelPickup" parameterType="CarpoolMember">
     	UPDATE CarpoolMember SET pick_up = 0 WHERE employee_id = #{employeeID}

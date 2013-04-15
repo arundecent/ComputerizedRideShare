@@ -107,6 +107,19 @@ public class CrsDAO {
 		 
 	}
 	
+	public void processEmergencyRequest(CarPoolMemberForm carPoolMember){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			int carpoolID = session.selectOne("CarpoolMember.getFreeCarpoolGroups");
+			carPoolMember.setCarpoolID(carpoolID);
+			session.insert("CarpoolMember.insertRecord", carPoolMember);
+			session.update("Employee.updatePointsForEmergencyUsage", carPoolMember.getEmployeeID());
+			session.commit();
+		}finally{
+			
+		}
+	}
+	
 	public void checkOut(Integer carpoolID, Integer empID){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{

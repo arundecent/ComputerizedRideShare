@@ -1,6 +1,8 @@
 package com.crs.action;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 import com.crs.dao.CrsDAO;
 import java.util.List;
 
@@ -124,12 +126,17 @@ public class CarpoolMemberAction extends ActionSupport {
 	}
 	
 	public String confirmEmergency() {
-		Boolean switchedCarpool = true;
-
-		if(switchedCarpool)
+			EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
+			carPoolMember = dao.getMemberInfo(getEmployeeID());
+			carPoolMember.setEmployee(employeeDetails);
+			carPoolMember.setEmployeeID(getEmployeeID());
+			carPoolMember.setDateJoined(new Date());
+			carPoolMember.setIsDriver(0);
+			carPoolMember.setIsPickUp(1);
+			carPoolMember.setIsTemporary(1);
+			carPoolGroup.setCarpoolID(carpoolGroupID);
+			dao.processEmergencyRequest(carPoolMember);
 			return SUCCESS;
-		else
-			return ERROR;
 	}
 	
 	public String cancelDrivingConfirm() {
@@ -155,5 +162,7 @@ public class CarpoolMemberAction extends ActionSupport {
 			//notifyUsersByEmail(message, carPoolMember);
 			return SUCCESS;
 		}
-		}
+	}
+	
+	
 }

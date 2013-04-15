@@ -49,9 +49,7 @@
 			<result name="error" type="redirect">/error.action</result>
 		</action>
 	
-		<action name="issueEmergency" class="com.crs.action.CarpoolMemberAction">
-			<result name="success">/issueEmergency.jsp</result>
-		</action>
+	
 	
 		<action name="issueEmergencyConfirm" class="com.crs.action.CarpoolMemberAction" method="confirmEmergency">
 			<result name="success" type="redirect">/myCarpool.action</result>
@@ -93,6 +91,10 @@
 		<action name="cancelDriving" class="com.crs.action.CarpoolMemberAction" method="cancelDrivingConfirm">
 			<result name="success">/cancelDriving.jsp</result>
 			<result name="error">/error.jsp</result>
+		</action>
+	
+		<action name="issueEmergency" class="com.crs.action.CarpoolMemberAction" method="confirmEmergency">
+			<result name="success">/ridesharRequest.jsp</result>
 		</action>
 	
 	</package>

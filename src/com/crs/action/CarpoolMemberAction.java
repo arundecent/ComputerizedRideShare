@@ -2,6 +2,7 @@ package com.crs.action;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 import com.crs.dao.CrsDAO;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 import com.crs.model.CarPoolForm;
 import com.crs.model.CarPoolMemberForm;
 import com.crs.model.EmployeeForm;
+import com.crs.service.EmailService;
 import com.crs.service.LoginService;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -117,7 +119,21 @@ public class CarpoolMemberAction extends ActionSupport {
 			carPoolMember.setEmployeeID(getEmployeeID());
 			carPoolGroup.setCarpoolID(carpoolGroupID);
 			dao.cancelCarpoolPickUp(carPoolMember);
+			notifyMembersOfGroup(carpoolGroupID, "User cancelled car pool pick up", employeeDetails.getFirstName());
 			return SUCCESS;
+	}
+	
+	public void notifyMembersOfGroup(int carpoolID, String subject, String userName){
+		EmailService emailSvc = new EmailService();
+		List<Object> emailIDList = dao.fetchMembersEmailID(carpoolID);
+		Iterator<Object> iter = emailIDList.iterator();
+		StringBuffer messageBuffer = new StringBuffer();
+		messageBuffer.append("This email is to notify you that member of your group "+userName+" has cancelled pick up.");
+		String emailMessage = messageBuffer.toString();
+		while(iter.hasNext()){
+			String emailID = (String)iter.next();
+			emailSvc.sendSimpleMail(subject, emailMessage, emailID);
+		}
 	}
 
 	public String optOutCrp(){

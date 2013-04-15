@@ -116,7 +116,18 @@ public class CrsDAO {
 			session.update("Employee.updatePointsForEmergencyUsage", carPoolMember.getEmployeeID());
 			session.commit();
 		}finally{
-			
+			session.close();
+		}
+	}
+	
+	public List fetchMembersEmailID(Integer carpoolID){
+		SqlSession session = sqlSessionFactory.openSession();
+		List<Object> tempList;
+		try{
+			tempList = session.selectList("CarpoolMember.getEmailID", carpoolID);
+			return tempList;
+		}finally{
+			session.close();
 		}
 	}
 	
@@ -227,7 +238,7 @@ public class CrsDAO {
 			session.update("CarpoolMember.updateTemporaryDriver", empID);
 			session.commit();
 		}finally{
-			
+			session.close();
 		}
 	}
 	

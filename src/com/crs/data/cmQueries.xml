@@ -88,6 +88,10 @@
     	UPDATE CarpoolMember SET is_driver = 0 WHERE employee_id = #{currentDriver}
     </update>
     
+    <update id="updateTemporaryDriver" parameterType="int">
+    	UPDATE CarpoolMember SET is_driver = 1 and is_temporary  = 1 WHERE employee_id = #{currentDriver}
+    </update>
+    
     <update id="updateNextDriver" parameterType="int">
     	UPDATE CarpoolMember SET is_driver = 1 WHERE employee_id = #{nextDriver}
     </update>
@@ -111,13 +115,19 @@
     </update>
     
     <update id="cancelDrive" parameterType="CarpoolMember">
-    	UPDATE CarpoolMember SET is_driver = 1 and is_temporary = 1 WHERE (SELECT * from Carpoolmember where date_joined > #{dateJoined} limit 1)
-    	UPDATE Employee SET points = points - 5 WHERE employee_id = #{employeeID}
+    	UPDATE CarpoolMember SET is_driver = 0 and is_temporary = 2 WHERE employee_id = #{employeeID};
+    	UPDATE Employee SET points = points - 3 WHERE employee_id = #{employeeID};
+    </update>
+    
+    <update id="resetTemporaryDrivers" parameterType="int">
+    	UPDATE SET is_driver = 0 and is_temporary = 0 WHERE carpool_id = #{carpoolID} AND is_driver = 1 and is_temporary = 1;
+    	UPDATE SET is_driver = 1 WHERE carpool_id = #{carpoolID} and is_temporary = 2;
     </update>
     
     <delete id="removeMember" parameterType="int">
     	DELETE FROM CarpoolMember WHERE employee_id = #{empID}
     </delete>
+    
     
     <delete id="removeTemporaryMembers" parameterType="int">
     	DELETE FROM CarpoolMember WHERE is_temporary = 1

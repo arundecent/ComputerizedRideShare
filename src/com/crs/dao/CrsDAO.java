@@ -111,6 +111,7 @@ public class CrsDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
 			session.update("Carpool.checkout",carpoolID);
+			session.update("CarpoolMember.resetTemporaryDrivers", carpoolID);
 			session.delete("CarpoolMember.removeTemporaryMembers", carpoolID);
 			session.update("Employee.updatePointsForDrive", empID);
 			session.update("CarpoolMember.updatePickUpFlag", carpoolID);
@@ -204,6 +205,16 @@ public class CrsDAO {
 			return nextDriver;
 		}finally {
 			session.close();
+		}
+	}
+	
+	public void updateTemporaryDriver(Integer empID){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			session.update("CarpoolMember.updateTemporaryDriver", empID);
+			session.commit();
+		}finally{
+			
 		}
 	}
 	

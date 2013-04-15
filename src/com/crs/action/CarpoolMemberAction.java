@@ -134,10 +134,23 @@ public class CarpoolMemberAction extends ActionSupport {
 	
 	public String cancelDrivingConfirm() {
 		System.out.println("Cancelling car pool drive");
-		if(carPoolMember.getEmployee().getPoints() <= 0)
+		EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
+		carPoolMember = dao.getMemberInfo(getEmployeeID());
+		carPoolMember.setEmployee(employeeDetails);
+		carPoolMember.setEmployeeID(getEmployeeID());
+		carPoolGroup.setCarpoolID(carpoolGroupID);
+		if((carPoolMember.getEmployee().getPoints()-3) <= 0)
 			return ERROR;
 		else{
 			dao.cancelCarpoolDrive(carPoolMember);
+			CarPoolMemberForm nextDriver = dao.getNextDriver(getEmployeeID(), 0);
+			if(nextDriver != null){
+				dao.updateTemporaryDriver(nextDriver.getEmployeeID());
+			}
+			else{
+				nextDriver = dao.getNextDriver(getEmployeeID(), 1); 
+				dao.updateTemporaryDriver(nextDriver.getEmployeeID());
+			}
 			String message = "Car Pool Driver has cancelled his drive for the day";
 			//notifyUsersByEmail(message, carPoolMember);
 			return SUCCESS;

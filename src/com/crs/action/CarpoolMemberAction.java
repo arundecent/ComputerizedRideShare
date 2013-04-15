@@ -76,7 +76,7 @@ public class CarpoolMemberAction extends ActionSupport {
 	
 	public String checkOut(){
 		System.out.println("Checking out Member Action :"+carpoolGroupID+"======"+getEmployeeID());
-		dao.checkOut(carpoolGroupID);
+		dao.checkOut(carpoolGroupID,getEmployeeID());
 		EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
 		System.out.println("Employee Name :"+employeeDetails.getFirstName());
 		carPoolMember = dao.getMemberInfo(getEmployeeID());
@@ -100,7 +100,7 @@ public class CarpoolMemberAction extends ActionSupport {
 	}
 	
 	public String optOutCarpool(){
-		System.out.println("Checking In "+carpoolGroupID+"========"+getEmployeeID());
+		System.out.println("Opting out "+carpoolGroupID+"========"+getEmployeeID());
 		dao.optOutCarpool(getEmployeeID());
 		EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
 		carPoolMember.setEmployee(employeeDetails);
@@ -108,12 +108,14 @@ public class CarpoolMemberAction extends ActionSupport {
 	}
 	
 	public String cancelPickupConfirm() {
-		Boolean canceled = true;
-		
-		if(canceled)
+			System.out.println("Cancelling car pool request");
+			EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
+			carPoolMember = dao.getMemberInfo(getEmployeeID());
+			carPoolMember.setEmployee(employeeDetails);
+			carPoolMember.setEmployeeID(getEmployeeID());
+			carPoolGroup.setCarpoolID(carpoolGroupID);
+			dao.cancelCarpoolPickUp(carPoolMember);
 			return SUCCESS;
-		else
-			return ERROR;
 	}
 	
 	public String confirmEmergency() {

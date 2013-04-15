@@ -49,11 +49,6 @@ public class SchedulerService {
 	}
 	
 	//Cancelling pick up request for that day
-
-	public void cancelPickUpRequest(CarPoolMemberForm carPoolMember){
-			System.out.println("Cancelling car pool request");
-			dao.cancelCarpoolPickUp(carPoolMember);
-	}
 	
 	public boolean cancelCarpoolDrive(CarPoolMemberForm carPoolMember){
 		System.out.println("Cancelling car pool drive");

@@ -70,6 +70,14 @@
 	<update id="updatePointsForOptingOut" parameterType="int">
 		UPDATE EMPLOYEE SET POINTS = POINTS - 3 WHERE EMPLOYEE_ID = #{empID}
 	</update>
+	
+	<update id="updatePointsForDrive" parameterType="int">
+		UPDATE EMPLOYEE SET POINTS = POINTS + 2 WHERE EMPLOYEE_ID = #{empID}
+	</update>
+
+	<update id="updatePointsForCancelPickUp" parameterType="int">
+		UPDATE EMPLOYEE SET POINTS = POINTS - 2 WHERE EMPLOYEE_ID = #{employeeID}
+	</update>
 
 	<select id="getCarPoolGroup" resultMap="resultCarpool">
 		SELECT * FROM carpoolmember

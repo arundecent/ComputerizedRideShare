@@ -106,6 +106,10 @@
     	UPDATE CarpoolMember SET pick_up = 0 WHERE employee_id = #{employeeID}
     </update>
     
+    <update id="updatePickUpFlag" parameterType="int">
+    	UPDATE CarpoolMember SET pick_up = 1 WHERE carpool_id = #{carpoolID}
+    </update>
+    
     <update id="cancelDrive" parameterType="CarpoolMember">
     	UPDATE CarpoolMember SET is_driver = 1 and is_temporary = 1 WHERE (SELECT * from Carpoolmember where date_joined > #{dateJoined} limit 1)
     	UPDATE Employee SET points = points - 5 WHERE employee_id = #{employeeID}

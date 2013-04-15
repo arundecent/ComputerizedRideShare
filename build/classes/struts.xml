@@ -87,7 +87,7 @@
 			<result name="success">/rideshareRequest.jsp</result>
 		</action>
 		
-		<action name="cancelPickup" class="com.crs.action.CarpoolMemberAction" method="cancelPickUp">
+		<action name="cancelPickup" class="com.crs.action.CarpoolMemberAction" method="cancelPickupConfirm">
 			<result name="success">/rideshareRequest.jsp</result>
 		</action>
 	</package>

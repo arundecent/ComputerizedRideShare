@@ -107,11 +107,13 @@ public class CrsDAO {
 		 
 	}
 	
-	public void checkOut(Integer carpoolID){
+	public void checkOut(Integer carpoolID, Integer empID){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
 			session.update("Carpool.checkout",carpoolID);
 			session.delete("CarpoolMember.removeTemporaryMembers", carpoolID);
+			session.update("Employee.updatePointsForDrive", empID);
+			session.update("CarpoolMember.updatePickUpFlag", carpoolID);
 			session.commit();
 		}finally {
 			session.close();
@@ -260,6 +262,7 @@ public class CrsDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
 			session.selectOne("CarpoolMember.cancelPickup",carPoolMember);
+			session.update("Employee.updatePointsForCancelPickUp", carPoolMember.getEmployeeID());
 		}finally {
 			session.close();
 		}

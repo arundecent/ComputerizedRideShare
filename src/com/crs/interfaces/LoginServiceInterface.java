@@ -11,4 +11,5 @@ public interface LoginServiceInterface {
 	public List registerNewUser(EmployeeForm employee);
 	public CarPoolMemberForm getCarPoolMemberDetails();
 	public CarPoolForm getCarPoolGroupDetails();
+	public EmployeeForm getEmployeeDetails(EmployeeForm employee); 
 }

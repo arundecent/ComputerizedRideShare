@@ -71,14 +71,19 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 
 		//EmployeeForm employeeDetails;
 		memberList = loginService.login(employee);
-		setCarPoolMember(loginService.getCarPoolMemberDetails());
+		if(memberList.size() != 0 && memberList.get(0) != null)
+			setCarPoolMember(loginService.getCarPoolMemberDetails());
 		setCarPoolGroup(loginService.getCarPoolGroupDetails());
+		getCarPoolMember().setEmployee(loginService.getEmployeeDetails(employee));
 		//System.out.println("Member Details ===== "+getCarPoolMember().getIsDriver());
-		//System.out.println("Group Details ===== "+getCarPoolGroup().getAtWork());
-		if (memberList.size() != 0)
-			return SUCCESS;
-		else
-			return LOGIN;
+		System.out.println("Group Details ===== "+memberList.get(0));
+			if(memberList.size() == 1 && memberList.get(0) == null)
+				return SUCCESS;
+			else if(memberList.size() == 0)
+				return ERROR;
+			else
+				return SUCCESS;
+				
 	}
 
 	/**
@@ -97,24 +102,11 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 		else
 			employee.setNotifyType(1);
 		memberList = loginService.registerNewUser(employee);
-		if (memberList.size() != 0)
+		setCarPoolMember(loginService.getCarPoolMemberDetails());
+		setCarPoolGroup(loginService.getCarPoolGroupDetails());
 			return SUCCESS;
-		else
-			return ERROR;
 	}
 	
-	public String checkOut(){
-		System.out.println("Checking out "+carPoolGroup.getCarpoolID());
-		dao.checkOut(carPoolGroup.getCarpoolID(), employee.getEmployeeID());
-		return SUCCESS;
-	}
-	
-	public String checkIn(){
-		System.out.println("Checking In "+carPoolGroup.getCarpoolID());
-		dao.checkIn(carPoolGroup.getCarpoolID());
-		return SUCCESS;
-	}
-
 	@Override
 	public EmployeeForm getModel() {
 		// TODO Auto-generated method stub

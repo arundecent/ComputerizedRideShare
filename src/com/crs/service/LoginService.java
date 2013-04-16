@@ -132,6 +132,8 @@ public class LoginService implements LoginServiceInterface{
 							tempList = dao.retrieveMembers(carPoolMember);
 							System.out.println("Size of the list : "+tempList.size());
 							
+						}else{
+							tempList.add(carPoolMember);
 						}
 						return tempList;
 					}
@@ -267,6 +269,11 @@ public class LoginService implements LoginServiceInterface{
 		}
 		else 
 			return null;
+	}
+	
+	public EmployeeForm getEmployeeDetails(EmployeeForm employee){
+		EmployeeForm employeeDetails = dao.getLoginRecord(employee);
+		return employeeDetails;
 	}
 	
 	

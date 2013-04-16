@@ -147,6 +147,7 @@ public class CrsDAO {
 			session.update("Carpool.checkout",carpoolID);
 			session.update("CarpoolMember.resetTemporaryDrivers", carpoolID);
 			session.update("CarpoolMember.resetTemporaryDrivers2", carpoolID);
+			session.update("CarpoolMember.resetPickUpFlag", carpoolID);
 			session.delete("CarpoolMember.removeTemporaryMembers", carpoolID);
 			session.update("Employee.updatePointsForDrive", empID);
 			session.update("CarpoolMember.updatePickUpFlag", carpoolID);

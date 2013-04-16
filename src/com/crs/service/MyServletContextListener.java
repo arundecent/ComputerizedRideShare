@@ -19,8 +19,6 @@ public class MyServletContextListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
 		// TODO Auto-generated method stub
-		EmailService svc = new EmailService();
-		svc.sendSimpleMail("Testing from Subramanian", "Test Email", "sarumu4@uicedu");
 			try {
 				scheduler.run();
 			} catch (Exception e) {

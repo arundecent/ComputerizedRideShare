@@ -23,9 +23,9 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 </head>
 <body>
 	<h1 style="color: blue">
-		<i>SDNU Computerised Ride Share System</i> 
+		<i>SDNU Computerized Ride Share System</i> 
 	</h1>
-	<h4 style="color: red" align="right">
+	<h4 style="color: red" align="center">
 		<a href="login.jsp">Logout</a>
 	</h4>
 	<br/>
@@ -37,61 +37,65 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 	</h3>
 	<div id="register">
 		<s:div id="buttonGroup">
-			<s:form action="optOutCrp" method="post" theme="simple">
-				<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
-				<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
-				<s:submit id="submit" button="true" align="center"
-					value="Opt Out CRP" />
-			</s:form>
-			<s:form id="optOutCarpoolForm" action="optOutCarpool" method="post" theme="simple">
-				<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
-				<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
-				<s:submit id="submit" button="true" value="Opt Out Carpool" onClick="if(confirm('Do you want to confirm opting out of carpool group ? ')){form.action='optOutCarpool';}else{return false;}"/>
-			</s:form>
-			<s:form action="modifyEmployeeDetails" method="post" theme="simple">
-				<s:submit id="submit" button="true" value="Edit My Details" />
-			</s:form>
-			<!--<s:set name="driver" value="carPoolMember.isDriver"/>-->
-			<s:if test="%{carPoolMember.isDriver==1}">
-				<!--<s:set name="checkedIn" value="carPoolGroup.atWork"/>-->
-				<s:form action="cancelDriving" method="post" theme="simple">
-						<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
-						<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
-						<s:submit id="submit" button="true" value="Cancel Driving" onClick="if(confirm('Do you want to confirm cancel driving ? ')){form.action='cancelDriving';}else{return false;}"/>
-				</s:form>
-				<s:if test="%{carPoolGroup.atWork==0}">
-					<s:form action="checkin" method="post" theme="simple">
-						<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
-						<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
-						<s:submit id="submit" button="true" value="Checkin" />
-					</s:form>
-				</s:if>
-				<s:else>
-					<s:form action="checkout" method="post" theme="simple">
-						<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
-						<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
-						<s:submit id="submit" button="true" value="Checkout"/>
-					</s:form>
-				</s:else>
-			</s:if>
-			<s:else>
-				<s:if test="%{carPoolGroup.atWork==0}">
-					<s:form action="cancelPickup" method="post" theme="simple">
-						<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
-						<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
-						<s:submit id="submit" button="true" value="Cancel Pickup" cssStyle="margin-left:65px;" onClick="if(confirm('Do you want to confirm cancel pickup ? ')){form.action='cancelPickup';}else{return false;}"/>
-					</s:form>
-				</s:if>
-			</s:else>
-			<s:if test="%{carPoolGroup.atWork==1}">
-				<s:form action="issueEmergency" method="post" theme="simple">
+			<s:div cssStyle="text-align:center;">
+				<s:form action="optOutCrp" method="post" theme="simple">
 					<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
 					<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
-					<s:submit id="submit" button="true" value="Emergency" />
+					<s:submit id="submit" button="true" align="center"
+						value="Opt Out CRP" />
 				</s:form>
-			</s:if>
+				<s:form id="optOutCarpoolForm" action="optOutCarpool" method="post" theme="simple">
+					<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
+					<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
+					<s:submit id="submit" button="true" value="Opt Out Carpool" onClick="if(confirm('Do you want to confirm opting out of carpool group ? ')){form.action='optOutCarpool';}else{return false;}"/>
+				</s:form>
+				<s:form action="modifyEmployeeDetails" method="post" theme="simple">
+					<s:submit id="submit" button="true" value="Edit My Details" />
+				</s:form>
+			</s:div>
+			<!--<s:set name="driver" value="carPoolMember.isDriver"/>-->
+			<s:div cssStyle="text-align:center;">
+				<s:if test="%{carPoolMember.isDriver==1}">
+					<!--<s:set name="checkedIn" value="carPoolGroup.atWork"/>-->
+					<s:form action="cancelDriving" method="post" theme="simple">
+							<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
+							<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
+							<s:submit id="submit" button="true" value="Cancel Driving" onClick="if(confirm('Do you want to confirm cancel driving ? ')){form.action='cancelDriving';}else{return false;}"/>
+					</s:form>
+					<s:if test="%{carPoolGroup.atWork==0}">
+						<s:form action="checkin" method="post" theme="simple">
+							<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
+							<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
+							<s:submit id="submit" button="true" value="Checkin" />
+						</s:form>
+					</s:if>
+					<s:else>
+						<s:form action="checkout" method="post" theme="simple">
+							<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
+							<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
+							<s:submit id="submit" button="true" value="Checkout"/>
+						</s:form>
+					</s:else>
+				</s:if>
+				<s:else>
+					<s:if test="%{carPoolGroup.atWork==0}">
+						<s:form action="cancelPickup" method="post" theme="simple">
+							<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
+							<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
+							<s:submit id="submit" button="true" value="Cancel Pickup" cssStyle="margin-left:65px;" onClick="if(confirm('Do you want to confirm cancel pickup ? ')){form.action='cancelPickup';}else{return false;}"/>
+						</s:form>
+					</s:if>
+				</s:else>
+				<s:if test="%{carPoolGroup.atWork==1}">
+					<s:form action="issueEmergency" method="post" theme="simple">
+						<s:hidden key="carpoolGroupID" value="%{carPoolMember.carpoolID}"/>
+						<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
+						<s:submit id="submit" button="true" value="Emergency" />
+					</s:form>
+				</s:if>
+			</s:div>
 		</s:div><br />
-		<h2 style="color: blue;padding-top:50px;">Ride Share Group</h2>
+		<h2 style="color: blue;">Ride Share Group</h2>
 		<%--
 	
 	To see this part you must visit:

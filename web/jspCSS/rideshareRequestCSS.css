@@ -255,3 +255,6 @@ form {
     color: #FF0000;
     /*z-index:9999;*/
 }
+form {
+	display:inline-block;
+}

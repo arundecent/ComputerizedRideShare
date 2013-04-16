@@ -102,8 +102,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 		else
 			employee.setNotifyType(1);
 		memberList = loginService.registerNewUser(employee);
-		setCarPoolMember(loginService.getCarPoolMemberDetails());
-		setCarPoolGroup(loginService.getCarPoolGroupDetails());
+		carPoolMember.setEmployee(employee);
 			return SUCCESS;
 	}
 	

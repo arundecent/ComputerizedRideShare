@@ -1,0 +1,54 @@
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+    "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+    
+<validators>
+    
+    <field name="password">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message key="Password is required" />
+        </field-validator>
+    </field>
+    
+    <field name="securityQn">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message key="Security question is required" />
+        </field-validator>
+    </field>
+     <field name="securityAns">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message key="Security answer is required" />
+        </field-validator>
+    </field>
+     <field name="phoneNo">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message key="Phone number is required" />
+        </field-validator>
+        <field-validator type="stringlength">
+			<param name="minLength">10</param>
+			<param name="maxLength">14</param>
+			<param name="trim">true</param>
+			<message>Phone number must be in the format (XXX) XXX-XXXX</message>
+        </field-validator>
+         <field-validator type="regex">
+            <param name="expression">\([\d][\d][\d]\) [\d][\d][\d]-[\d][\d][\d][\d]</param>
+            <message>Phone number must be in the format (XXX) XXX-XXXX</message>
+        </field-validator>
+    </field>
+     <field name="notifyTypeStr">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message key="Notification type is required" />
+        </field-validator>
+    </field>
+    <field name="address">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message key="Adress is required" />
+        </field-validator>
+    </field>
+	
+</validators>

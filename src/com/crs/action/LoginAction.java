@@ -102,7 +102,8 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 		else
 			employee.setNotifyType(1);
 		memberList = loginService.registerNewUser(employee);
-		carPoolMember.setEmployee(employee);
+		setCarPoolMember(loginService.getCarPoolMemberDetails());
+		setCarPoolGroup(loginService.getCarPoolGroupDetails());
 			return SUCCESS;
 	}
 	
@@ -110,6 +111,15 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 	public EmployeeForm getModel() {
 		// TODO Auto-generated method stub
 		return employee;
+	}
+
+	
+	public String modifyEmployeeDetails(){
+		
+		System.out.println("in modifyemployeedetails in login action" + employee.getEmployeeID());
+		LoginService ls = new LoginService();
+		ls.saveDetails(employee);		
+		return SUCCESS;
 	}
 
 }

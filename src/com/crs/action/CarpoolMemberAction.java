@@ -14,6 +14,7 @@ import com.crs.service.LoginService;
 import com.crs.service.ScheduleService;
 import com.opensymphony.xwork2.ActionSupport;
 
+@SuppressWarnings("serial")
 public class CarpoolMemberAction extends ActionSupport {
 	
 	CrsDAO dao;
@@ -180,6 +181,7 @@ public class CarpoolMemberAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public String cancelPickupConfirm() {
 			System.out.println("Cancelling car pool request");
 			EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
@@ -196,6 +198,7 @@ public class CarpoolMemberAction extends ActionSupport {
 			return SUCCESS;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void notifyMembersOfGroup(int carpoolID, String subject, String emailMessage){
 		EmailService emailSvc = new EmailService();
 		List<Object> emailIDList = dao.fetchMembersEmailID(carpoolID);
@@ -226,6 +229,7 @@ public class CarpoolMemberAction extends ActionSupport {
 			return SUCCESS;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public String cancelDrivingConfirm() {
 		System.out.println("Cancelling car pool drive");
 		EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());

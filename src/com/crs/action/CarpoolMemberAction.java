@@ -26,6 +26,18 @@ public class CarpoolMemberAction extends ActionSupport {
 	LoginService svc = new LoginService();
 	private ScheduleService schServiceObj;
 	
+private EmployeeForm employee = new EmployeeForm();
+	
+	
+
+
+	public EmployeeForm getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(EmployeeForm employee) {
+		this.employee = employee;
+	}
 
 	public ScheduleService getSchServiceObj() {
 		return schServiceObj;
@@ -276,6 +288,19 @@ public class CarpoolMemberAction extends ActionSupport {
 		carPoolMember.setIsTemporary(0);
 		dao.insertNewMemberRecord(carPoolMember);
 		//logic yet to be done
+		return SUCCESS;
+	}
+	
+	/**
+	 * Method to edit employee details
+	 */
+	public String editDetails(){
+		System.out.println("In edit details =>"+ this.getEmployeeID());
+		EmployeeForm empBean = new EmployeeForm();
+		empBean = dao.getEmployeeRecord(this.getEmployeeID());
+		if(empBean != null){
+			this.setEmployee(empBean);
+		}
 		return SUCCESS;
 	}
 }

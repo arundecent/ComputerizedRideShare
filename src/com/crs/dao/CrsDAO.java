@@ -107,6 +107,16 @@ public class CrsDAO {
 		 
 	}
 	
+	public void insertNewMemberRecord(CarPoolMemberForm carPoolMember){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			session.insert("CarpoolMember.insertRecord", carPoolMember);
+			session.commit();
+		}finally{
+			session.close();
+		}
+	}
+	
 	public void processEmergencyRequest(CarPoolMemberForm carPoolMember){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{

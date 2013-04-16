@@ -46,7 +46,7 @@
     </resultMap>
    
     <insert id="insertRecord" parameterType="CarpoolMember">
-    	INSERT INTO CarpoolMember (employee_id,carpool_id,is_driver,is_temporary) VALUES (#{employeeID},#{carpoolID},#{isDriver},#{isTemporary})
+    	INSERT INTO CarpoolMember (employee_id,carpool_id,is_driver,is_temporary,is_pickup) VALUES (#{employeeID},#{carpoolID},#{isDriver},#{isTemporary},#{isPickUp})
     </insert>
     
     <select id="getEmailID" parameterType="int" resultType="String">

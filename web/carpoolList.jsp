@@ -33,6 +33,7 @@
 								<td style="background: lightgrey">
 									<s:form action="joinCarpool" method="post" theme="simple">
 										<s:hidden key="carpoolGroupID" value="%{carpoolID}"/>
+										<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
 										<s:submit id="submit" button="true" value="Join" />
 									</s:form>
 								</td>
@@ -44,6 +45,7 @@
 								<td>
 									<s:form action="joinCarpool" method="post" theme="simple">
 										<s:hidden key="carpoolGroupID" value="%{carpoolID}" />
+										<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
 										<s:submit id="submit" button="true" value="Join" />
 									</s:form>
 								</td>

@@ -166,6 +166,7 @@ public class CarpoolMemberAction extends ActionSupport {
 		EmployeeForm employeeDetails = dao
 				.getLoginRecordWithEmpID(getEmployeeID());
 		carPoolMember.setEmployee(employeeDetails);
+		carPoolMember.setEmployeeID(getEmployeeID());
 
 		/*
 		 * retrieve the list of the car pool with free space available
@@ -263,9 +264,14 @@ public class CarpoolMemberAction extends ActionSupport {
 	 */
 	public String joinCarpool(){
 		System.out.println("Carpool ID in joinCarpool Check:" + getCarpoolGroupID());
-		
+		carPoolMember.setCarpoolID(carpoolGroupID);
+		carPoolMember.setDateJoined(new Date());
+		carPoolMember.setEmployeeID(getEmployeeID());
+		carPoolMember.setIsDriver(0);
+		carPoolMember.setIsPickUp(1);
+		carPoolMember.setIsTemporary(0);
+		dao.insertNewMemberRecord(carPoolMember);
 		//logic yet to be done
 		return SUCCESS;
 	}
-	
 }

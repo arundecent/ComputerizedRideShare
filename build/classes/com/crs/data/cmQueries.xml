@@ -46,7 +46,7 @@
     </resultMap>
    
     <insert id="insertRecord" parameterType="CarpoolMember">
-    	INSERT INTO CarpoolMember (employee_id,carpool_id,is_driver,is_temporary) VALUES (#{employeeID},#{carpoolID},#{isDriver},#{isTemporary})
+    	INSERT INTO CarpoolMember (employee_id,carpool_id,is_driver,is_temporary,is_pickup) VALUES (#{employeeID},#{carpoolID},#{isDriver},#{isTemporary},#{isPickUp})
     </insert>
     
     <select id="getEmailID" parameterType="int" resultType="String">
@@ -69,6 +69,16 @@
 		JOIN Employee 
 		ON CarpoolMember.employee_id = employee.employee_id
 		WHERE carpool_id = #{carpoolID}
+    </select>
+    
+    
+     <select id="getAvailableCarpoolList" resultMap="resultCarpoolMember" >
+    	SELECT *
+		FROM CarpoolMember 
+		JOIN Employee 
+		ON CarpoolMember.employee_id = employee.employee_id
+		GROUP BY carpool_id
+		HAVING COUNT(carpool_id) &lt; 4
     </select>
     
     <select id="getMemberDetails" parameterType="int" resultMap="result">

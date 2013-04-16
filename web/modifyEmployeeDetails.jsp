@@ -22,24 +22,13 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 	</h1>
 	<s:form action="modifyEmployeeDetailsSubmit" method="post">
 		<fieldset id="inputs">
-			<s:hidden id="employeeId" key="employee.employeeID"
-				dataType="Integer" label="Employee id "></s:hidden>
-
-			<%-- New password is optional, but if filled in must match confirmPassword --%>
-
-			<s:password name="password" id="password" key="employee.password"
-				label="New Password"></s:password>
-			<s:password id="confirmPassword" name="confirmPassword" key="employee.confirmPassword"
-				label="Confirm Password"></s:password>
-			<s:textfield id="securityQn" name="securityQn" key="employee.securityQn"
-				label="Security Question "></s:textfield>
-			<s:textfield id="securityAns" name="securityAns" key="employee.securityAn"
-				label="Security Answer "></s:textfield>
-			<sj:textfield id="phoneNo" name="phoneNo" key="employee.phoneNo"
-				label="Phone Number "></sj:textfield>
-			<sj:radio list="{'Email', 'Mobile'}" name="notifyType" label="Notify Type "
-				key="employee.notifyType"></sj:radio>
-			<s:textfield id="address" name="address" key="employee.address" label="Address "></s:textfield>
+			<s:hidden id="employeeID" key="employee.employeeID"	dataType="Integer" label="Employee id "></s:hidden>
+			<s:password name="password" id="password" key="employee.password" label="New Password"></s:password>
+			<s:textfield id="securityQn" name="securityQn" key="employee.securityQn" value="%{employee.securityQn}"	label="Security Question "></s:textfield>
+			<s:textfield id="securityAns" name="securityAns" key="employee.securityAns"	value="%{employee.securityAns}" label="Security Answer "></s:textfield>
+			<sj:textfield id="phoneNo" name="phoneNo" key="employee.phoneNo" value="%{employee.phoneNo}"	label="Phone Number "></sj:textfield>
+			<sj:radio list="{'Email', 'Mobile'}" name="notifyTypeStr" label="Notify Type "	value="Email"  key="employee.notifyTypeStr"></sj:radio>
+			<s:textfield id="address" name="address" key="employee.address" value="%{employee.address}" label="Address "></s:textfield>
 		</fieldset>
 		<fieldset id="action">
 			<s:submit id="submit" button="true" align="center" />

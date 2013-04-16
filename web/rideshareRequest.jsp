@@ -51,6 +51,7 @@ http://jqueryui.com/themeroller/#!zThemeParams=5d00000100f305000000000000003d888
 				</s:form>
 				<s:form action="modifyEmployeeDetails" method="post" theme="simple">
 					<s:submit id="submit" button="true" value="Edit My Details" />
+					<s:hidden key="employeeID" value="%{carPoolMember.employee.employeeID}"/>
 				</s:form>
 			</s:div>
 			<!--<s:set name="driver" value="carPoolMember.isDriver"/>-->

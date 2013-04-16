@@ -426,5 +426,17 @@ public class CrsDAO {
 			session.close();
 		}
 	}
-
+	
+	/**
+	 * This method is used to update the user details
+	 */
+	public void updateUserDetails(EmployeeForm employee){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			 session.update("Employee.modifyUserDetails", employee.getEmployeeID());
+			 session.commit();
+		}finally {
+			session.close();
+		}
+	}
 }

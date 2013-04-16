@@ -55,6 +55,18 @@
 			<result name="error">/error.jsp</result>
 			<result name="input">/carpoolList.jsp</result>
 		</action>
+		
+		<action name="modifyEmployeeDetails" class="com.crs.action.CarpoolMemberAction" method="editDetails">
+			<result name="success">/modifyEmployeeDetails.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="input">/rideshareRequest.jsp</result>
+		</action>
+		
+		<action name="modifyEmployeeDetailsSubmit" class="com.crs.action.LoginAction" method="modifyEmployeeDetails">
+			<result name="success">/rideshareRequest.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="input">/modifyEmployeeDetails.jsp</result>
+		</action>
 	
 	</package>
 </struts>

@@ -121,4 +121,13 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 		return employee;
 	}
 
+	
+	public String modifyEmployeeDetails(){
+		
+		System.out.println("in modifyemployeedetails in login action" + employee.getEmployeeID());
+		LoginService ls = new LoginService();
+		ls.saveDetails(employee);		
+		return SUCCESS;
+	}
+
 }

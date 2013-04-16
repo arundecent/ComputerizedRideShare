@@ -23,6 +23,19 @@ public class CarpoolMemberAction extends ActionSupport {
 	private int carpoolGroupID;
 	private List<CarPoolMemberForm> availableCarpoolList;
 	List<CarPoolMemberForm> memberList = new ArrayList<CarPoolMemberForm>();
+	private EmployeeForm employee = new EmployeeForm();
+	
+	
+
+
+	public EmployeeForm getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(EmployeeForm employee) {
+		this.employee = employee;
+	}
+
 	LoginService svc = new LoginService();
 	private ScheduleService schServiceObj;
 	
@@ -111,6 +124,7 @@ public class CarpoolMemberAction extends ActionSupport {
 		this.dao = new CrsDAO();
 		this.availableCarpoolList = new ArrayList<CarPoolMemberForm>();
 		this.schServiceObj = new ScheduleService();
+		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -276,6 +290,20 @@ public class CarpoolMemberAction extends ActionSupport {
 		carPoolMember.setIsTemporary(0);
 		dao.insertNewMemberRecord(carPoolMember);
 		//logic yet to be done
+		return SUCCESS;
+	}
+	
+	
+	/**
+	 * Method to edit employee details
+	 */
+	public String editDetails(){
+		System.out.println("In edit details =>"+ this.getEmployeeID());
+		EmployeeForm empBean = new EmployeeForm();
+		empBean = dao.getEmployeeRecord(this.getEmployeeID());
+		if(empBean != null){
+			this.setEmployee(empBean);
+		}
 		return SUCCESS;
 	}
 }

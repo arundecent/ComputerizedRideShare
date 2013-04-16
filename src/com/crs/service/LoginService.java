@@ -333,4 +333,17 @@ public class LoginService implements LoginServiceInterface{
 		salt = new BigInteger(130, random).toString(32);		
 		return salt;
 	}
+	
+	
+	public void saveDetails(EmployeeForm employee){
+
+		employee.setSalt(this.getStrSalt());
+		employee.setPassword(this.generateMD5HashForPasswordWithSalt(employee.getPassword()));
+		
+		/*
+		 * saving the new user details to the database using dao
+		 */
+		dao.updateUserDetails(employee);		
+	}
+	
 }

@@ -46,7 +46,7 @@
     </resultMap>
    
     <insert id="insertRecord" parameterType="CarpoolMember">
-    	INSERT INTO CarpoolMember (employee_id,carpool_id,is_driver,is_temporary,is_pickup) VALUES (#{employeeID},#{carpoolID},#{isDriver},#{isTemporary},#{isPickUp})
+    	INSERT INTO CarpoolMember (employee_id,carpool_id,is_driver,is_temporary,pick_up) VALUES (#{employeeID},#{carpoolID},#{isDriver},#{isTemporary},#{isPickUp})
     </insert>
     
     <select id="getEmailID" parameterType="int" resultType="String">
@@ -117,7 +117,7 @@
 		FROM CarpoolMember 
 		JOIN Employee 
 		ON CarpoolMember.employee_id = employee.employee_id
-		WHERE carpool_id = #{carpoolID} AND CarpoolMember.is_driver &lt; 1
+		WHERE carpool_id = #{carpoolID} AND CarpoolMember.is_driver &lt; 1 AND CarpoolMember.is_temporary &lt; 1
 		GROUP BY carpool_id,CarpoolMember.employee_id;
     </select>
     

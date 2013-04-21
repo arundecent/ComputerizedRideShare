@@ -9,10 +9,13 @@ public class LoginActionTest {
 
 		@Test
 	public void testLogin() {
-			String check;
+			request.setParameter("employee.EmailID", "rvisha2@uic.edu");
+	    	setParameter("employee.Password", "rajeevreddy");
+	    	String check;
 			LoginAction tester= new LoginAction();
+			memberList = loginService.login(employee);
 			check = tester.login();
-			assertTrue("login successful", check=="SUCCESS");
+			assertTrue("login successful", memberList.size() == 1);
 			assertFalse("not satisfied", check=="ERROR");
 	}
 

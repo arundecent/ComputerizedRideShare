@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="JunitTest"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
@@ -47,11 +48,7 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/quartz-all-2.1.7.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/quartz-backward-compat-2.1.7.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/quartz-commonj-2.1.7.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-api-1.6.1.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-api-1.7.5.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-jdk14-1.7.5.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-log4j12-1.6.1.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-log4j12-1.7.5.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/struts2-core-2.3.12.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/struts2-jquery-plugin-3.5.1.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/xwork-core-2.3.12.jar"/>

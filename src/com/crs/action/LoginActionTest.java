@@ -1,4 +1,4 @@
-package com.crs.action;
+/*package com.crs.action;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -39,3 +39,4 @@ public class LoginActionTest {
 	}
 
 }
+*/

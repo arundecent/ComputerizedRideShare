@@ -6,12 +6,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 import org.apache.commons.codec.digest.DigestUtils;
-
 
 import com.crs.dao.CrsDAO;
 import com.crs.interfaces.LoginServiceInterface;
@@ -28,6 +25,7 @@ import com.crs.model.EmployeeForm;
  * @author subbu/mohan
  *
  */
+@SuppressWarnings("rawtypes")
 public class LoginService implements LoginServiceInterface{
 	
 	//CrsDAO to make database transactions
@@ -102,6 +100,7 @@ public class LoginService implements LoginServiceInterface{
 		
 				
 		if(employee.getEmailID() != null && employee.getPassword() != null){
+			
 			EmployeeForm employeeDetails = dao.getLoginRecord(employee);
 			
 			if(employeeDetails != null){

@@ -158,18 +158,6 @@ public class LoginService implements LoginServiceInterface{
 		}		
 	}
 
-	/**
-	 * This method is used to the reset the password 
-	 * for the user
-	 * @return boolean depending on a successful reset or failure
-	 * @author Subbu
-	 */
-	//@Override
-	/*public boolean resetPassword(String emailId) {
-		
-		return false;
-	}*/
-	
 
 	/**
 	 * This method is used to register a new user which takes the 

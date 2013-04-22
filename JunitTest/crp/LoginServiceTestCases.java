@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.crs.dao.CrsDAO;
+import com.crs.model.CarPoolMemberForm;
 import com.crs.model.EmployeeForm;
 import com.crs.service.LoginService;
 
@@ -199,4 +201,145 @@ public class LoginServiceTestCases{
 		}
 	}
 	
+	
+	/**
+	 * Test case to check user registration for passenger.
+	 * For this test case, there should be at least 1
+	 * entry in the "car pool member" table where a car pool id
+	 * occurs less than 4 times -> meaning there a space in the 
+	 * car pool group. This depends on the database state.
+	 * testUserRegistrationForPassenger and testUserRegistrationAsDriver methods
+	 * are inter related
+	 * Reference: Exported sql file along with the submission
+	 */
+	@SuppressWarnings("unused")
+	@Test
+	public void testUserRegistrationForPassenger(){
+		EmployeeForm employee = new EmployeeForm();
+		EmployeeForm tempEmployee = null;
+		CrsDAO dao = new CrsDAO();
+		LoginService ls = new LoginService();
+		//#{emailID},#{password},#{salt},#{firstName},#{lastName},#{securityQn},#{securityAns},#{phoneNo},#{notifyType},#{address}
+		
+		employee.setEmailID("ntajith@gmail.com");
+		employee.setSalt(ls.getStrSalt());
+		employee.setPassword("mohan");
+		employee.setPassword(ls.generateMD5HashForPasswordWithSalt(employee.getPassword()));
+		employee.setFirstName("Mohan");
+		employee.setLastName("Karunakaran");
+		employee.setSecurityQn("Where were you born?");
+		employee.setSecurityAns("Chennai");
+		employee.setNotifyType(0);
+		employee.setAddress("1678, W.Taylor St. Chicago - 60607");
+		
+		List tempList = ls.registerNewUser(employee);
+		
+		/*
+		 * checking if there is an entry made in
+		 * the employee table using the getLoginRecord(Employee) method
+		 */
+		tempEmployee = dao.getLoginRecord(employee);		
+		boolean test = (tempEmployee == null);
+		
+		/*Employee insert into Employee Table was successful*/
+		if(!test){
+			assertTrue("Employee inserted into Employee Table.",true);
+			System.out.println("Employee inserted into Employee Table.");
+		}else{
+			/*Employee insert into Employee Table was unsuccessful*/
+			assertTrue("Employee insertion into Employee Table failed.",false);
+			System.out.println("Employee insertion into Employee Table failed.");
+		}	
+		
+		/*
+		 * retrieve entry from database to check if an entry has been
+		 * made for the employee inserted above
+		 */
+		CarPoolMemberForm  cpm = dao.getMemberInfo(tempEmployee.getEmployeeID());
+				
+		/*Car pool Member Table insert check and isDriver check*/
+		boolean test2 = (cpm.getIsDriver() != 1);
+		
+		if(test2){
+			assertTrue("User entered as a passenger",true);
+			System.out.println("User entered as a passenger");
+		}else{
+			/*User was inserted as driver*/
+			assertTrue("User entered as a driver",false);
+			System.out.println("User entered as a driver");
+		}			
+	}
+	
+	
+	/**
+	 * Test case to check user registration for Driver.
+	 * For this test case to run , in the carpool member table,
+	 * each carpool ID, should occur 4 times, -> meaning that there
+	 * is no space in every carpool hence create a new one
+	 * Reference: Exported sql file along with the submission
+	 */
+	@SuppressWarnings("unused")
+	@Test
+	public void testUserRegistrationAsDriver(){
+		EmployeeForm employee = new EmployeeForm();
+		EmployeeForm tempEmployee = null;
+		CrsDAO dao = new CrsDAO();
+		LoginService ls = new LoginService();
+		//#{emailID},#{password},#{salt},#{firstName},#{lastName},#{securityQn},#{securityAns},#{phoneNo},#{notifyType},#{address}
+		
+		employee.setEmailID("koolsundar15@gmail.com");
+		employee.setSalt(ls.getStrSalt());
+		employee.setPassword("mohan");
+		employee.setPassword(ls.generateMD5HashForPasswordWithSalt(employee.getPassword()));
+		employee.setFirstName("Mohan");
+		employee.setLastName("Karunakaran");
+		employee.setSecurityQn("Where were you born?");
+		employee.setSecurityAns("Chennai");
+		employee.setNotifyType(0);
+		employee.setAddress("1678, W.Taylor St. Chicago - 60607");
+		
+		List tempList = ls.registerNewUser(employee);
+		
+		/*
+		 * checking if there is an entry made in
+		 * the employee table using the getLoginRecord(Employee) method
+		 */
+		tempEmployee = dao.getLoginRecord(employee);		
+		boolean test = (tempEmployee == null);
+		
+		/*Employee insert into Employee Table was successful*/
+		if(!test){
+			assertTrue("Employee inserted into Employee Table.",true);
+			System.out.println("Employee inserted into Employee Table.");
+		}else{
+			/*Employee insert into Employee Table was unsuccessful*/
+			assertTrue("Employee insertion into Employee Table failed.",false);
+			System.out.println("Employee insertion into Employee Table failed.");
+		}	
+		
+		/*
+		 * retrieve entry from database to check if an entry has been
+		 * made for the employee inserted above
+		 */
+		CarPoolMemberForm  cpm = dao.getMemberInfo(tempEmployee.getEmployeeID());
+				
+		/*
+		 * Car pool Member Table insert check  and isDriver check
+		 * Entry should have been made into the carpool table and the
+		 * carpool member table for the driver. Checking the carpool member
+		 * table because, an entry in this table with isDriver = 1 for this 
+		 * user means, an entry has been made in the carpool table too owing
+		 * to the referential integrity database constraint.
+		 */
+		boolean test2 = (cpm.getIsDriver() == 1);
+		
+		if(test2){
+			assertTrue("User entered as a driver",true);
+			System.out.println("User entered as a driver");
+		}else{
+			/*User was inserted as passenger*/
+			assertTrue("User entered as a passenger",false);
+			System.out.println("User entered as a passenger");
+		}			
+	}
 }

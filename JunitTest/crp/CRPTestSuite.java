@@ -5,15 +5,16 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
-* This class is the test suit for all the test cases
-* @author mohan
-*/
+ * This clas
+ * @author mkarun2
+ *
+ */
 @RunWith(Suite.class)
 @SuiteClasses({
 	LoginServiceTestCases.class//,othertestclass.class
 	
 	
-})public class AllTests
+})public class CRPTestSuite
 {
  /* empty class */
 }

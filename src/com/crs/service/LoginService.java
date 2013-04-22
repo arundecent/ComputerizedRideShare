@@ -6,12 +6,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 import org.apache.commons.codec.digest.DigestUtils;
-
 
 import com.crs.dao.CrsDAO;
 import com.crs.interfaces.LoginServiceInterface;
@@ -28,12 +25,19 @@ import com.crs.model.EmployeeForm;
  * @author subbu/mohan
  *
  */
+@SuppressWarnings("rawtypes")
 public class LoginService implements LoginServiceInterface{
 	
 	//CrsDAO to make database transactions
 	private CarPoolForm carPoolGroup ;
+	
 	private CarPoolMemberForm carPoolMember;
 	private CrsDAO dao;
+	
+	//salt for the password hash
+	private String strSalt;
+	
+	
 	
 	public CarPoolForm getCarPoolGroup() {
 		return carPoolGroup;
@@ -50,11 +54,6 @@ public class LoginService implements LoginServiceInterface{
 	public void setCarPoolMember(CarPoolMemberForm carPoolMember) {
 		this.carPoolMember = carPoolMember;
 	}
-
-	//salt for the password hash
-	private String strSalt;
-	
-	
 	
 	public String getStrSalt() {
 		return strSalt;
@@ -90,6 +89,10 @@ public class LoginService implements LoginServiceInterface{
 		//PropertyConfigurator.configure("Log4j/log4j.properties");
 	}
 	
+	public CarPoolMemberForm getCarPoolMemberDetails(){
+		return getCarPoolMember();
+	}
+	
 	
 	/**
 	 * This method is used to employee details after 
@@ -97,6 +100,8 @@ public class LoginService implements LoginServiceInterface{
 	 * @return EmployeeForm (Employee bean)
 	 * @author Subbu/mohan
 	 */
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List login(EmployeeForm employee) {
 		
@@ -164,6 +169,7 @@ public class LoginService implements LoginServiceInterface{
 		
 		return false;
 	}*/
+	
 
 	/**
 	 * This method is used to register a new user which takes the 
@@ -172,6 +178,7 @@ public class LoginService implements LoginServiceInterface{
 	 * @return EmployeeForm
 	 * @author Subbu/mohan
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List registerNewUser(EmployeeForm employee) {
 		
@@ -258,10 +265,11 @@ public class LoginService implements LoginServiceInterface{
 		return tempList;
 	}
 	
-	public CarPoolMemberForm getCarPoolMemberDetails(){
-		return getCarPoolMember();
-	}
 	
+	/**
+	 * Return the carpool member group from the
+	 * database
+	 */
 	public CarPoolForm getCarPoolGroupDetails() {
 		if(getCarPoolMember() != null){
 		carPoolGroup = dao.getCarPoolGroupDetails(getCarPoolMember().getCarpoolID());
@@ -271,12 +279,18 @@ public class LoginService implements LoginServiceInterface{
 			return null;
 	}
 	
+	/**
+	 * retrieve the employee details given the email ID
+	 */
 	public EmployeeForm getEmployeeDetails(EmployeeForm employee){
 		EmployeeForm employeeDetails = dao.getLoginRecord(employee);
 		return employeeDetails;
 	}
 	
-	
+	/**
+	 * Create a new carpool member 
+	 * @param carPoolMember
+	 */
 	public void createNewMember(CarPoolMemberForm carPoolMember){
 		dao.createNewMember(carPoolMember);
 		
@@ -341,7 +355,9 @@ public class LoginService implements LoginServiceInterface{
 		return salt;
 	}
 	
-	
+	/**
+	 * Save  employee details during update
+	 */
 	public void saveDetails(EmployeeForm employee){
 
 		employee.setSalt(this.getStrSalt());

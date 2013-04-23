@@ -11,7 +11,7 @@ import com.crs.model.EmployeeForm;
 import com.crs.service.ScheduleService;
 /**
  * This class contains all the test cases to check the
- * methods in the LoginService.java
+ * methods in the ScheduleService.java
  * @author Rajeev
  *
  */

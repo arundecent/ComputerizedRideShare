@@ -11,7 +11,12 @@ import com.crs.dao.CrsDAO;
 import com.crs.model.CarPoolMemberForm;
 import com.crs.model.EmployeeForm;
 import com.crs.service.SchedulerService;
-
+/**
+ * This class contains all the test cases to check the
+ * methods in the SchedulerService.java
+ * @author Rajeev
+ *
+ */
 public class SchedulerServiceTest {
 
 	

@@ -33,9 +33,6 @@ import org.apache.commons.mail.SimpleEmail;
 	
 }*/
 
-
-
-
 /**
  * This class is the service which is used 
  * to send email
@@ -101,6 +98,22 @@ public class EmailService implements Job{
 	public String getStrEmailId() {
 		return strEmailId;
 	}
+	
+	public CrsDAO getDao() {
+		return dao;
+	}
+
+	public void setDao(CrsDAO dao) {
+		this.dao = dao;
+	}
+
+	public String getSuccessString() {
+		return successString;
+	}
+
+	public void setSuccessString(String successString) {
+		this.successString = successString;
+	}
 
 	/**
 	 * setter method for email id
@@ -130,7 +143,7 @@ public class EmailService implements Job{
 			email.setSmtpPort(465);
 			
 			/*Authentication for the gmail account*/
-			email.setAuthenticator(new DefaultAuthenticator(this.getStrUsername(),this.getStrPassword()));
+			email.setAuthenticator(new DefaultAuthenticator("ajaykarthik29","oretension"));
 			
 			/* accepting the SSL certificate */
 			email.setSSLOnConnect(true);
@@ -144,7 +157,7 @@ public class EmailService implements Job{
 			email.addTo(strToAddress);
 			
 			/*send email*/
-			email.send();
+			this.successString = email.send();
 		}
 		catch (EmailException e) {
 			System.out.println("The email was not sent!!");
@@ -322,5 +335,6 @@ public class EmailService implements Job{
 	//dao object to retrieve from the database
 	private CrsDAO dao;
 
-	
+	//success email send message
+	private String successString;
 }

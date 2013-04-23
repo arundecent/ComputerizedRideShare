@@ -10,8 +10,8 @@ import org.junit.runners.Suite.SuiteClasses;
 */
 @RunWith(Suite.class)
 @SuiteClasses({
-	LoginServiceTestCases.class//,othertestclass.class
-	
+	//LoginServiceTestCases.class,
+	EmailServiceTest.class
 	
 })public class AllTests
 {

@@ -158,6 +158,7 @@ public class EmailService implements Job{
 			
 			/*send email*/
 			this.successString = email.send();
+	
 		}
 		catch (EmailException e) {
 			System.out.println("The email was not sent!!");

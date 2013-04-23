@@ -52,7 +52,7 @@ public class SchedulerServiceTest {
 		em.setPassword("password");
 		em.setPhoneNo("312-361-4284");
 		em.setPoints(10);
-	d.cancelCarpoolDrive(carp);
+		d.cancelCarpoolDrive(carp);
 		if(carp.getEmployee().getPoints() > 0)
 		{
 			assertTrue("Employee can cancel",true);

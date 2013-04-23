@@ -49,9 +49,7 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/quartz-backward-compat-2.1.7.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/quartz-commonj-2.1.7.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-api-1.6.1.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-api-1.7.5.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-jdk14-1.7.5.jar"/>
-	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-log4j12-1.6.1.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/slf4j-log4j12-1.7.5.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/struts2-core-2.3.12.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/struts2-jquery-plugin-3.5.1.jar"/>

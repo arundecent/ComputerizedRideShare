@@ -35,7 +35,6 @@ public class ScheduleServiceTest {
 			List<CarPoolMemberForm> carpoolList = new ArrayList<CarPoolMemberForm>();
 			ScheduleService j = new ScheduleService();
 			carpoolList = j.getFreeCarpoolList();
-			//carpoolList.equals(4);
 			if(carpoolList != null & carpoolList.size() > 0)
 			{
 				assertTrue("carpools displayed",true);

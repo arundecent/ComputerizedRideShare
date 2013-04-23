@@ -35,7 +35,7 @@ public class MyBatisConnectionFactoryTest {
 			// TODO: handle exception
 		}
 	}
-
+// Check whether connection has established or not
 	public void testGetSqlSessionFactoryFailed() throws Exception {
 		try
 		{

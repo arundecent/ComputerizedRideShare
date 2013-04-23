@@ -36,7 +36,8 @@ public class CrsDAOTest {
 			EmployeeForm employee = null;
 			CrsDAO crs = new CrsDAO();
 			crs.getLoginRecord(employee);
-			if(employee != null){
+			boolean test = (employee != null);
+			if(test){
 				assertTrue("employee recoed fetched", false);
 			}
 			else
@@ -56,9 +57,9 @@ public class CrsDAOTest {
 	public void testGetLoginRecordcon() {
 		try
 		{
-			CrsDAO bat = new CrsDAO();
 			SqlSessionFactory sqlSessionFactory = null;
-			if(sqlSessionFactory == null)
+			boolean test = ( sqlSessionFactory == null);
+			if(test)
 			{
 				assertTrue("Problem with connection",true);
 			}else{
@@ -89,7 +90,8 @@ public class CrsDAOTest {
 			em.setPoints(10);
 			CrsDAO crs = new CrsDAO();
 			crs.getLoginRecord(em);
-			if(em != null)
+			boolean test = (em != null);
+			if(test)
 			{
 				assertTrue("employee record fetched", true);
 			}
@@ -109,9 +111,9 @@ public class CrsDAOTest {
 		public void testGetLoginRecordWithEmpIDcon() {
 			try
 			{
-				CrsDAO bat = new CrsDAO();
 				SqlSessionFactory sqlSessionFactory = null;
-				if(sqlSessionFactory == null)
+				boolean test = ( sqlSessionFactory == null);
+				if(test)
 				{
 					assertTrue("Problem with connection",true);
 				}else{
@@ -130,7 +132,8 @@ public class CrsDAOTest {
 			int empID=20013;
 		CrsDAO crs = new CrsDAO();
 		SqlSessionFactory sqlSessionFactory = null;
-		if(sqlSessionFactory == null)
+		boolean test = ( sqlSessionFactory == null);
+		if(test)
 		{
 			assertTrue("Problem with connection",true);
 		}else{
@@ -156,9 +159,9 @@ public class CrsDAOTest {
 			public void testInsertEmployeeRecordcon() {
 				try
 				{
-					CrsDAO bat = new CrsDAO();
 					SqlSessionFactory sqlSessionFactory = null;
-					if(sqlSessionFactory == null)
+					boolean test = ( sqlSessionFactory == null);
+					if(test)
 					{
 						assertTrue("Problem with connection",true);
 					}else{
@@ -191,13 +194,14 @@ assertSame("data inserted successfully", crs, em);
 			//assertArrayEquals(inserted succesfully, bat, em);
 			//if(a == em)
 			//assertTrue(crs.insertEmployeeRecord(em);)
-			SqlSessionFactory sqlSessionFactory = null;
-			if(sqlSessionFactory == null)
-			{
-				assertTrue("Problem with connection",true);
-			}else{
-				assertTrue("Active connection",false);
-			}
+SqlSessionFactory sqlSessionFactory = null;
+boolean test = ( sqlSessionFactory == null);
+if(test)
+{
+	assertTrue("Problem with connection",true);
+}else{
+	assertTrue("Active connection",false);
+}
 			
 		}
 		catch (Exception e) {
@@ -211,9 +215,9 @@ assertSame("data inserted successfully", crs, em);
 				public void testGetCarPoolGroupcon() {
 					try
 					{
-						CrsDAO bat = new CrsDAO();
 						SqlSessionFactory sqlSessionFactory = null;
-						if(sqlSessionFactory == null)
+						boolean test = ( sqlSessionFactory == null);
+						if(test)
 						{
 							assertTrue("Problem with connection",true);
 						}else{
@@ -234,9 +238,9 @@ assertSame("data inserted successfully", crs, em);
 	public void testGetCarPoolGroupDetailscon() {
 		try
 		{
-			CrsDAO bat = new CrsDAO();
 			SqlSessionFactory sqlSessionFactory = null;
-			if(sqlSessionFactory == null)
+			boolean test = ( sqlSessionFactory == null);
+			if(test)
 			{
 				assertTrue("Problem with connection",true);
 			}else{
@@ -258,9 +262,9 @@ assertSame("data inserted successfully", crs, em);
 		public void testInsertNewMemberRecordcon() {
 			try
 			{
-				CrsDAO bat = new CrsDAO();
 				SqlSessionFactory sqlSessionFactory = null;
-				if(sqlSessionFactory == null)
+				boolean test = ( sqlSessionFactory == null);
+				if(test)
 				{
 					assertTrue("Problem with connection",true);
 				}else{
@@ -283,9 +287,9 @@ assertSame("data inserted successfully", crs, em);
 			public void testProcessEmergencyRequestcon() {
 				try
 				{
-					CrsDAO bat = new CrsDAO();
 					SqlSessionFactory sqlSessionFactory = null;
-					if(sqlSessionFactory == null)
+					boolean test = ( sqlSessionFactory == null);
+					if(test)
 					{
 						assertTrue("Problem with connection",true);
 					}else{
@@ -306,9 +310,9 @@ assertSame("data inserted successfully", crs, em);
 				public void testFetchMembersEmailIDcon() {
 					try
 					{
-						CrsDAO bat = new CrsDAO();
 						SqlSessionFactory sqlSessionFactory = null;
-						if(sqlSessionFactory == null)
+						boolean test = ( sqlSessionFactory == null);
+						if(test)
 						{
 							assertTrue("Problem with connection",true);
 						}else{
@@ -331,9 +335,9 @@ assertSame("data inserted successfully", crs, em);
 	public void testCheckOutcon() {
 		try
 		{
-			CrsDAO bat = new CrsDAO();
 			SqlSessionFactory sqlSessionFactory = null;
-			if(sqlSessionFactory == null)
+			boolean test = ( sqlSessionFactory == null);
+			if(test)
 			{
 				assertTrue("Problem with connection",true);
 			}else{
@@ -355,9 +359,9 @@ assertSame("data inserted successfully", crs, em);
 		public void testCheckIncon() {
 			try
 			{
-				CrsDAO bat = new CrsDAO();
 				SqlSessionFactory sqlSessionFactory = null;
-				if(sqlSessionFactory == null)
+				boolean test = ( sqlSessionFactory == null);
+				if(test)
 				{
 					assertTrue("Problem with connection",true);
 				}else{
@@ -379,9 +383,9 @@ assertSame("data inserted successfully", crs, em);
 			public void testCreateNewMembercon() {
 				try
 				{
-					CrsDAO bat = new CrsDAO();
 					SqlSessionFactory sqlSessionFactory = null;
-					if(sqlSessionFactory == null)
+					boolean test = ( sqlSessionFactory == null);
+					if(test)
 					{
 						assertTrue("Problem with connection",true);
 					}else{
@@ -404,9 +408,9 @@ assertSame("data inserted successfully", crs, em);
 				public void testCreateNewCarPoolGroupcon() {
 					try
 					{
-						CrsDAO bat = new CrsDAO();
 						SqlSessionFactory sqlSessionFactory = null;
-						if(sqlSessionFactory == null)
+						boolean test = ( sqlSessionFactory == null);
+						if(test)
 						{
 							assertTrue("Problem with connection",true);
 						}else{
@@ -428,9 +432,9 @@ assertSame("data inserted successfully", crs, em);
 	public void testRetrieveAllFreeCarpoolGroupscon() {
 		try
 		{
-			CrsDAO bat = new CrsDAO();
 			SqlSessionFactory sqlSessionFactory = null;
-			if(sqlSessionFactory == null)
+			boolean test = ( sqlSessionFactory == null);
+			if(test)
 			{
 				assertTrue("Problem with connection",true);
 			}else{
@@ -452,9 +456,9 @@ assertSame("data inserted successfully", crs, em);
 		public void testRetrieveDriverscon() {
 			try
 			{
-				CrsDAO bat = new CrsDAO();
 				SqlSessionFactory sqlSessionFactory = null;
-				if(sqlSessionFactory == null)
+				boolean test = ( sqlSessionFactory == null);
+				if(test)
 				{
 					assertTrue("Problem with connection",true);
 				}else{
@@ -482,9 +486,9 @@ assertSame("data inserted successfully", crs, em);
 			public void testUpdateCurrentDrivercon() {
 				try
 				{
-					CrsDAO bat = new CrsDAO();
 					SqlSessionFactory sqlSessionFactory = null;
-					if(sqlSessionFactory == null)
+					boolean test = ( sqlSessionFactory == null);
+					if(test)
 					{
 						assertTrue("Problem with connection",true);
 					}else{
@@ -507,9 +511,9 @@ assertSame("data inserted successfully", crs, em);
 				public void testUpdateNextDrivercon() {
 					try
 					{
-						CrsDAO bat = new CrsDAO();
 						SqlSessionFactory sqlSessionFactory = null;
-						if(sqlSessionFactory == null)
+						boolean test = ( sqlSessionFactory == null);
+						if(test)
 						{
 							assertTrue("Problem with connection",true);
 						}else{
@@ -531,9 +535,9 @@ assertSame("data inserted successfully", crs, em);
 	public void testGetNextDrivercon() {
 		try
 		{
-			CrsDAO bat = new CrsDAO();
 			SqlSessionFactory sqlSessionFactory = null;
-			if(sqlSessionFactory == null)
+			boolean test = ( sqlSessionFactory == null);
+			if(test)
 			{
 				assertTrue("Problem with connection",true);
 			}else{
@@ -555,9 +559,9 @@ assertSame("data inserted successfully", crs, em);
 		public void testUpdateTemporaryDrivercon() {
 			try
 			{
-				CrsDAO bat = new CrsDAO();
 				SqlSessionFactory sqlSessionFactory = null;
-				if(sqlSessionFactory == null)
+				boolean test = ( sqlSessionFactory == null);
+				if(test)
 				{
 					assertTrue("Problem with connection",true);
 				}else{
@@ -578,9 +582,9 @@ assertSame("data inserted successfully", crs, em);
 			public void testRetrievePassengerscon() {
 				try
 				{
-					CrsDAO bat = new CrsDAO();
 					SqlSessionFactory sqlSessionFactory = null;
-					if(sqlSessionFactory == null)
+					boolean test = ( sqlSessionFactory == null);
+					if(test)
 					{
 						assertTrue("Problem with connection",true);
 					}else{
@@ -600,9 +604,9 @@ assertSame("data inserted successfully", crs, em);
 				public void testRetrieveMemberscon() {
 					try
 					{
-						CrsDAO bat = new CrsDAO();
 						SqlSessionFactory sqlSessionFactory = null;
-						if(sqlSessionFactory == null)
+						boolean test = ( sqlSessionFactory == null);
+						if(test)
 						{
 							assertTrue("Problem with connection",true);
 						}else{
@@ -624,9 +628,9 @@ assertSame("data inserted successfully", crs, em);
 	public void testGetLatestCarpoolGroupcon() {
 		try
 		{
-			CrsDAO bat = new CrsDAO();
 			SqlSessionFactory sqlSessionFactory = null;
-			if(sqlSessionFactory == null)
+			boolean test = ( sqlSessionFactory == null);
+			if(test)
 			{
 				assertTrue("Problem with connection",true);
 			}else{
@@ -647,9 +651,9 @@ assertSame("data inserted successfully", crs, em);
 		public void testCancelCarpoolPickUpcon() {
 			try
 			{
-				CrsDAO bat = new CrsDAO();
 				SqlSessionFactory sqlSessionFactory = null;
-				if(sqlSessionFactory == null)
+				boolean test = ( sqlSessionFactory == null);
+				if(test)
 				{
 					assertTrue("Problem with connection",true);
 				}else{
@@ -670,9 +674,9 @@ assertSame("data inserted successfully", crs, em);
 			public void testOptOutCrpcon() {
 				try
 				{
-					CrsDAO bat = new CrsDAO();
 					SqlSessionFactory sqlSessionFactory = null;
-					if(sqlSessionFactory == null)
+					boolean test = ( sqlSessionFactory == null);
+					if(test)
 					{
 						assertTrue("Problem with connection",true);
 					}else{
@@ -692,9 +696,9 @@ assertSame("data inserted successfully", crs, em);
 				public void testCancelCarpoolDrivecon() {
 					try
 					{
-						CrsDAO bat = new CrsDAO();
 						SqlSessionFactory sqlSessionFactory = null;
-						if(sqlSessionFactory == null)
+						boolean test = ( sqlSessionFactory == null);
+						if(test)
 						{
 							assertTrue("Problem with connection",true);
 						}else{
@@ -715,9 +719,9 @@ assertSame("data inserted successfully", crs, em);
 	public void testGetEmployeeRecordcon() {
 		try
 		{
-			CrsDAO bat = new CrsDAO();
 			SqlSessionFactory sqlSessionFactory = null;
-			if(sqlSessionFactory == null)
+			boolean test = ( sqlSessionFactory == null);
+			if(test)
 			{
 				assertTrue("Problem with connection",true);
 			}else{
@@ -737,9 +741,9 @@ assertSame("data inserted successfully", crs, em);
 		public void testOptOutCarpoolcon() {
 			try
 			{
-				CrsDAO bat = new CrsDAO();
 				SqlSessionFactory sqlSessionFactory = null;
-				if(sqlSessionFactory == null)
+				boolean test = ( sqlSessionFactory == null);
+				if(test)
 				{
 					assertTrue("Problem with connection",true);
 				}else{
@@ -761,9 +765,9 @@ assertSame("data inserted successfully", crs, em);
 			public void testGetMemberInfocon() {
 				try
 				{
-					CrsDAO bat = new CrsDAO();
 					SqlSessionFactory sqlSessionFactory = null;
-					if(sqlSessionFactory == null)
+					boolean test = ( sqlSessionFactory == null);
+					if(test)
 					{
 						assertTrue("Problem with connection",true);
 					}else{
@@ -783,9 +787,9 @@ assertSame("data inserted successfully", crs, em);
 				public void testUpdateUserDetailscon() {
 					try
 					{
-						CrsDAO bat = new CrsDAO();
 						SqlSessionFactory sqlSessionFactory = null;
-						if(sqlSessionFactory == null)
+						boolean test = ( sqlSessionFactory == null);
+						if(test)
 						{
 							assertTrue("Problem with connection",true);
 						}else{

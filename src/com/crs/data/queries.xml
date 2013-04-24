@@ -71,9 +71,9 @@
 		UPDATE EMPLOYEE SET POINTS = POINTS - 3 WHERE EMPLOYEE_ID = #{empID}
 	</update>
 	
-	<update id="modifyUserDetails" parameterType="com.crs.model.CarPoolMemberForm">
+	<update id="modifyUserDetails" parameterType="com.crs.model.EmployeeForm">
 		UPDATE EMPLOYEE 
-		SET  password = #{password}, sec_question = #{securityQn}, sec_answer = #{securityAns}, phone = #{phoneNo}, notify_type = 0, address = #{address}
+		SET  salt = #{salt}, password = #{password}, sec_question = #{securityQn}, sec_answer = #{securityAns}, phone = #{phoneNo}, notify_type = 0, address = #{address}
 		WHERE EMPLOYEE_ID = #{employeeID}
 	</update>
 	

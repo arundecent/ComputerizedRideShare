@@ -344,7 +344,8 @@ public class LoginService implements LoginServiceInterface{
 	
 	public void saveDetails(EmployeeForm employee){
 
-		employee.setSalt(this.getStrSalt());
+		
+		employee.setSalt(this.generateSalt());
 		employee.setPassword(this.generateMD5HashForPasswordWithSalt(employee.getPassword()));
 		
 		/*

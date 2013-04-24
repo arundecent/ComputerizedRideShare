@@ -79,9 +79,20 @@ public class CrsDAOTest {
 
 	@Test
 	public void testInsertEmployeeRecord() {
-		EmployeeForm employee = new EmployeeForm();
-		employee.setEmployeeID(20013);
-		//void tempEmployee = dao.insertEmployeeRecord(employee);
+		CrsDAO crs = new CrsDAO();
+		EmployeeForm em = new EmployeeForm();
+		em.setEmployeeID(20013);
+		em.setAddress("835 S Laflin");
+		em.setEmailID("rvisha2@uic.edu");
+		em.setEmployeeID(1);
+		em.setFirstName("Rajeev Reddy");
+		em.setLastName("Vishaka");
+		em.setNotifyType(1);
+		em.setPassword("password");
+		em.setPhoneNo("312-361-4284");
+		em.setPoints(10);
+		
+		//EmployeeForm tempEmployee = crs.insertEmployeeRecord(em);
 	}
 /*
  * getting carpool details

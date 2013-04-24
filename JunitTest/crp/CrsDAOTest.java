@@ -10,6 +10,7 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 
 import com.crs.dao.CrsDAO;
+import com.crs.model.CarPoolForm;
 import com.crs.model.EmployeeForm;
 
 
@@ -58,7 +59,10 @@ public class CrsDAOTest {
 			assertTrue("Employee record received", true);
 		}
 	}
-	
+	/**
+	 * Test case for getting the login record
+	 * using employee Employee ID.
+	 */
 
 	@Test
 	public void testGetLoginRecordWithEmpID() {
@@ -75,17 +79,40 @@ public class CrsDAOTest {
 
 	@Test
 	public void testInsertEmployeeRecord() {
-		
+		EmployeeForm employee = new EmployeeForm();
+		employee.setEmployeeID(20013);
+		//void tempEmployee = dao.insertEmployeeRecord(employee);
 	}
-
+/*
+ * getting carpool details
+ */
 	@Test
 	public void testGetCarPoolGroup() {
-		fail("Not yet implemented");
+		//CarPoolForm carPoolForm = new CarPoolForm();
+		CarPoolForm car = dao.getCarPoolGroup();
+		boolean test = (car == null );
+		if(test){
+			assertTrue("No carpool group retireved", false);
+		}else{
+			assertTrue("Carpool group retrieved", true);
+		}
 	}
 
+	
+	/*
+	 * Getting carpool details using carpool ID
+	 */
 	@Test
 	public void testGetCarPoolGroupDetails() {
-		fail("Not yet implemented");
+		CarPoolForm carform = new CarPoolForm();
+		carform.setCarpoolID(1234);
+		CarPoolForm car = dao.getCarPoolGroupDetails(1234);
+		boolean test = (car == null );
+		if(test){
+			assertTrue("No carpool group retireved", false);
+		}else{
+			assertTrue("Carpool group retrieved", true);
+		}	
 	}
 
 	@Test

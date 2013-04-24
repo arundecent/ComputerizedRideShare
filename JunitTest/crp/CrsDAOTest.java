@@ -1,6 +1,8 @@
 package crp;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
+
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -57,4 +59,148 @@ public class CrsDAOTest {
 		}
 	}
 	
+
+	@Test
+	public void testGetLoginRecordWithEmpID() {
+		EmployeeForm employee = new EmployeeForm();
+		employee.setEmployeeID(20013);
+		EmployeeForm tempEmployee = dao.getLoginRecordWithEmpID(20013);
+		boolean test = (tempEmployee == null );
+		if(test){
+			assertTrue("Employee record not received or employee not present in the database", false);
+		}else{
+			assertTrue("Employee record received", true);
+		}
+	}
+
+	@Test
+	public void testInsertEmployeeRecord() {
+		
+	}
+
+	@Test
+	public void testGetCarPoolGroup() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetCarPoolGroupDetails() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testInsertNewMemberRecord() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testProcessEmergencyRequest() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testFetchMembersEmailID() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCheckOut() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCheckIn() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCreateNewMember() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCreateNewCarPoolGroup() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testRetrieveAllFreeCarpoolGroups() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testRetrieveDrivers() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testUpdateCurrentDriver() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testUpdateNextDriver() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetNextDriver() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testUpdateTemporaryDriver() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testRetrievePassengers() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testRetrieveMembers() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetLatestCarpoolGroup() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCancelCarpoolPickUp() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testOptOutCrp() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCancelCarpoolDrive() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetEmployeeRecord() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testOptOutCarpool() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetMemberInfo() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testUpdateUserDetails() {
+		fail("Not yet implemented");
+	}
+
 }

@@ -82,7 +82,7 @@
     </select>
     
     <select id="getMemberDetails" parameterType="int" resultMap="result">
-    	SELECT * FROM CarpoolMember WHERE employee_id = #{employeeID}
+    	SELECT * FROM CarpoolMember WHERE employee_id = #{employeeID} LIMIT 1
     </select>
     
     <select id="getCarpoolMemberDrivers" parameterType="int" resultMap="resultCarpoolMember">

@@ -287,7 +287,7 @@ public class LoginServiceTestCases{
 		LoginService ls = new LoginService();
 		//#{emailID},#{password},#{salt},#{firstName},#{lastName},#{securityQn},#{securityAns},#{phoneNo},#{notifyType},#{address}
 		
-		employee.setEmailID("koolsundar15@gmail.com");
+		employee.setEmailID("abcd@gmail.com");
 		employee.setSalt(ls.getStrSalt());
 		employee.setPassword("mohan");
 		employee.setPassword(ls.generateMD5HashForPasswordWithSalt(employee.getPassword()));

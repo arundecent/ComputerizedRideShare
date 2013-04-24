@@ -77,8 +77,8 @@ public class CrsDAOTest {
 	@Test
 	public void testGetLoginRecordWithEmpID() {
 		EmployeeForm employee = new EmployeeForm();
-		employee.setEmployeeID(20013);
-		EmployeeForm tempEmployee = dao.getLoginRecordWithEmpID(20013);
+		employee.setEmployeeID(20032);
+		EmployeeForm tempEmployee = dao.getLoginRecordWithEmpID(20032);
 		boolean test = (tempEmployee == null );
 		if(test){
 			assertTrue("Employee record not received or employee not present in the database", false);
@@ -93,7 +93,7 @@ public class CrsDAOTest {
 		LoginService ls = new LoginService();
 		EmployeeForm em = new EmployeeForm();
 		
-		em.setEmployeeID(20013);
+		em.setEmployeeID(20056);
 		em.setAddress("835 S Laflin");
 		em.setEmailID("rvisha2@uic.edu");
 		em.setFirstName("Rajeev Reddy");
@@ -117,7 +117,6 @@ public class CrsDAOTest {
         }else{
                 assertTrue("Employee record was inserted", true);
         }
-		//EmployeeForm tempEmployee = crs.insertEmployeeRecord(em);
 	}
 /*
  * getting carpool details
@@ -156,15 +155,13 @@ public class CrsDAOTest {
 	@Test
 	public void testInsertNewMemberRecord() {
 		CarPoolMemberForm details = new CarPoolMemberForm();
-		details.setCarpoolID(2000);
-//		Date dateJoined= new Date(2013, 2, 12, 10, 23, 34);
-//		details.setDateJoined(dateJoined);
+		details.setCarpoolID(1234);
 		details.setIsDriver(1);
 		details.setIsTemporary(0);
-		details.setEmployeeID(2003);
+		details.setEmployeeID(20055);
 		details.setIsPickUp(1);
 		dao.insertNewMemberRecord(details);
-		CarPoolForm car = dao.getCarPoolGroupDetails(2000);
+		CarPoolForm car = dao.getCarPoolGroupDetails(1234);
 		boolean test = (car == null );
 		if(test){
 			assertTrue("No carpool group inserted", false);
@@ -172,30 +169,15 @@ public class CrsDAOTest {
 			assertTrue("inserted data is retrieved", true);
 		}
 	}
-/*
- * testing emergency request
- */
-	@Test
-	public void testProcessEmergencyRequest() {
-		CarPoolMemberForm carform = new CarPoolMemberForm();
-		carform.setCarpoolID(4009);
-		dao.processEmergencyRequest(carform);
-		CarPoolForm car = dao.getCarPoolGroupDetails(4009);
-		 boolean test = (car == null );
-        if(test){
-                assertTrue("Employee record was not inserted.", false);
-        }else{
-                assertTrue("Employee record was inserted", true);
-        }
-	}
+
 /*
  * checking member fetching using email ID
  */
 	@Test
 	public void testFetchMembersEmailID() {
 		CarPoolMemberForm carform = new CarPoolMemberForm();
-		carform.setCarpoolID(1234);
-		List car = dao.fetchMembersEmailID(1234);
+		carform.setCarpoolID(5009);
+		List car = dao.fetchMembersEmailID(5009);
 		boolean test = (car == null );
 		if(test){
 			assertTrue("No carpool group retireved", false);
@@ -237,28 +219,7 @@ public class CrsDAOTest {
 			assertTrue("Carpool group retrieved", true);
 		}	
 	}
-/*
- * creating new member insertion testing
- */
-	@Test
-	public void testCreateNewMember() {
-		CarPoolMemberForm details = new CarPoolMemberForm();
-		details.setCarpoolID(5000);
-//		Date dateJoined= new Date(2013, 2, 12, 10, 23, 34);
-//		details.setDateJoined(dateJoined);
-		details.setIsDriver(1);
-		details.setIsTemporary(0);
-		details.setEmployeeID(2001);
-		details.setIsPickUp(1);
-		dao.createNewMember(details);
-		CarPoolForm ca = dao.getCarPoolGroupDetails(5000);
-		boolean test = (ca == null );
-		if(test){
-			assertTrue("No carpool group retireved", false);
-		}else{
-			assertTrue("Carpool group retrieved", true);
-		}	
-	}
+
 /*
  * creating a new carpool group
  * depends on the car pool ID given

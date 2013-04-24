@@ -18,13 +18,15 @@ import com.crs.dao.CrsDAO;
 import com.crs.model.CarPoolForm;
 import com.crs.model.CarPoolMemberForm;
 import com.crs.model.EmployeeForm;
+import com.crs.service.LoginService;
 
 
 /**
  * This class contains all the test cases to check the methods in the
  * CrsDAOTest.java
- * @author Rajeev / Mohan
+ * @author Rajeev 
  */
+
 public class CrsDAOTest {
 		
 	private CrsDAO dao;	
@@ -35,6 +37,7 @@ public class CrsDAOTest {
 	
 	/**
 	 * Check for the database connection
+	 * @author mohan
 	 */
 	@BeforeClass
 	public static void setUp() {		
@@ -52,6 +55,7 @@ public class CrsDAOTest {
 	/**
 	 * Test case for getting the login record
 	 * using employee email id.
+	 *  @author mohan
 	 */
 	@Test
 	public void testGetLoginRecord(){
@@ -86,18 +90,24 @@ public class CrsDAOTest {
 	@Test
 	public void testInsertEmployeeRecord() {
 		CrsDAO crs = new CrsDAO();
+		LoginService ls = new LoginService();
 		EmployeeForm em = new EmployeeForm();
+		
 		em.setEmployeeID(20013);
 		em.setAddress("835 S Laflin");
 		em.setEmailID("rvisha2@uic.edu");
-		em.setEmployeeID(1);
 		em.setFirstName("Rajeev Reddy");
+		em.setSalt(ls.generateSalt());
 		em.setLastName("Vishaka");
-		em.setNotifyType(1);
-		em.setPassword("password");
+		em.setSecurityAns("answer");
+		em.setSecurityQn("Questions");
+		em.setNotifyType(0);
+		em.setPassword(ls.generateMD5HashForPasswordWithSalt("password"));
 		em.setPhoneNo("312-361-4284");
 		em.setPoints(10);
+		
 		dao.insertEmployeeRecord(em);
+		
         
         //To test whether insert was done/
         EmployeeForm tempEmployee = dao.getLoginRecord(em);
@@ -147,8 +157,8 @@ public class CrsDAOTest {
 	public void testInsertNewMemberRecord() {
 		CarPoolMemberForm details = new CarPoolMemberForm();
 		details.setCarpoolID(2000);
-		Date dateJoined= new Date(2013, 2, 12, 10, 23, 34);
-		details.setDateJoined(dateJoined);
+//		Date dateJoined= new Date(2013, 2, 12, 10, 23, 34);
+//		details.setDateJoined(dateJoined);
 		details.setIsDriver(1);
 		details.setIsTemporary(0);
 		details.setEmployeeID(2003);
@@ -179,7 +189,7 @@ public class CrsDAOTest {
         }
 	}
 /*
- * checking memeber fetching using email ID
+ * checking member fetching using email ID
  */
 	@Test
 	public void testFetchMembersEmailID() {
@@ -234,8 +244,8 @@ public class CrsDAOTest {
 	public void testCreateNewMember() {
 		CarPoolMemberForm details = new CarPoolMemberForm();
 		details.setCarpoolID(5000);
-		Date dateJoined= new Date(2013, 2, 12, 10, 23, 34);
-		details.setDateJoined(dateJoined);
+//		Date dateJoined= new Date(2013, 2, 12, 10, 23, 34);
+//		details.setDateJoined(dateJoined);
 		details.setIsDriver(1);
 		details.setIsTemporary(0);
 		details.setEmployeeID(2001);
@@ -270,58 +280,142 @@ public class CrsDAOTest {
 		}
 	}
 
+	/**
+	 * Retreive all free carpool groups
+	 *  @author mohan
+	 */
 	@Test
 	public void testRetrieveAllFreeCarpoolGroups() {
-		List<CarPoolMemberForm> carpoolList  = new ArrayList<CarPoolMemberForm>();
-		//carpoolList.add(1000, null);
+		List<CarPoolMemberForm> listCarpools;
 		
-		//List<Object> tempList = new ArrayList<Object>();
-		//Iterator<Object> it = {5009,5010};
+		listCarpools = dao.retrieveAllFreeCarpoolGroups();
+		boolean test = (listCarpools != null);
+		if(test){
+			
+			boolean test2 = (listCarpools.size() > 0);
+			if(test2){
+				assertTrue("Free carpools groups retrieved", true);
+			}else{
+				assertTrue("There are no free carpool groups", true);
+			}
+		}else{
+			assertTrue("Free carpools groups not retrieved.", false);
+		}
 		
 	}
 
+	/**
+	 * retrieve drivers list
+	 *  @author mohan
+	 */
 	@Test
 	public void testRetrieveDrivers() {
-		fail("Not yet implemented");
+		ArrayList<CarPoolMemberForm> listDriver;
+		listDriver = dao.retrieveDrivers();
+		boolean test = (listDriver != null);
+		if(test){
+			boolean test2 = (listDriver.size() > 0);
+			if(test2){
+				assertTrue("Drivers retrieved", true);
+			}else{
+				assertTrue("There are no drivers", true);
+			}
+		}else{
+			assertTrue("Drivers not retrieved. Exception", false);
+		}
 	}
-/*
- * updating the curent driver
- */
+	
+	
+	/*
+	 * updating the curent driver
+	 *  @author mohan
+	 */
 	@Test
 	public void testUpdateCurrentDriver() {
-		CrsDAO crs =  new CrsDAO();
-		crs.updateCurrentDriver(20013);
-		ArrayList<CarPoolMemberForm> arr = new ArrayList<CarPoolMemberForm>();
-		boolean test = (arr == null );
-		if(test){
-			assertTrue("No drivers retireved", false);
-		}else{
-			assertTrue("drivers retrieved", true);
+
+		CarPoolMemberForm cm = dao.getMemberInfo(20013);		
+		if (cm != null) {
+			dao.updateCurrentDriver(20013);
+			cm = dao.getMemberInfo(20013);
+			boolean test = (cm == null );
+			if(test){
+				assertTrue("No drivers updated", false);
+			}else{
+				
+				int isDriver = cm.getIsDriver();
+				boolean test2 = (isDriver == 1);
+				if(test2){
+					assertTrue("drivers updated", true);
+				}else{
+					assertTrue("driver not updated", false);
+				}
+			}
+		}else {
+			assertTrue("member not present", false);
 		}
 	}
 
+	/**
+	 * update next driver
+	 *  @author mohan
+	 */
 	@Test
 	public void testUpdateNextDriver() {
-		CrsDAO crs =  new CrsDAO();
-		crs.updateNextDriver(20013);
-		ArrayList<CarPoolMemberForm> arr = new ArrayList<CarPoolMemberForm>();
-		boolean test = (arr == null );
-		if(test){
-			assertTrue("No drivers updated", false);
-		}else{
-			assertTrue("drivers retrieved", true);
+	
+		CarPoolMemberForm cm = dao.getMemberInfo(20013);
+		if (cm != null) {
+			dao.updateNextDriver(20013);
+			cm = dao.getMemberInfo(20013);
+
+			boolean test = (cm == null);
+			if (test) {
+				assertTrue("No drivers updated", false);
+			} else {
+
+				int isDriver = cm.getIsDriver();
+				boolean test2 = (isDriver == 1);
+				if (test2) {
+					assertTrue("drivers updated", true);
+				} else {
+					assertTrue("driver not updated", false);
+				}
+			}
+		} else {
+			assertTrue("member not present", false);
 		}
 	}
 
-	@Test
-	public void testGetNextDriver() {
-		fail("Not yet implemented");
-	}
-
+	/**
+	 * Update temporary driver
+	 *  @author mohan
+	 */
 	@Test
 	public void testUpdateTemporaryDriver() {
-		fail("Not yet implemented");
+		
+		CarPoolMemberForm cm = dao.getMemberInfo(20013);
+		if (cm != null) {
+			dao.updateTemporaryDriver(20013);
+			cm = dao.getMemberInfo(20013);
+
+			boolean test = (cm == null);
+			if (test) {
+				assertTrue("No drivers updated", false);
+			} else {
+
+				int isDriver = cm.getIsDriver();
+				int isTemp = cm.getIsTemporary();
+				boolean test2 = ((isDriver == 1) && (isTemp == 1));
+				if (test2) {
+					assertTrue("temporary driver updated", true);
+				} else {
+					assertTrue("temporary driver not updated correctly", false);
+				}
+			}
+		} else {
+			assertTrue("member not present", false);
+		}
 	}
+	
 /*
  * retrieving all the passengers \
  *
@@ -371,9 +465,20 @@ public class CrsDAOTest {
 		}
 	}
 
+	/**
+	 * get the newly created carpool group
+	 *  @author mohan
+	 */
 	@Test
 	public void testGetLatestCarpoolGroup() {
-		fail("Not yet implemented");
+		
+		CarPoolForm cm = dao.getLatestCarpoolGroup();
+		boolean test = (cm == null);
+		if(test){
+			assertTrue("latest carpool group not retrieved", false);
+		}else{
+			assertTrue("latest carpool group retrieved", true);
+		}
 	}
 /*
  * testing cancel pickup
@@ -414,9 +519,50 @@ public class CrsDAOTest {
         }
 	}
 
+	/**
+	 * cancel car pool group
+	 *  @author mohan
+	 */
 	@Test
 	public void testCancelCarpoolDrive() {
-		fail("Not yet implemented");
+		CarPoolMemberForm carPoolMember = new CarPoolMemberForm();
+		carPoolMember.setEmployeeID(20013);
+		int beforePoints = 0;
+		CarPoolMemberForm cm = dao.getMemberInfo(20013);
+		EmployeeForm em = dao.getLoginRecordWithEmpID(20013);
+		
+		if(em != null){
+			beforePoints = em.getPoints();
+		}
+		
+		if (cm != null) {
+			
+			/*cancelled the driver*/
+			dao.cancelCarpoolDrive(carPoolMember);
+			
+			/*testing if done correctly*/
+			cm = dao.getMemberInfo(20013);
+			em = dao.getLoginRecordWithEmpID(20013);
+			
+			if (cm != null && em != null) {
+				
+				int isDriver = cm.getIsDriver();
+				int isTemp = cm.getIsTemporary();
+				int points = em.getPoints();
+				boolean test = ((isDriver == 1) && (isTemp == 2) && (points == (beforePoints - 3)));
+				if(test){
+					assertTrue("cancel driver update done successfully", true);
+				}else{
+					assertTrue("cancel driver update was not correctly done", false);
+				}
+				
+			} else {
+				assertTrue("member not present", false);
+			}
+		} else {
+			assertTrue("member not present", false);
+		}
+		
 	}
 /*
  * fetching employee details with empid
@@ -457,7 +603,7 @@ public class CrsDAOTest {
 		EmployeeForm em = new EmployeeForm();
 		em.setEmployeeID(20015);
 		dao.getMemberInfo(20015);
-CarPoolForm ca = dao.getCarPoolGroupDetails(5009);
+		CarPoolForm ca = dao.getCarPoolGroupDetails(5009);
 		
 		boolean test = (ca == null );
         if(test){
@@ -482,7 +628,7 @@ CarPoolForm ca = dao.getCarPoolGroupDetails(5009);
 		em.setPhoneNo("312-361-4284");
 		em.setPoints(10);
 		dao.updateUserDetails(em);
-		EmployeeForm e = dao.getEmployeeRecord(20015);
+		EmployeeForm e = dao.getEmployeeRecord(1);
 		boolean test = (e == null );
         if(test){
                 assertTrue("Employee record was not present", false);

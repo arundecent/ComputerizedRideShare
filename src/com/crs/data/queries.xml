@@ -96,7 +96,7 @@
 	<select id="getCarPoolGroup" resultMap="resultCarpool">
 		SELECT * FROM carpoolmember
 		GROUP BY carpool_id
-		HAVING COUNT(carpool_id) &lt; 4;
+		HAVING COUNT(carpool_id) &lt; 4 LIMIT 1;
 	</select>
 
 	<update id="updateRecord" parameterType="Employee">

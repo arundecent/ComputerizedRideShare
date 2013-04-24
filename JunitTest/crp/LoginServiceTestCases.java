@@ -82,7 +82,7 @@ public class LoginServiceTestCases{
 	@Test
 	public void testLoginValidLoginCredentials() {	
 		EmployeeForm employeeForm = new EmployeeForm();
-		employeeForm.setEmailID("asdas@gmail.com");
+		employeeForm.setEmailID("abcd@gmail.com");
 		employeeForm.setPassword("mohan");
 		List list = new LoginService().login(employeeForm);	
 		boolean test = (list != null);

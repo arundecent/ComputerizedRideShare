@@ -13,7 +13,9 @@ import org.junit.runners.Suite.SuiteClasses;
 	LoginServiceTestCases.class,
 	EmailServiceTest.class,
 	SchedulerServiceTest.class,
-	ScheduleServiceTest.class
+	ScheduleServiceTest.class,
+	MyBatisConnectionFactoryTest.class,
+	CrsDAOTest.class
 })public class CRPTestSuite
 {
  /* empty class */

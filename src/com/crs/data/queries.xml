@@ -60,7 +60,7 @@
 
 	<insert id="createNewMember" parameterType="com.crs.model.CarPoolMemberForm">
 		INSERT INTO CARPOOLMEMBER (DATE_JOINED, IS_DRIVER, PICK_UP, IS_TEMPORARY,EMPLOYEE_ID, CARPOOL_ID)
-		VALUES (#{dateJoined}, #{isDriver}, #{isPickUp}, #{isTemporary},#{employeeID}, #{carpoolID});
+		VALUES (#{dateJoined}, #{isDriver}, #{isPickUp}, #{isTemporary},#{employee.employeeID}, #{carpoolID});
 	</insert>
 
 	<insert id="createNewCarPoolGroup" useGeneratedKeys="true" keyProperty="carpoolID">

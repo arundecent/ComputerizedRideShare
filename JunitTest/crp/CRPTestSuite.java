@@ -6,7 +6,8 @@ import org.junit.runners.Suite.SuiteClasses;
 
 /**
 * This class is the test suit for all the test cases
-* @author mohan
+* Classes in this suite are only implemented
+* @author mohan/ Rajeev
 */
 @RunWith(Suite.class)
 @SuiteClasses({

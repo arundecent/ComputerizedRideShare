@@ -149,26 +149,7 @@ public class CrsDAOTest {
 			assertTrue("Carpool group retrieved", true);
 		}	
 	}
-/*
- * testing insertion of new members record
- */
-	@Test
-	public void testInsertNewMemberRecord() {
-		CarPoolMemberForm details = new CarPoolMemberForm();
-		details.setCarpoolID(1234);
-		details.setIsDriver(1);
-		details.setIsTemporary(0);
-		details.setEmployeeID(20055);
-		details.setIsPickUp(1);
-		dao.insertNewMemberRecord(details);
-		CarPoolForm car = dao.getCarPoolGroupDetails(1234);
-		boolean test = (car == null );
-		if(test){
-			assertTrue("No carpool group inserted", false);
-		}else{
-			assertTrue("inserted data is retrieved", true);
-		}
-	}
+
 
 /*
  * checking member fetching using email ID

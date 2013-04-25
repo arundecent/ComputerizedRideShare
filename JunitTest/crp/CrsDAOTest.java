@@ -24,7 +24,7 @@ import com.crs.service.LoginService;
 /**
  * This class contains all the test cases to check the methods in the
  * CrsDAOTest.java
- * @author Rajeev 
+ * @author Rajeev / Mohan
  */
 
 public class CrsDAOTest {
@@ -37,7 +37,7 @@ public class CrsDAOTest {
 	
 	/**
 	 * Check for the database connection
-	 * @author mohan
+	 *  
 	 */
 	@BeforeClass
 	public static void setUp() {		
@@ -55,7 +55,7 @@ public class CrsDAOTest {
 	/**
 	 * Test case for getting the login record
 	 * using employee email id.
-	 *  @author mohan
+	 *   
 	 */
 	@Test
 	public void testGetLoginRecord(){
@@ -243,7 +243,7 @@ public class CrsDAOTest {
 
 	/**
 	 * Retreive all free carpool groups
-	 *  @author mohan
+	 *   
 	 */
 	@Test
 	public void testRetrieveAllFreeCarpoolGroups() {
@@ -267,7 +267,7 @@ public class CrsDAOTest {
 
 	/**
 	 * retrieve drivers list
-	 *  @author mohan
+	 *   
 	 */
 	@Test
 	public void testRetrieveDrivers() {
@@ -289,7 +289,7 @@ public class CrsDAOTest {
 	
 	/*
 	 * updating the curent driver
-	 *  @author mohan
+	 *   
 	 */
 	@Test
 	public void testUpdateCurrentDriver() {
@@ -318,7 +318,7 @@ public class CrsDAOTest {
 
 	/**
 	 * update next driver
-	 *  @author mohan
+	 *   
 	 */
 	@Test
 	public void testUpdateNextDriver() {
@@ -348,7 +348,7 @@ public class CrsDAOTest {
 
 	/**
 	 * Update temporary driver
-	 *  @author mohan
+	 *   
 	 */
 	@Test
 	public void testUpdateTemporaryDriver() {
@@ -428,7 +428,7 @@ public class CrsDAOTest {
 
 	/**
 	 * get the newly created carpool group
-	 *  @author mohan
+	 *   
 	 */
 	@Test
 	public void testGetLatestCarpoolGroup() {
@@ -482,7 +482,7 @@ public class CrsDAOTest {
 
 	/**
 	 * cancel car pool group
-	 *  @author mohan
+	 *   
 	 */
 	@Test
 	public void testCancelCarpoolDrive() {

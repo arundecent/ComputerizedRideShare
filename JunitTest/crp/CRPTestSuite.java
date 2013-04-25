@@ -12,7 +12,6 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 	LoginServiceTestCases.class,
 	EmailServiceTest.class,
-	SchedulerServiceTest.class,
 	ScheduleServiceTest.class,
 	MyBatisConnectionFactoryTest.class,
 	CrsDAOTest.class

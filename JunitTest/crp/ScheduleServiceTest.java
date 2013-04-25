@@ -1,13 +1,12 @@
 package crp;
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.junit.Test;
-import com.crs.dao.CrsDAO;
+
 import com.crs.model.CarPoolMemberForm;
-import com.crs.model.EmployeeForm;
 import com.crs.service.ScheduleService;
 /**
  * This class contains all the test cases to check the

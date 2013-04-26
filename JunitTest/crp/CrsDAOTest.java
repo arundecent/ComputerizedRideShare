@@ -20,7 +20,7 @@ import com.crs.service.LoginService;
 
 /**
  * This class contains all the test cases to check the methods in the
- * CrsDAOTest.java
+ * CrsDAOTest.java 
  * @author Rajeev / Mohan
  */
 
@@ -34,7 +34,7 @@ public class CrsDAOTest {
 	
 	/**
 	 * Check for the database connection
-	 *  
+	 *  This is being implemented with before tag.
 	 */
 	@BeforeClass
 	public static void setUp() {		

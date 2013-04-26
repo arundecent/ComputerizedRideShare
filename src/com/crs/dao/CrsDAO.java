@@ -430,7 +430,7 @@ public class CrsDAO {
 	public void updateUserDetails(EmployeeForm employee){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			 session.update("Employee.modifyUserDetails", employee.getEmployeeID());
+			 session.update("Employee.modifyUserDetails", employee);
 			 session.commit();
 		}finally {
 			session.close();

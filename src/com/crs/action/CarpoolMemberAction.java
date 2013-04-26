@@ -142,8 +142,7 @@ private EmployeeForm employee = new EmployeeForm();
 
 	@SuppressWarnings("unchecked")
 	public String checkIn() {
-		System.out.println("Checking In " + carpoolGroupID + "========"
-				+ getEmployeeID());
+		System.out.println("Checking In " + carpoolGroupID + "========"	+ getEmployeeID());
 		dao.checkIn(carpoolGroupID);
 		EmployeeForm employeeDetails = dao.getLoginRecordWithEmpID(getEmployeeID());
 		carPoolMember = dao.getMemberInfo(getEmployeeID());

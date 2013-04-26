@@ -71,8 +71,10 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 
 		//EmployeeForm employeeDetails;
 		memberList = loginService.login(employee);
+		if(memberList != null){
 		if(memberList.size() != 0 && memberList.get(0) != null)
 			setCarPoolMember(loginService.getCarPoolMemberDetails());
+		
 		setCarPoolGroup(loginService.getCarPoolGroupDetails());
 		getCarPoolMember().setEmployee(loginService.getEmployeeDetails(employee));
 		//System.out.println("Member Details ===== "+getCarPoolMember().getIsDriver());
@@ -83,6 +85,9 @@ public class LoginAction extends ActionSupport implements ModelDriven<EmployeeFo
 				return ERROR;
 			else
 				return SUCCESS;
+		}else{
+			return ERROR;
+		}
 				
 	}
 

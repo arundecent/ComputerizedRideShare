@@ -216,6 +216,7 @@ public class LoginServiceTestCases{
 		employee.setSecurityQn("Where were you born?");
 		employee.setSecurityAns("Chennai");
 		employee.setNotifyType(0);
+		employee.setPhoneNo("(502)-744-0741");
 		employee.setAddress("1678, W.Taylor St. Chicago - 60607");
 		
 		List tempList = ls.registerNewUser(employee);
@@ -289,6 +290,7 @@ public class LoginServiceTestCases{
 		employee.setSecurityQn("Where were you born?");
 		employee.setSecurityAns("Chennai");
 		employee.setNotifyType(0);
+		employee.setPhoneNo("(502)-744-0741");
 		employee.setAddress("1678, W.Taylor St. Chicago - 60607");
 		
 		List tempList = ls.registerNewUser(employee);

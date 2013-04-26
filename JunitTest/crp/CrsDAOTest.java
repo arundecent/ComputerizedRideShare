@@ -23,6 +23,7 @@ import com.crs.service.LoginService;
 /**
  * This class contains all the test cases to check the methods in the
  * CrsDAOTest.java 
+ * 
  */
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -54,7 +55,7 @@ public class CrsDAOTest {
 	
 	@Test
 	public void testAInsertEmployeeRecord() {
-		CrsDAO crs = new CrsDAO();
+
 		LoginService ls = new LoginService();
 		EmployeeForm em = new EmployeeForm();
 		
@@ -373,8 +374,6 @@ public class CrsDAOTest {
 		List<Object> tempList = new ArrayList<Object>();;
 		CarPoolMemberForm car = new CarPoolMemberForm();
 		car.setCarpoolID(5025);
-		Date dateJoined= new Date(2013, 2, 12, 10, 23, 34);
-		car.setDateJoined(dateJoined);
 		car.setEmployeeID(20015);
 		car.setIsDriver(1);
 		car.setIsPickUp(1);
@@ -412,8 +411,6 @@ public class CrsDAOTest {
 	public void testCancelCarpoolPickUp() {
 		CarPoolMemberForm car = new CarPoolMemberForm();
 		car.setCarpoolID(5025);
-		Date dateJoined= new Date(2013, 2, 12, 10, 23, 34);
-		car.setDateJoined(dateJoined);
 		car.setEmployeeID(20065);
 		car.setIsDriver(1);
 		car.setIsPickUp(1);
@@ -439,9 +436,9 @@ public class CrsDAOTest {
 		EmployeeForm tempEmployee = dao.getEmployeeRecord(20063);
         boolean test = (tempEmployee == null );
         if(test){
-                assertTrue("Employee record was deleted", true);
+                assertTrue("Checked out of CRP", true);
         }else{
-                assertTrue("Employee record is still present", false);
+                assertTrue("Checking out was unsuccessful", false);
         }
 	}
 

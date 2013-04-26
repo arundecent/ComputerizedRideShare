@@ -197,7 +197,7 @@ public class LoginServiceTestCases{
 	 * For this test case to run , in the carpool member table,
 	 * each carpool ID, should occur 4 times, -> meaning that there
 	 * is no space in every carpool hence create a new one
-	 * Reference: Exported sql file along with the submission
+	 * 
 	 */
 	@SuppressWarnings("unused")
 	@Test
@@ -271,7 +271,7 @@ public class LoginServiceTestCases{
 	 * car pool group. This depends on the database state.
 	 * testUserRegistrationForPassenger and testUserRegistrationAsDriver methods
 	 * are inter related
-	 * Reference: Exported sql file along with the submission
+	 * 
 	 */
 	@SuppressWarnings("unused")
 	@Test

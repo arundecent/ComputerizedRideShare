@@ -9,7 +9,7 @@ import com.crs.dao.MyBatisConnectionFactory;
 /**
  * This class contains all the test cases to check the
  * methods in the MyBatisConnectionFactoryTest.java
- * @author Rajeev / Mohan
+ * @author Mohan
  *
  */
 

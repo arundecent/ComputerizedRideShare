@@ -18,7 +18,7 @@ import com.crs.service.EmailService;
 /**
  * Test cases for the EmailService.java. This test class
  * handles the white box and the black box testing,
- * path and branch testing.
+ * branch testing.
  * @author mohan
  *
  */

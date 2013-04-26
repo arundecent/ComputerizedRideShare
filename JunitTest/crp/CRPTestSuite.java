@@ -5,7 +5,10 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
-* This class is the test suit for all the test cases
+* This class is the test suit for all the test cases.
+* These are executed in the order in which they are specified
+* @author mohan
+* 
 */
 @RunWith(Suite.class)
 @SuiteClasses({

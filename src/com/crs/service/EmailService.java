@@ -143,7 +143,7 @@ public class EmailService implements Job{
 			email.setSmtpPort(465);
 			
 			/*Authentication for the gmail account*/
-			email.setAuthenticator(new DefaultAuthenticator("ajaykarthik29","oretension"));
+			email.setAuthenticator(new DefaultAuthenticator("crpuic@gmail.com","cs442groupb"));
 			
 			/* accepting the SSL certificate */
 			email.setSSLOnConnect(true);

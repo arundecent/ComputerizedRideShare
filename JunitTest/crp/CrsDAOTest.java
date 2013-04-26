@@ -23,7 +23,6 @@ import com.crs.service.LoginService;
 /**
  * This class contains all the test cases to check the methods in the
  * CrsDAOTest.java 
- * @author Rajeev / Mohan
  */
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)

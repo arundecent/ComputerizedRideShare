@@ -239,22 +239,22 @@ public class CrsDAO {
 		}
 	}
 	
-	public void updateCurrentDriver(int currentDriver){
+	public void updateCurrentDriver(Integer empID){
 		SqlSession session = sqlSessionFactory.openSession();		
 		
 		try{
-			session.update("CarPoolMember.updateCurrentDriver",currentDriver);
+			session.update("CarPoolMember.updateCurrentDriver",empID);
 			session.commit();
 		}finally {
 			session.close();
 		}
 	}
 	
-	public void updateNextDriver(int nextDriver){
+	public void updateNextDriver(Integer empID){
 		SqlSession session = sqlSessionFactory.openSession();		
 		
 		try{
-			session.update("CarPoolMember.updateNextDriver",nextDriver);	
+			session.update("CarPoolMember.updateNextDriver",empID);	
 			session.commit();
 		}finally {
 			session.close();

@@ -120,6 +120,7 @@ public class LoginService implements LoginServiceInterface{
 					 * particular user id
 					 */
 					String passEntered = this.generateMD5HashForPasswordWithSalt(employee.getPassword());
+					//String passEntered = this.generateMD5HashForPassword(employee.getPassword());
 					
 					//check for password match
 					if(hashPasswordFromDB.equals(passEntered)){
@@ -188,6 +189,7 @@ public class LoginService implements LoginServiceInterface{
 		 * hashed password should be set to the employee object before database save.
 		 */
 		employee.setPassword(this.generateMD5HashForPasswordWithSalt(employee.getPassword()));
+		//employee.setPassword(this.generateMD5HashForPassword(employee.getPassword()));
 		
 		/*
 		 * saving the new user details to the database using dao

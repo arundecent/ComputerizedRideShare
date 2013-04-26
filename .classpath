@@ -55,6 +55,7 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/struts2-jquery-plugin-3.5.1.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/xwork-core-2.3.12.jar"/>
 	<classpathentry kind="lib" path="web/WEB-INF/lib/xwork-core-2.3.8-sources.jar"/>
+	<classpathentry kind="lib" path="web/WEB-INF/lib/junit-4.11.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

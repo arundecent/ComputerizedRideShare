@@ -188,7 +188,7 @@ public class CrsDAOTest {
 
 		dao.checkIn(5025);
 		CarPoolForm ca = dao.getCarPoolGroupDetails(5025);
-		boolean test = (ca == null );
+		boolean test = ((ca != null) && (ca.getAtWork() == 1));
 		if(test){
 			assertTrue("No carpool group retireved", false);
 		}else{
